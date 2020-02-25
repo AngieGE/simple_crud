@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'app-custionario-form',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custionario-form.component.css']
 })
 export class CustionarioFormComponent implements OnInit {
+
+  //@HostBinding('class') classes = 'row';
 
   constructor() { }
 
