@@ -1,11 +1,12 @@
-import mysql from 'promise-mysql';
+import sql from 'mssql';
 import keys from './keys';
 
-const pool = mysql.createPool(keys.database);
+const pool = new sql.ConnectionPool(keys.database);
 
-pool.getConnection().then(connection =>{
-    pool.releaseConnection(connection);
-    console.log('DB is connected!!! a huevo');
+pool.connect().then(connection =>{
+   // pool.releaseConnection(connection);
+    const req = new sql.Request()
+    console.log('DB is connected!!!');
 });
 
 export default pool;

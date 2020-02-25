@@ -17,37 +17,42 @@ class CuestionariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const cuestionarios = yield database_1.default.query('SELECT * FROM cuestionario');
-            res.json(cuestionarios);
+            res.json(cuestionarios.recordset);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const cuestionario = yield database_1.default.query('SELECT * FROM cuestionario WHERE id = ?', { id });
-            console.log(cuestionario);
-            if (cuestionario.length > 0) {
-                return res.json(cuestionario[0]);
+            const cuestionario = yield database_1.default.query('SELECT * FROM cuestionario WHERE id = ' + id);
+            if (cuestionario.recordset.length > 0) {
+                return res.json(cuestionario.recordset[0]);
             }
             res.status(404).json({ 'text': 'the cuestionario doesnt exist' });
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO cuestionario set ?', [req.body]);
+            // let cuest=  json(req.body);
+            console.log(req.body.desciption);
+            console.log(req.body.title);
+            yield database_1.default.query("INSERT INTO cuestionario ([title], [desciption]) VALUES ('" + req.body.title + "', '" + req.body.desciption + "');");
             res.json({ 'message': 'saved questionaire' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM cuestionario WHERE id = ?', [{ id }]);
+            yield database_1.default.query('DELETE FROM cuestionario WHERE id = ' + id);
             res.json({ 'message': 'the cuetsionrio was deleted' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE cuestionario set ? WHERE id = ?', [req.body, id]);
+            yield database_1.default.query("UPDATE cuestionario set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE id = " + id + " ;"); //, [req.body, id])
+            //UPDATE table_name
+            // SET column1 = value1, column2 = value2, ...
+            // WHERE condition
             res.json({ 'message': 'the questionaire was updated ' });
         });
     }

@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        host: 'localhost',
-        user: 'root',
-        password: '',
+        server: 'localhost',
+        user: 'sa',
+        password: 'root',
         database: 'ng_cuestionarios_db'
     }
 };
