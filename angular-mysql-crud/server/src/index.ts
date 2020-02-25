@@ -15,13 +15,13 @@ class Server{
     }
 
     config(): void{
-        console.log('en config');
+
         this.app.set('port', process.env.PORT || 3000);
-        console.log(this.app.get('port'));
+
         this.app.use(morgan('dev'));
-       // this.app.use(cors);
+        this.app.use(cors({origin: 'http://localhost:4200'})); //omaigoood, no quiten esa url
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended:false}));
+       this.app.use(express.urlencoded({extended:false}));
 
     }
 
