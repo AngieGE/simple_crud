@@ -26,15 +26,15 @@ export class CustionarioFormComponent implements OnInit {
   saveNewCuestionario(){
     delete this.cuestionario.created_at;
     delete this.cuestionario.id;
-
-    this.cuestionariosServices.saveCuestionario(this.cuestionario)
+    if (this.cuestionario.title.length > 0 ){}
+    console.log(this.cuestionario);
+/*    this.cuestionariosServices.saveCuestionario(this.cuestionario)
       .subscribe( res =>{
         console.log(res);
-
       }, err => {
         console.error(err)
       });
-
+*/
   }
 
 }
