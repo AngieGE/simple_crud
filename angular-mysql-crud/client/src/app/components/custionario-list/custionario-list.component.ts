@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import { CuestionariosService } from '../../services/cuestionarios.service';
 @Component({
   selector: 'app-custionario-list',
@@ -7,11 +7,17 @@ import { CuestionariosService } from '../../services/cuestionarios.service';
 })
 export class CustionarioListComponent implements OnInit {
 
+  @HostBinding('class') classes = 'row';
+
   cuestionarios: any = [];
 
   constructor(private cuestionariosService: CuestionariosService ) { }
 
   ngOnInit(): void {
+    this.getGames();
+  }
+
+  getGames(){
     this.cuestionariosService.getCuestionarios().subscribe(
       res => {
         this.cuestionarios = res;
@@ -21,6 +27,19 @@ export class CustionarioListComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  deleteCuestionario(id: string){
+    console.log("delete game "+id);
+    this.cuestionariosService.deleteCuestionario(id).subscribe(
+      res=> {
+          console.log(res);
+          this.getGames();
+      },
+      err =>{
+        console.log(err);
+      }
+    )
   }
 
 }

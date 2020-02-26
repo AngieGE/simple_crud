@@ -1,19 +1,20 @@
-<div class="col-md-4" *ngFor="let cuestionario of cuestionarios">
-  <div class="card text-center">
-    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-      {{cuestionario.title}}
-      <button class="btn btn-danger">
-        <i class="far fa-trash-alt"></i>
 
-      </button>
-    </div>
-    <div class="card-body">
-      <p>{{cuestionario.desciption}}</p>
-      <a href="" class="btn btn-info btn-block">
-        Ver Reporte
-      </a>
+  <div class="col-md-4"  *ngFor="let cuestionario of cuestionarios">
+    <div class="card text-center">
+      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+        {{cuestionario.title}}
+        <button class="btn btn-danger" (click)="deleteCuestionario(cuestionario.id)">
+          <i class="far fa-trash-alt"></i>
+
+        </button>
+      </div>
+      <div class="card-body">
+        <p>{{cuestionario.desciption}}</p>
+        <a href="" class="btn btn-info btn-block">
+          Ver Reporte
+        </a>
+      </div>
     </div>
   </div>
-</div>
-<a routerLink="/cuestionarios/crear"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 
+<a routerLink="/cuestionarios/crear"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
