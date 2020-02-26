@@ -4,6 +4,5 @@ export default {
         user: 'sa',
         password: 'root',
         database: 'ng_cuestionarios_db'
-
     }
 }
