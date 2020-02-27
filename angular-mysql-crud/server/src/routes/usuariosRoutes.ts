@@ -10,7 +10,6 @@ class UsuariosRoutes{
 
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        console.log('aqui en usuario!!!!!!!!!!!!!');
         this.router.get('/', usuariosController.list);
         this.router.get('/:id', usuariosController.getOne);
         this.router.post ('/', usuariosController.create);

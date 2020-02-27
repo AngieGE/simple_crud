@@ -51,7 +51,7 @@ class UsuariosController {
                 "contrasena = '" + req.body.contrasena + "', usuario = '" + req.body.usuario + "', " +
                 "fechaNacimiento = '" + req.body.fechaNacimiento + "', genero = '" + req.body.genero + "' " +
                 "WHERE idUsuario = " + id + " ;"); //, [req.body, id])
-            res.json({ 'message': 'the questionaire was updated ' });
+            res.json({ 'message': 'the usuario was updated ' });
         });
     }
 }
