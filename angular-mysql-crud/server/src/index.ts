@@ -1,6 +1,7 @@
 import express, {Application} from 'express';
 import indexRoutes from './routes/indexRoutes';
 import cuestionariosRoutes from './routes/cuestionariosRoutes';
+import usuariosRoutes from './routes/usuariosRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
 
@@ -29,6 +30,7 @@ class Server{
         console.log('en routes');
         this.app.use('/',indexRoutes);
         this.app.use('/api/cuestionarios', cuestionariosRoutes);
+        this.app.use('/api/usuarios', usuariosRoutes);
     }
 
     start(): void{

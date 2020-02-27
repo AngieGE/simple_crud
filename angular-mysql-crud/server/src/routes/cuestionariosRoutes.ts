@@ -15,7 +15,6 @@ class CuestionariosRoutes{
         this.router.post ('/', cuestionariosController.create);
         this.router.delete ('/:id', cuestionariosController.delete);
         this.router.put ('/:id', cuestionariosController.update);
-
     }
 }
 
