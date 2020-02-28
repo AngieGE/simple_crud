@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Cuestionario } from '../../models/Cuestionario';
 import { CuestionariosService } from '../../services/cuestionarios.service'
 import {provideRoutes} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custionario-form',
@@ -12,29 +13,28 @@ export class CustionarioFormComponent implements OnInit {
 
   //@HostBinding('class') classes = 'row';
   cuestionario: Cuestionario = {
-    id:0,
-    title: '',
-    desciption: '',
-    created_at: new Date()
+    idEncuesta:0,
+    nombre: '',
+    descripcion: '',
+    idUsuario: 0
   }
 
-  constructor(private cuestionariosServices: CuestionariosService) { }
+  constructor(private cuestionariosServices: CuestionariosService, private router:Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   saveNewCuestionario(){
-    delete this.cuestionario.created_at;
-    delete this.cuestionario.id;
+    delete this.cuestionario.idEncuesta;
 
-    this.cuestionariosServices.saveCuestionario(this.cuestionario)
-      .subscribe( res =>{
-        console.log(res);
+    if (this.cuestionario.nombre.length > 0 && this.cuestionario.descripcion.length > 0 ){
 
-      }, err => {
-        console.error(err)
-      });
-
+      this.cuestionariosServices.saveCuestionario(this.cuestionario)
+        .subscribe( res =>{
+          console.log(res);
+          this.router.navigate(['/cuestionarios']);
+        }, err => {
+          console.error(err)
+        });
+    }
   }
-
 }

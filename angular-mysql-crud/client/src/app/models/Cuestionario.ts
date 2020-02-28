@@ -1,6 +1,7 @@
 export interface Cuestionario {
-  id?: number;
-  title: string;
-  desciption: string;
-  created_at?: Date;
+  idEncuesta?: number;
+  nombre: string;
+  descripcion: string;
+  idUsuario: number;
 }
+

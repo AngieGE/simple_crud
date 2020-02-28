@@ -8,12 +8,17 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { CustionarioFormComponent } from './components/custionario-form/custionario-form.component';
 import { CustionarioListComponent } from './components/custionario-list/custionario-list.component';
 import { CuestionariosService } from './services/cuestionarios.service';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     CustionarioFormComponent,
-    CustionarioListComponent
+    CustionarioListComponent,
+    LoginFormComponent,
+
   ],
   imports: [
     BrowserModule,

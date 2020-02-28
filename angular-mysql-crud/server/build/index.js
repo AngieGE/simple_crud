@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const cuestionariosRoutes_1 = __importDefault(require("./routes/cuestionariosRoutes"));
+const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
@@ -27,6 +28,7 @@ class Server {
         console.log('en routes');
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/cuestionarios', cuestionariosRoutes_1.default);
+        this.app.use('/api/usuarios', usuariosRoutes_1.default);
     }
     start() {
         console.log('en start');

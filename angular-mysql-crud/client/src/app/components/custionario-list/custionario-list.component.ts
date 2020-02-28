@@ -14,10 +14,10 @@ export class CustionarioListComponent implements OnInit {
   constructor(private cuestionariosService: CuestionariosService ) { }
 
   ngOnInit(): void {
-    this.getGames();
+    this.getCuestionarios();
   }
 
-  getGames(){
+  getCuestionarios(){
     this.cuestionariosService.getCuestionarios().subscribe(
       res => {
         this.cuestionarios = res;
@@ -25,6 +25,7 @@ export class CustionarioListComponent implements OnInit {
       },
       err => {
         console.log(err);
+        
       }
     );
   }
@@ -34,7 +35,7 @@ export class CustionarioListComponent implements OnInit {
     this.cuestionariosService.deleteCuestionario(id).subscribe(
       res=> {
           console.log(res);
-          this.getGames();
+          this.getCuestionarios();
       },
       err =>{
         console.log(err);

@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class CuestionariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cuestionarios = yield database_1.default.query('SELECT * FROM cuestionario');
+            const cuestionarios = yield database_1.default.query('SELECT * FROM encuesta WHERE activa = 1');
             res.json(cuestionarios.recordset);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const cuestionario = yield database_1.default.query('SELECT * FROM cuestionario WHERE id = ' + id);
+            const cuestionario = yield database_1.default.query('SELECT * FROM encuesta WHERE idEncuesta = ' + id);
             if (cuestionario.recordset.length > 0) {
                 return res.json(cuestionario.recordset[0]);
             }
@@ -35,21 +35,22 @@ class CuestionariosController {
             // let cuest=  json(req.body);
             console.log(req.body.desciption);
             console.log(req.body.title);
-            yield database_1.default.query("INSERT INTO cuestionario ([title], [desciption]) VALUES ('" + req.body.title + "', '" + req.body.desciption + "');");
+            yield database_1.default.query("INSERT INTO encuesta ([title], [desciption]) VALUES ('" + req.body.title + "', '" + req.body.desciption + "');");
             res.json({ 'message': 'saved questionaire' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM cuestionario WHERE id = ' + id);
+            yield database_1.default.query('UPDATE encuesta SET activa = 0 WHERE idEncuesta = ' + id).
+                catch(err => res.status(400).json({ err }));
             res.json({ 'message': 'the cuetsionrio was deleted' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query("UPDATE cuestionario set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE id = " + id + " ;"); //, [req.body, id])
+            yield database_1.default.query("UPDATE encuesta set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id + " ;"); //, [req.body, id])
             //UPDATE table_name
             // SET column1 = value1, column2 = value2, ...
             // WHERE condition

@@ -1,0 +1,16 @@
+<form name="myform">
+  <div class="form-group">
+    <label for="nombre">Usuario</label>
+    <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" id="nombre" placeholder="Ingresa tu nombre de usuario" name="nombre" required>
+   <!-- <span ng-show="myform.nombre.$error.required">Please enter something!</span>
+    <span ng-show="!myform.nombre.$error.required">Good boy!</span> -->
+  </div>
+  <div class="form-group">
+    <label for="contrasena">Contraseña</label>
+    <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contraseña" name="contrasena" required>
+    <small id="contrasenaHelp" class="form-text text-muted"><a href="">Olvidaste tu contraseña?</a></small>
+  </div>
+  <div class="botones col-md-4">
+    <button type="submit" class="btn btn-primary" (click)="iniciarSesion()">Iniciar Sesión</button>   <button type="button" class="btn btn-secondary"  >Únete ahora</button>
+  </div>
+</form>
