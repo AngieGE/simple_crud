@@ -5,6 +5,6 @@ exports.default = {
         server: 'localhost',
         user: 'sa',
         password: 'root',
-        database: 'ng_cuestionarios_db'
+        database: 'cuestionario_db'
     }
 };

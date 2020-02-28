@@ -54,6 +54,20 @@ class UsuariosController {
             res.json({ 'message': 'the usuario was updated ' });
         });
     }
+    login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let usuario = req.query.usuario;
+            let contrasena = req.query.contrasena;
+            console.log(req.query);
+            const usuarioCheck = yield database_1.default.query("SELECT * FROM usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; ");
+            if (usuarioCheck.recordset.length == 0) {
+                res.json({ 'message': 'the usuario is not valid ' });
+            }
+            else {
+                res.json({ 'message': 'the usuario is valid' });
+            }
+        });
+    }
 }
 const usuariosController = new UsuariosController();
 exports.default = usuariosController;

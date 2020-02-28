@@ -28,8 +28,31 @@ export class LoginFormComponent implements OnInit {
 
   iniciarSesion(){
     delete this.usuario.idUsuario;
-    console.log(this.usuario.usuario);
-    console.log(this.usuario.contrasena);
 
+    this.loginService.getUsuario(this.usuario)
+      .subscribe( res =>{
+        if(res.message == 'the usuario is valid'){
+          this.router.navigate(['/cuestionarios']);
+        }
+
+      }, err => {
+        console.error(err)
+      });
   }
 }
+/*
+saveNewCuestionario(){
+  delete this.cuestionario.idEncuesta;
+
+  if (this.cuestionario.nombre.length > 0 && this.cuestionario.descripcion.length > 0 ){
+
+    this.cuestionariosServices.saveCuestionario(this.cuestionario)
+      .subscribe( res =>{
+        console.log(res);
+        this.router.navigate(['/cuestionarios']);
+      }, err => {
+        console.error(err)
+      });
+  }
+}
+*/

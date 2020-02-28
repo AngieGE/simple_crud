@@ -13,10 +13,10 @@ export class CustionarioFormComponent implements OnInit {
 
   //@HostBinding('class') classes = 'row';
   cuestionario: Cuestionario = {
-    id:0,
-    title: '',
-    desciption: '',
-    created_at: new Date()
+    idEncuesta:0,
+    nombre: '',
+    descripcion: '',
+    idUsuario: 0
   }
 
   constructor(private cuestionariosServices: CuestionariosService, private router:Router) { }
@@ -24,9 +24,9 @@ export class CustionarioFormComponent implements OnInit {
   ngOnInit(): void {}
 
   saveNewCuestionario(){
-    delete this.cuestionario.created_at;
-    delete this.cuestionario.id;
-    if (this.cuestionario.title.length > 0 && this.cuestionario.desciption.length > 0 ){
+    delete this.cuestionario.idEncuesta;
+
+    if (this.cuestionario.nombre.length > 0 && this.cuestionario.descripcion.length > 0 ){
 
       this.cuestionariosServices.saveCuestionario(this.cuestionario)
         .subscribe( res =>{
@@ -35,8 +35,6 @@ export class CustionarioFormComponent implements OnInit {
         }, err => {
           console.error(err)
         });
-
     }
   }
-
 }

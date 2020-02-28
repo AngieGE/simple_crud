@@ -13,7 +13,6 @@ export class CuestionariosService {
 
   getCuestionarios(){
     return this.http.get(`${this.API_URL}/cuestionarios/`);
-
   }
 
   getCuestionario(id: string){

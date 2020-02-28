@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Usuario } from "../models/Usuario";
 import {Cuestionario} from "../models/Cuestionario";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,14 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuarios(){
-    return this.http.get(`${this.API_URL}/usuarios/`);
 
-  }
-
-  getUsuario(id: string){
-    return this.http.get(  `${this.API_URL}/usuarios/${id}`);
+  getUsuario( usuario: Usuario): Observable<any>{
+    console.log( JSON.stringify(usuario));
+    let us = {
+      'usuario': usuario.usuario,
+      'contrasena': usuario.contrasena
+    };
+    return this.http.get(  `${this.API_URL}/usuarios`, { params: us});
   }
 
   deleteUsuario(id: string){

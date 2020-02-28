@@ -12,8 +12,8 @@ class UsuariosRoutes {
     }
     config() {
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/', usuariosController_1.default.list);
-        this.router.get('/:id', usuariosController_1.default.getOne);
+        //this.router.get('/', usuariosController.list);
+        this.router.get('/', usuariosController_1.default.login);
         this.router.post('/', usuariosController_1.default.create);
         this.router.delete('/:id', usuariosController_1.default.delete);
         this.router.put('/:id', usuariosController_1.default.update);

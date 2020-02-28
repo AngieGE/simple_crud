@@ -3,7 +3,7 @@ import pool from '../database';
 class UsuariosController {
 
     public async list (req: Request, res: Response){ //YA QUEDO
-        const usuarios = await pool.query('SELECT * FROM usuario')
+        const usuarios = await pool.query('SELECT * FROM usuario');
         res.json(usuarios.recordset);
     }
 
@@ -34,6 +34,21 @@ class UsuariosController {
                                     "fechaNacimiento = '" + req.body.fechaNacimiento + "', genero = '" + req.body.genero + "' " +
                                     "WHERE idUsuario = " + id +" ;");//, [req.body, id])
         res.json({'message':'the usuario was updated '})
+    }
+
+    public async login(req: Request, res: Response): Promise<void>{
+        let usuario = req.query.usuario;
+        let contrasena = req.query.contrasena;
+        console.log(req.query);
+
+        const usuarioCheck = await pool.query("SELECT * FROM usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; ")
+
+        if(usuarioCheck.recordset.length == 0){
+            res.json({'message':'the usuario is not valid '})
+        }else{
+            res.json({'message':'the usuario is valid'})
+        }
+
     }
 }
 const usuariosController = new UsuariosController();
