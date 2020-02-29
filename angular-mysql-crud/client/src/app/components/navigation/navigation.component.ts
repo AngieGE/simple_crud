@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -7,14 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private router: Router) {
+
+  }
 
   ngOnInit(): void {
+
   }
 
   logout() {
-    localStorage.setItem('nombre', null);
-    localStorage.setItem('apellido', null);
-    localStorage.setItem('saludo', null);
+    localStorage.clear();
   }
 }
+
+//*ngIf="rout != '/'"

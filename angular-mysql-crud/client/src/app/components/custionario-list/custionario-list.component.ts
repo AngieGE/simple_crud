@@ -1,5 +1,6 @@
 import {Component, DebugElement, HostBinding, OnInit} from '@angular/core';
 import { CuestionariosService } from '../../services/cuestionarios.service';
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-custionario-list',
   templateUrl: './custionario-list.component.html',
@@ -13,7 +14,9 @@ export class CustionarioListComponent implements OnInit {
   nombre: string;
   apellido: string;
   saludo: string;
-  constructor(private cuestionariosService: CuestionariosService ) { }
+  constructor(private cuestionariosService: CuestionariosService,private router: Router ) {
+      localStorage.setItem('rout', router.url) ;
+  }
 
   ngOnInit(): void {
     this.getCuestionarios();

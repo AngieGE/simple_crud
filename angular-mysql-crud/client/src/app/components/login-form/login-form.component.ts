@@ -10,7 +10,7 @@ import {Cuestionario} from "../../models/Cuestionario";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-
+  rout: string;
   usuario: Usuario = {
     idUsuario :0,
     nombre: '',
@@ -22,7 +22,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   enterWrongUserData: boolean;
-  constructor(private loginService: LoginService, private  router: Router) { }
+  constructor(private loginService: LoginService, private  router: Router) {
+    this.rout = router.url;
+
+  }
 
   ngOnInit(): void {
     this.enterWrongUserData = false;
