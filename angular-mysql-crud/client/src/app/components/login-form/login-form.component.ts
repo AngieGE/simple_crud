@@ -21,30 +21,38 @@ export class LoginFormComponent implements OnInit {
     genero: false
   }
 
+  enterWrongUserData: boolean;
   constructor(private loginService: LoginService, private  router: Router) { }
 
   ngOnInit(): void {
+    this.enterWrongUserData = false;
   }
 
   iniciarSesion(){
     delete this.usuario.idUsuario;
-
+    this.resetVar();
     this.loginService.getUsuario(this.usuario)
       .subscribe( res =>{
         if(res.usuario == null){
-
+          this.enterWrongUserData = true;
         }else{
           this.router.navigate(['/cuestionarios']);
           localStorage.setItem('idUsuario', res.usuario.idUsuario);
-          localStorage.setItem('nombre', res.usuario.nombre);
-          localStorage.setItem('apellido', res.usuario.apellido);
-          console.log(res.usuario);
-          console.log(res.usuario.nombre);
-          console.log('apellido: '+res.usuario.apellido);
+          localStorage.setItem('nombre',JSON.parse(res.usuario).nombre);
+          localStorage.setItem('apellido', JSON.parse(res.usuario).apellido);
+          if (JSON.parse(res.usuario).genero == 1) {// es mujer
+            localStorage.setItem('saludo', 'Bienvenida');
+          }else{
+            localStorage.setItem('saludo', 'Bienvenido');
+          }
         }
 
       }, err => {
         console.error(err)
       });
+  }
+
+  resetVar(){
+    this.enterWrongUserData=false;
   }
 }

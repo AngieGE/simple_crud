@@ -12,14 +12,14 @@ export class CustionarioListComponent implements OnInit {
   cuestionarios: any = [];
   nombre: string;
   apellido: string;
-
+  saludo: string;
   constructor(private cuestionariosService: CuestionariosService ) { }
 
   ngOnInit(): void {
     this.getCuestionarios();
     this.nombre = localStorage.getItem('nombre');
     this.apellido = localStorage.getItem('apellido');
-    console.log(this.nombre + this.apellido); // da undefined
+    this.saludo = localStorage.getItem('saludo');
   }
 
   getCuestionarios(){

@@ -14,7 +14,6 @@ export class LoginService {
 
 
   getUsuario( usuario: Usuario): Observable<any>{
-    console.log( JSON.stringify(usuario));
     let us = {
       'usuario': usuario.usuario,
       'contrasena': usuario.contrasena

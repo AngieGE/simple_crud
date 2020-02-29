@@ -12,4 +12,9 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout() {
+    localStorage.setItem('nombre', null);
+    localStorage.setItem('apellido', null);
+    localStorage.setItem('saludo', null);
+  }
 }
