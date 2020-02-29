@@ -31,8 +31,16 @@ export class LoginFormComponent implements OnInit {
 
     this.loginService.getUsuario(this.usuario)
       .subscribe( res =>{
-        if(res.message == 'the usuario is valid'){
+        if(res.usuario == null){
+
+        }else{
           this.router.navigate(['/cuestionarios']);
+          localStorage.setItem('idUsuario', res.usuario.idUsuario);
+          localStorage.setItem('nombre', res.usuario.nombre);
+          localStorage.setItem('apellido', res.usuario.apellido);
+          console.log(res.usuario);
+          console.log(res.usuario.nombre);
+          console.log('apellido: '+res.usuario.apellido);
         }
 
       }, err => {
@@ -40,19 +48,3 @@ export class LoginFormComponent implements OnInit {
       });
   }
 }
-/*
-saveNewCuestionario(){
-  delete this.cuestionario.idEncuesta;
-
-  if (this.cuestionario.nombre.length > 0 && this.cuestionario.descripcion.length > 0 ){
-
-    this.cuestionariosServices.saveCuestionario(this.cuestionario)
-      .subscribe( res =>{
-        console.log(res);
-        this.router.navigate(['/cuestionarios']);
-      }, err => {
-        console.error(err)
-      });
-  }
-}
-*/

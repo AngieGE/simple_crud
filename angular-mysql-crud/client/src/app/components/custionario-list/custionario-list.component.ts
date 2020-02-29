@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, DebugElement, HostBinding, OnInit} from '@angular/core';
 import { CuestionariosService } from '../../services/cuestionarios.service';
 @Component({
   selector: 'app-custionario-list',
@@ -10,11 +10,16 @@ export class CustionarioListComponent implements OnInit {
   @HostBinding('class') classes = 'row';
 
   cuestionarios: any = [];
+  nombre: string;
+  apellido: string;
 
   constructor(private cuestionariosService: CuestionariosService ) { }
 
   ngOnInit(): void {
     this.getCuestionarios();
+    this.nombre = localStorage.getItem('nombre');
+    this.apellido = localStorage.getItem('apellido');
+    console.log(this.nombre + this.apellido); // da undefined
   }
 
   getCuestionarios(){
@@ -25,7 +30,7 @@ export class CustionarioListComponent implements OnInit {
       },
       err => {
         console.log(err);
-        
+
       }
     );
   }
@@ -34,7 +39,6 @@ export class CustionarioListComponent implements OnInit {
     console.log("delete game "+id);
     this.cuestionariosService.deleteCuestionario(id).subscribe(
       res=> {
-          console.log(res);
           this.getCuestionarios();
       },
       err =>{

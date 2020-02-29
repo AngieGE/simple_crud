@@ -44,9 +44,9 @@ class UsuariosController {
         const usuarioCheck = await pool.query("SELECT * FROM usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; ")
 
         if(usuarioCheck.recordset.length == 0){
-            res.json({'message':'the usuario is not valid '})
+            res.json({'message':'the usuario is not valid ', 'usuario': null})
         }else{
-            res.json({'message':'the usuario is valid'})
+            res.json({'message':'the usuario is valid', 'usuario': JSON.stringify(usuarioCheck.recordset[0])});
         }
 
     }
