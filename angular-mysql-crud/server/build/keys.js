@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        server: 'localhost',
-        user: 'sa',
-        password: 'root',
+        server: '35.235.89.179',
+        user: 'SA',
+        password: 'aA01421467.',
         database: 'cuestionario_db'
     }
 };
