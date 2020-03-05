@@ -9,6 +9,7 @@ import { CustionarioFormComponent } from './components/custionario-form/custiona
 import { CustionarioListComponent } from './components/custionario-list/custionario-list.component';
 import { CuestionariosService } from './services/cuestionarios.service';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     CustionarioFormComponent,
     CustionarioListComponent,
     LoginFormComponent,
+    RegisterFormComponent,
 
   ],
   imports: [
