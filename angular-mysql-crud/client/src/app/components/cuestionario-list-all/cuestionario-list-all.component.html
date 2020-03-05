@@ -1,1 +1,13 @@
-<p>cuestionario-list-all works!</p>
+<div class="col-md-4"  *ngFor="let cuestionario of cuestionarios">
+  <div class="card text-center" >
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      {{cuestionario.nombre}}
+    </div>
+    <div class="card-body">
+      <p>{{cuestionario.descripcion}}</p>
+      <a href="/cuestionarios" class="btn btn-info btn-block">
+        Contestar
+      </a>
+    </div>
+  </div>
+</div>

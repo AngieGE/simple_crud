@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-
+  rout: string;
   constructor(private router: Router) {
 
   }
 
   ngOnInit(): void {
-
+    this.rout = localStorage.getItem('rout');
   }
 
   logout() {

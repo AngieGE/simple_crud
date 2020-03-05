@@ -17,11 +17,11 @@ export class CuestionarioListAllComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCuestionarios();
   }
 
   getCuestionarios() {
-    console.log(localStorage.getItem('id'));
-    this.cuestionariosService.getCuestionarios(localStorage.getItem('id')).subscribe(
+    this.cuestionariosService.getCuestionarios().subscribe(
       res => {
         this.cuestionarios = res;
         console.log(this.cuestionarios);

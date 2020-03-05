@@ -44,6 +44,7 @@ export class LoginFormComponent implements OnInit {
           localStorage.setItem('nombre', JSON.parse(res.usuario).nombre);
           localStorage.setItem('apellido', JSON.parse(res.usuario).apellido);
           localStorage.setItem('id', JSON.parse(res.usuario).idUsuario);
+          localStorage.setItem('usuario', res.usuario );
           if (JSON.parse(res.usuario).genero === 1) {// es mujer
             localStorage.setItem('saludo', 'Bienvenida');
           } else {

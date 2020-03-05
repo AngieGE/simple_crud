@@ -28,14 +28,13 @@ export class CustionarioListComponent implements OnInit {
 
   getCuestionarios() {
     console.log(localStorage.getItem('id'));
-    this.cuestionariosService.getCuestionarios(localStorage.getItem('id')).subscribe(
+    this.cuestionariosService.getUserCuestionarios( localStorage.getItem('id')).subscribe(
       res => {
         this.cuestionarios = res;
         console.log(this.cuestionarios);
       },
       err => {
         console.log(err);
-
       }
     );
   }
