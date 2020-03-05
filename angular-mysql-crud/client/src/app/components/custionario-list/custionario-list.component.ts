@@ -1,6 +1,7 @@
 import {Component, DebugElement, HostBinding, OnInit} from '@angular/core';
 import { CuestionariosService } from '../../services/cuestionarios.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {Cuestionario} from "../../models/Cuestionario";
 @Component({
   selector: 'app-custionario-list',
   templateUrl: './custionario-list.component.html',
@@ -14,7 +15,7 @@ export class CustionarioListComponent implements OnInit {
   nombre: string;
   apellido: string;
   saludo: string;
-  constructor(private cuestionariosService: CuestionariosService,private router: Router ) {
+  constructor(private cuestionariosService: CuestionariosService, private router: Router ) {
       localStorage.setItem('rout', router.url) ;
   }
 
@@ -25,8 +26,9 @@ export class CustionarioListComponent implements OnInit {
     this.saludo = localStorage.getItem('saludo');
   }
 
-  getCuestionarios(){
-    this.cuestionariosService.getCuestionarios().subscribe(
+  getCuestionarios() {
+    console.log(localStorage.getItem('id'));
+    this.cuestionariosService.getCuestionarios(localStorage.getItem('id')).subscribe(
       res => {
         this.cuestionarios = res;
         console.log(this.cuestionarios);
@@ -39,7 +41,6 @@ export class CustionarioListComponent implements OnInit {
   }
 
   deleteCuestionario(id: string){
-    console.log("delete game "+id);
     this.cuestionariosService.deleteCuestionario(id).subscribe(
       res=> {
           this.getCuestionarios();
@@ -47,7 +48,7 @@ export class CustionarioListComponent implements OnInit {
       err =>{
         console.log(err);
       }
-    )
+    );
   }
 
 }

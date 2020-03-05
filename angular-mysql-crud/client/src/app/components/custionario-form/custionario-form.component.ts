@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
 })
 export class CustionarioFormComponent implements OnInit {
 
-  //@HostBinding('class') classes = 'row';
+
   cuestionario: Cuestionario = {
-    idEncuesta:0,
+    idEncuesta: 0,
     nombre: '',
     descripcion: '',
-    idUsuario: 0
+    idUsuario: 0,
+    activa: true
   }
 
   constructor(private cuestionariosServices: CuestionariosService, private router:Router) { }

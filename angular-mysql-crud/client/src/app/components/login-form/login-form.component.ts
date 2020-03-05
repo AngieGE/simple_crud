@@ -31,27 +31,28 @@ export class LoginFormComponent implements OnInit {
     this.enterWrongUserData = false;
   }
 
-  iniciarSesion(){
+  iniciarSesion() {
     delete this.usuario.idUsuario;
     this.resetVar();
     this.loginService.getUsuario(this.usuario)
-      .subscribe( res =>{
-        if(res.usuario == null){
+      .subscribe( res => {
+        if (res.usuario == null) {
           this.enterWrongUserData = true;
-        }else{
+        } else {
           this.router.navigate(['/cuestionarios']);
           localStorage.setItem('idUsuario', res.usuario.idUsuario);
-          localStorage.setItem('nombre',JSON.parse(res.usuario).nombre);
+          localStorage.setItem('nombre', JSON.parse(res.usuario).nombre);
           localStorage.setItem('apellido', JSON.parse(res.usuario).apellido);
-          if (JSON.parse(res.usuario).genero == 1) {// es mujer
+          localStorage.setItem('id', JSON.parse(res.usuario).idUsuario);
+          if (JSON.parse(res.usuario).genero === 1) {// es mujer
             localStorage.setItem('saludo', 'Bienvenida');
-          }else{
+          } else {
             localStorage.setItem('saludo', 'Bienvenido');
           }
         }
 
       }, err => {
-        console.error(err)
+        console.error(err);
       });
   }
 

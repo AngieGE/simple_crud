@@ -22,4 +22,3 @@ export class NavigationComponent implements OnInit {
   }
 }
 
-//*ngIf="rout != '/'"
