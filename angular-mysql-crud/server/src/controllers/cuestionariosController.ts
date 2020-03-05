@@ -3,8 +3,10 @@ import pool from '../database';
 class CuestionariosController {
 
     public async list (req: Request, res: Response){ //YA QUEDO
-        const cuestionarios = await pool.query('SELECT * FROM encuesta WHERE activa = 1')
+        const { id } = req.params;
+        const cuestionarios = await pool.query('SELECT * FROM encuesta WHERE activa = 1 AND idUsuario  = '+ id + ';');
         res.json(cuestionarios.recordset);
+        console.log(cuestionarios)
     }
 
     public async getOne (req: Request, res: Response): Promise<any>{ //YA QUEDO

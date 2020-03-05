@@ -16,8 +16,10 @@ const database_1 = __importDefault(require("../database"));
 class CuestionariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cuestionarios = yield database_1.default.query('SELECT * FROM encuesta WHERE activa = 1');
+            const { id } = req.params;
+            const cuestionarios = yield database_1.default.query('SELECT * FROM encuesta WHERE activa = 1 AND idUsuario  = ' + id + ';');
             res.json(cuestionarios.recordset);
+            console.log(cuestionarios);
         });
     }
     getOne(req, res) {
