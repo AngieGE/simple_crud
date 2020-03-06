@@ -11,12 +11,12 @@ export class CuestionariosService {
 
   constructor(private http: HttpClient) { }
 
-  getCuestionarios(){
-    return this.http.get(`${this.API_URL}/cuestionarios/`);
+  getUserCuestionarios(id:string){
+    return this.http.get(`${this.API_URL}/cuestionarios/${id}`);
   }
 
-  getCuestionario(id: string){
-    return this.http.get(  `${this.API_URL}/cuestionarios/${id}`);
+  getCuestionarios(){
+    return this.http.get(  `${this.API_URL}/cuestionarios`);
   }
 
   deleteCuestionario(id: string){

@@ -12,8 +12,8 @@ class CuestionariosRoutes {
     }
     config() {
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/:id', cuestionariosController_1.default.list);
-        this.router.get('/', cuestionariosController_1.default.getOne);
+        this.router.get('/:id', cuestionariosController_1.default.getUserCuestionarios);
+        this.router.get('/', cuestionariosController_1.default.getCuestionarios);
         this.router.post('/', cuestionariosController_1.default.create);
         this.router.delete('/:id', cuestionariosController_1.default.delete);
         this.router.put('/:id', cuestionariosController_1.default.update);

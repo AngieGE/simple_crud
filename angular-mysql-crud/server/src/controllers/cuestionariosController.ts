@@ -2,9 +2,15 @@ import {json, Request, Response} from 'express';
 import pool from '../database';
 class CuestionariosController {
 
-    public async list (req: Request, res: Response){ //YA QUEDO
+    public async getUserCuestionarios (req: Request, res: Response){ //YA QUEDO
         const { id } = req.params;
         const cuestionarios = await pool.query('SELECT * FROM encuesta WHERE activa = 1 AND idUsuario  = '+ id + ';');
+        res.json(cuestionarios.recordset);
+        console.log(cuestionarios)
+    }
+
+    public async getCuestionarios (req: Request, res: Response){ //YA QUEDO
+        const cuestionarios = await pool.query('SELECT * FROM encuesta WHERE activa = 1;');
         res.json(cuestionarios.recordset);
         console.log(cuestionarios)
     }
