@@ -6,5 +6,6 @@ class IndexController {
         console.log("send at indexController");
     }
 }
+exports.IndexController = IndexController;
 exports.indexController = new IndexController();
-//# sourceMappingURL=indexController.js.map
+//# sourceMappingURL=IndexController.js.map

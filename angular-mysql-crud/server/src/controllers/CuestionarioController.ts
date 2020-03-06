@@ -1,7 +1,7 @@
 import {json, Request, Response} from 'express';
 import pool from '../database';
 
-export class CuestionarioController {
+class CuestionarioController {
 
     public async getUserCuestionarios (req: Request, res: Response){ //YA QUEDO
         const { id } = req.params;

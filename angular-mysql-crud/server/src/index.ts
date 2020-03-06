@@ -1,7 +1,7 @@
 import express, {Application} from 'express';
-import indexRoutes from './routes/indexRoutes';
-import cuestionariosRoutes from './routes/cuestionariosRoutes';
-import usuariosRoutes from './routes/usuariosRoutes';
+import indexRoutes from './routes/IndexRouter';
+import cuestionariosRoutes from './routes/CuestionarioRouter';
+import usuariosRoutes from './routes/UsuarioRouter';
 import morgan from 'morgan';
 import cors from 'cors';
 
