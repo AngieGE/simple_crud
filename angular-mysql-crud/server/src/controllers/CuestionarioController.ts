@@ -1,6 +1,7 @@
 import {json, Request, Response} from 'express';
 import pool from '../database';
-class CuestionariosController {
+
+export class CuestionarioController {
 
     public async getUserCuestionarios (req: Request, res: Response){ //YA QUEDO
         const { id } = req.params;
@@ -54,5 +55,5 @@ class CuestionariosController {
 
 
 
-const cuesionariosController = new CuestionariosController();
+const cuesionariosController = new CuestionarioController();
 export default cuesionariosController;

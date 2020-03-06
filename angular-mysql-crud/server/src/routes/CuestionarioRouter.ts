@@ -1,7 +1,7 @@
 import {Router} from 'express';
-import cuestionariosController from '../controllers/cuestionariosController'
+import cuestionariosController from '../controllers/CuestionarioController'
 
-class CuestionariosRoutes{
+class CuestionarioRouter{
     public router: Router = Router();
 
     constructor() {
@@ -18,5 +18,5 @@ class CuestionariosRoutes{
     }
 }
 
-const cuestionariosRoutes = new CuestionariosRoutes();
+const cuestionariosRoutes = new CuestionarioRouter();
 export default cuestionariosRoutes.router;

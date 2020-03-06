@@ -1,6 +1,7 @@
 import {json, Request, Response} from 'express';
 import pool from '../database';
-class UsuariosController {
+
+export class UsuarioController {
 
     public async list (req: Request, res: Response){ //YA QUEDO
         const usuarios = await pool.query('SELECT * FROM usuario');
@@ -51,5 +52,5 @@ class UsuariosController {
 
     }
 }
-const usuariosController = new UsuariosController();
+const usuariosController = new UsuarioController();
 export default usuariosController;
