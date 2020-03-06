@@ -1,5 +1,5 @@
 
-export class Encuesta {
+export class Cuestionario {
     idEncuesta?: number;
 
     constructor() {

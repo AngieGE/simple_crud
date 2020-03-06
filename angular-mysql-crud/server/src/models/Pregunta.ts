@@ -6,3 +6,11 @@ export class Pregunta {
 
     }
 }
+
+export class PreguntaRequest {
+    idPregunta?: number;
+
+    constructor() {
+
+    }
+}

@@ -1,8 +1,14 @@
 import {Router} from 'express';
-import cuestionariosController from '../controllers/CuestionarioController'
+import { CuestionarioController } from '../controllers/CuestionarioController'
 
-class CuestionarioRouter{
-    public router: Router = Router();
+export class CuestionarioRouter {
+    router: Router = Router();
+    static instance: CuestionarioRouter
+
+    static getInstance(): CuestionarioRouter {
+        if (this.instance==null) this.instance = new CuestionarioRouter();
+        return this.instance;
+    }
 
     constructor() {
         this.config();
@@ -10,13 +16,10 @@ class CuestionarioRouter{
 
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/:id', cuestionariosController.getUserCuestionarios);
-        this.router.get('/', cuestionariosController.getCuestionarios);
-        this.router.post ('/', cuestionariosController.create);
-        this.router.delete ('/:id', cuestionariosController.delete);
-        this.router.put ('/:id', cuestionariosController.update);
+        this.router.get('/:id', CuestionarioController.getUserCuestionarios);
+        this.router.get('/', CuestionarioController.getCuestionarios);
+        this.router.post ('/', CuestionarioController.create);
+        this.router.delete ('/:id', CuestionarioController.delete);
+        this.router.put ('/:id', CuestionarioController.update);
     }
 }
-
-const cuestionariosRoutes = new CuestionarioRouter();
-export default cuestionariosRoutes.router;

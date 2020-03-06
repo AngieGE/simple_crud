@@ -1,18 +1,21 @@
 import {Router} from 'express';
-import { indexController } from "../controllers/IndexController";
+import { IndexController } from "../controllers/IndexController";
 
-class IndexRouter{
+export class IndexRouter {
     public router: Router = Router();
+    static instance: IndexRouter
+
+    static getInstance(): IndexRouter {
+        if (this.instance==null) this.instance = new IndexRouter();
+        return this.instance;
+    }
 
     constructor() {
         this.config();
     }
-
+    
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/', indexController.index);
+        this.router.get('/', IndexController.index);
     }
 }
-
-const indexRoutes = new IndexRouter();
-export default indexRoutes.router;

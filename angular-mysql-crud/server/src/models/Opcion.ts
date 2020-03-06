@@ -6,3 +6,11 @@ export class Opcion {
 
     }
 }
+
+export class OpcionRequest {
+    idOpcion?: number;
+
+    constructor() {
+
+    }
+}

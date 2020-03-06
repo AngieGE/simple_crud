@@ -1,42 +1,39 @@
 import express, {Application} from 'express';
-import indexRoutes from './routes/IndexRouter';
-import cuestionariosRoutes from './routes/CuestionarioRouter';
-import usuariosRoutes from './routes/UsuarioRouter';
 import morgan from 'morgan';
 import cors from 'cors';
+import { IndexRouter, CuestionarioRouter, UsuarioRouter, AplicacionRouter, OpcionRouter, PreguntaRouter, RespuestaAbiertaRouter, RespuestaMultipleRouter } from './routes'
+import { apiPort } from './keys';
 
-class Server{
+export class Server{
     public  app: Application;
+
     constructor(){
-        //Inicializa express y lo guarda en la propiedad app
-        console.log("constructor");
         this.app = express();
         this.config();
         this.routes();
     }
 
     config(): void{
-
-        this.app.set('port', process.env.PORT || 3000);
-
         this.app.use(morgan('dev'));
         this.app.use(cors({origin: 'http://localhost:4200'})); //omaigoood, no quiten esa url
         this.app.use(express.json());
-       this.app.use(express.urlencoded({extended:false}));
-
+        this.app.use(express.urlencoded({extended:false}));
     }
 
     routes(): void{
-        console.log('en routes');
-        this.app.use('/',indexRoutes);
-        this.app.use('/api/cuestionarios', cuestionariosRoutes);
-        this.app.use('/api/usuarios', usuariosRoutes);
+        this.app.use('/', IndexRouter.getInstance().router);
+        this.app.use('/aplicacion', AplicacionRouter.getInstance().router);
+        this.app.use('/api/cuestionarios', CuestionarioRouter.getInstance().router);
+        this.app.use('/opcion', OpcionRouter.getInstance().router);
+        this.app.use('/pregunta', PreguntaRouter.getInstance().router);
+        this.app.use('/respuestaAbierta', RespuestaAbiertaRouter.getInstance().router);
+        this.app.use('/respuestaMultiple', RespuestaMultipleRouter.getInstance().router);
+        this.app.use('/api/usuarios', UsuarioRouter.getInstance().router);
     }
 
     start(): void{
-        console.log('en start');
-        this.app.listen(this.app.get('port'), () =>{
-            console.log("en start: Server running on port", this.app.get('port'));
+        this.app.listen(apiPort, () =>{
+            console.log("Server running on port: ", apiPort);
         });
     }
 }

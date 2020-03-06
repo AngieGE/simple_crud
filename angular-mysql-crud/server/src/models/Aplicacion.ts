@@ -1,4 +1,5 @@
-import { Encuesta } from "./Encuesta";
+import { Cuestionario } from "./Cuestionario";
+import { Usuario } from "./Usuario";
 
 export class Aplicacion {
     idAplicacion?: number;
@@ -6,8 +7,8 @@ export class Aplicacion {
     idEncuesta?: number; 
     idUsuario?: number;
     // Relaciones
-    encuesta?: Encuesta;
-    usuario?: Encuesta;
+    cuestionario?: Cuestionario;
+    usuario?: Usuario;
 
     constructor() {
 

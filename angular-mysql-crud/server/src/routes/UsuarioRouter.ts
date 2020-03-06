@@ -1,8 +1,14 @@
 import {Router} from 'express';
-import usuariosController from '../controllers/UsuarioController'
+import { UsuarioController } from '../controllers/UsuarioController'
 
-class UsuariosRoutes{
+export class UsuarioRouter{
     public router: Router = Router();
+    static instance: UsuarioRouter
+
+    static getInstance(): UsuarioRouter {
+        if (this.instance==null) this.instance = new UsuarioRouter();
+        return this.instance;
+    }
 
     constructor() {
         this.config();
@@ -11,12 +17,9 @@ class UsuariosRoutes{
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
         //this.router.get('/', usuariosController.list);
-        this.router.get('/', usuariosController.login);
-        this.router.post ('/', usuariosController.create);
-        this.router.delete ('/:id', usuariosController.delete);
-        this.router.put ('/:id', usuariosController.update);
+        this.router.get('/', UsuarioController.login);
+        this.router.post ('/', UsuarioController.create);
+        this.router.delete ('/:id', UsuarioController.delete);
+        this.router.put ('/:id', UsuarioController.update);
     }
 }
-
-const usuariosRoutes = new UsuariosRoutes();
-export default usuariosRoutes.router;

@@ -4,38 +4,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const IndexRouter_1 = __importDefault(require("./routes/IndexRouter"));
-const CuestionarioRouter_1 = __importDefault(require("./routes/CuestionarioRouter"));
-const UsuarioRouter_1 = __importDefault(require("./routes/UsuarioRouter"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const routes_1 = require("./routes");
+const keys_1 = require("./keys");
 class Server {
     constructor() {
-        console.log("constructor");
         this.app = express_1.default();
         this.config();
         this.routes();
     }
     config() {
-        this.app.set('port', process.env.PORT || 3000);
         this.app.use(morgan_1.default('dev'));
         this.app.use(cors_1.default({ origin: 'http://localhost:4200' }));
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        console.log('en routes');
-        this.app.use('/', IndexRouter_1.default);
-        this.app.use('/api/cuestionarios', CuestionarioRouter_1.default);
-        this.app.use('/api/usuarios', UsuarioRouter_1.default);
+        this.app.use('/', routes_1.IndexRouter.getInstance().router);
+        this.app.use('/aplicacion', routes_1.AplicacionRouter.getInstance().router);
+        this.app.use('/api/cuestionarios', routes_1.CuestionarioRouter.getInstance().router);
+        this.app.use('/opcion', routes_1.OpcionRouter.getInstance().router);
+        this.app.use('/pregunta', routes_1.PreguntaRouter.getInstance().router);
+        this.app.use('/respuestaAbierta', routes_1.RespuestaAbiertaRouter.getInstance().router);
+        this.app.use('/respuestaMultiple', routes_1.RespuestaMultipleRouter.getInstance().router);
+        this.app.use('/api/usuarios', routes_1.UsuarioRouter.getInstance().router);
     }
     start() {
-        console.log('en start');
-        this.app.listen(this.app.get('port'), () => {
-            console.log("en start: Server running on port", this.app.get('port'));
+        this.app.listen(keys_1.apiPort, () => {
+            console.log("Server running on port: ", keys_1.apiPort);
         });
     }
 }
+exports.Server = Server;
 const server = new Server();
 server.start();
 //# sourceMappingURL=index.js.map
