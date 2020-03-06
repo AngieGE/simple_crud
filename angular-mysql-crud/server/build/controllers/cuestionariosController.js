@@ -41,7 +41,6 @@ class CuestionariosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            // let cuest=  json(req.body);
             console.log(req.body.desciption);
             console.log(req.body.title);
             yield database_1.default.query("INSERT INTO encuesta ([title], [desciption]) VALUES ('" + req.body.title + "', '" + req.body.desciption + "');");
@@ -59,13 +58,11 @@ class CuestionariosController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query("UPDATE encuesta set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id + " ;"); //, [req.body, id])
-            //UPDATE table_name
-            // SET column1 = value1, column2 = value2, ...
-            // WHERE condition
+            yield database_1.default.query("UPDATE encuesta set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id + " ;");
             res.json({ 'message': 'the questionaire was updated ' });
         });
     }
 }
 const cuesionariosController = new CuestionariosController();
 exports.default = cuesionariosController;
+//# sourceMappingURL=cuestionariosController.js.map

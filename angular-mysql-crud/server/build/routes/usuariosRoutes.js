@@ -11,8 +11,6 @@ class UsuariosRoutes {
         this.config();
     }
     config() {
-        //cuando entren en la ruta inicial yo envio un mensaje hello
-        //this.router.get('/', usuariosController.list);
         this.router.get('/', usuariosController_1.default.login);
         this.router.post('/', usuariosController_1.default.create);
         this.router.delete('/:id', usuariosController_1.default.delete);
@@ -21,3 +19,4 @@ class UsuariosRoutes {
 }
 const usuariosRoutes = new UsuariosRoutes();
 exports.default = usuariosRoutes.router;
+//# sourceMappingURL=usuariosRoutes.js.map

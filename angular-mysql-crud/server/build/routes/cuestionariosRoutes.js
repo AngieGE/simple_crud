@@ -11,7 +11,6 @@ class CuestionariosRoutes {
         this.config();
     }
     config() {
-        //cuando entren en la ruta inicial yo envio un mensaje hello
         this.router.get('/:id', cuestionariosController_1.default.getUserCuestionarios);
         this.router.get('/', cuestionariosController_1.default.getCuestionarios);
         this.router.post('/', cuestionariosController_1.default.create);
@@ -21,3 +20,4 @@ class CuestionariosRoutes {
 }
 const cuestionariosRoutes = new CuestionariosRoutes();
 exports.default = cuestionariosRoutes.router;
+//# sourceMappingURL=cuestionariosRoutes.js.map

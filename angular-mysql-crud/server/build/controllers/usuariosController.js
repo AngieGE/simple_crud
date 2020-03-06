@@ -50,7 +50,7 @@ class UsuariosController {
             yield database_1.default.query("UPDATE usuario SET nombre = '" + req.body.nombre + "', apellido = '" + req.body.apellido + "'," +
                 "contrasena = '" + req.body.contrasena + "', usuario = '" + req.body.usuario + "', " +
                 "fechaNacimiento = '" + req.body.fechaNacimiento + "', genero = '" + req.body.genero + "' " +
-                "WHERE idUsuario = " + id + " ;"); //, [req.body, id])
+                "WHERE idUsuario = " + id + " ;");
             res.json({ 'message': 'the usuario was updated ' });
         });
     }
@@ -71,3 +71,4 @@ class UsuariosController {
 }
 const usuariosController = new UsuariosController();
 exports.default = usuariosController;
+//# sourceMappingURL=usuariosController.js.map
