@@ -21,14 +21,13 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use('/', routes_1.IndexRouter.getInstance().router);
         this.app.use('/aplicacion', routes_1.AplicacionRouter.getInstance().router);
-        this.app.use('/api/cuestionarios', routes_1.CuestionarioRouter.getInstance().router);
+        this.app.use('/cuestionario', routes_1.CuestionarioRouter.getInstance().router);
         this.app.use('/opcion', routes_1.OpcionRouter.getInstance().router);
         this.app.use('/pregunta', routes_1.PreguntaRouter.getInstance().router);
         this.app.use('/respuestaAbierta', routes_1.RespuestaAbiertaRouter.getInstance().router);
         this.app.use('/respuestaMultiple', routes_1.RespuestaMultipleRouter.getInstance().router);
-        this.app.use('/api/usuarios', routes_1.UsuarioRouter.getInstance().router);
+        this.app.use('/usuario', routes_1.UsuarioRouter.getInstance().router);
     }
     start() {
         this.app.listen(keys_1.apiPort, () => {

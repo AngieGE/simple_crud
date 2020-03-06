@@ -1,25 +1,25 @@
-import { Pregunta } from "../models";
+import { Request, Response} from 'express';
 
 export class PreguntaController {
     
-    static async listarPreguntaes(): Promise<Pregunta[]> {
-        return new Array<Pregunta>();
+    static async listarPreguntaes(req: Request, res: Response) {
+
     }
 
-    static async crearPregunta(): Promise<boolean> {
-        return true;
+    static async crearPregunta(req: Request, res: Response) {
+
     }
 
-    static async obtenerPregunta(): Promise<Pregunta> {
-        return new Pregunta();
+    static async obtenerPregunta(req: Request, res: Response) {
+
     }
 
-    static async actualizarPregunta(): Promise<boolean> {
-        return true;
+    static async actualizarPregunta(req: Request, res: Response) {
+
     }
 
-    static async eliminarPregunta(): Promise<boolean> {
-        return true;
+    static async eliminarPregunta(req: Request, res: Response) {
+
     }
 
 }

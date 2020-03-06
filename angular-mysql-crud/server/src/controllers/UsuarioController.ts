@@ -1,55 +1,54 @@
 import {json, Request, Response} from 'express';
 import { pool } from '../database';
+import { UsuarioService } from '../services';
+import { Usuario } from '../models';
 
 export class UsuarioController {
 
-    static async list (req: Request, res: Response){ //YA QUEDO
-        const usuarios = await pool.query('SELECT * FROM usuario');
-        res.json(usuarios.recordset);
-    }
-
-    static async getOne (req: Request, res: Response): Promise<any>{ //YA QUEDO
-        const { id } = req.params;
-        const usuarios = await pool.query('SELECT * FROM usuario WHERE idUsuario = ' + id);
-        if ( usuarios.recordset.length > 0 ){
-            return res.json(usuarios.recordset[0]);
+    static async login(req: Request, res: Response) {
+        const { usuario, contrasena } = req.query;
+        const _usuario: Usuario = await UsuarioService.login(usuario, contrasena);
+        if(_usuario == null){
+            res.json({message:'the usuario is not valid ', usuario: null})
+        }else{
+            res.json({message:'the usuario is valid', usuario: _usuario});
         }
-        res.status(404).json({'text':'the usuario doesnt exist'})
+    }
+    
+    static async listarUsuarios (req: Request, res: Response) {
+        const { usuario } = req.query;
+        const _usuarios: Usuario[] = await UsuarioService.listarUsuarios(usuario);
+        res.json(_usuarios);
     }
 
-    static async create(req: Request, res: Response): Promise<void>{ //YA QUEDO
-        await pool.query("INSERT INTO usuario ([nombre], [apellido], [contrasena],[usuario], [fechaNacimiento],[genero]) VALUES ('"+ req.body.nombre +"', '"+ req.body.apellido +"', '" + req.body.contrasena + "', '" + req.body.usuario + "', '" + req.body.fechaNacimiento + "', '" + req.body.genero + "');").catch(err => res.status(400).json({err}));;
+    static async crearUsuario(req: Request, res: Response) {
+        let usuario: Usuario = req.body;    
+        await UsuarioService.crearUsuario(usuario);     
         res.json({'message':'saved usuario'});
     }
 
-    static async delete(req: Request, res: Response): Promise<void>{ //YA QUEDO
-        const { id } = req.params;
-        await pool.query('DELETE FROM usuario WHERE idUsuario = ' + id);
-        res.json({'message': 'the usuarios was deleted'});
+    static async obtenerUsuario (req: Request, res: Response) {
+        const { idUsuario } = req.params;
+        const _usuario: Usuario = await UsuarioService.obtenerUsuario(parseInt(idUsuario));
+        if(_usuario == null){
+            res.json({message:'the usuario is not valid'});
+        }else{
+            res.json(_usuario);
+        }
     }
 
-    static async update(req: Request, res: Response): Promise<void>{
-        const { id } = req.params;
-        await pool.query("UPDATE usuario SET nombre = '" +  req.body.nombre + "', apellido = '" + req.body.apellido +"'," +
-                                    "contrasena = '" + req.body.contrasena + "', usuario = '" + req.body.usuario + "', " +
-                                    "fechaNacimiento = '" + req.body.fechaNacimiento + "', genero = '" + req.body.genero + "' " +
-                                    "WHERE idUsuario = " + id +" ;");//, [req.body, id])
+    static async actualizarUsuario (req: Request, res: Response) {
+        const { idUsuario } = req.params;
+        let usuario: Usuario = req.body;    
+        await UsuarioService.actualizarUsuario(parseInt(idUsuario), usuario);    
         res.json({'message':'the usuario was updated '})
     }
 
-    static async login(req: Request, res: Response): Promise<void>{
-        let usuario = req.query.usuario;
-        let contrasena = req.query.contrasena;
-        console.log(req.query);
-
-        const usuarioCheck = await pool.query("SELECT * FROM usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; ")
-
-        if(usuarioCheck.recordset.length == 0){
-            res.json({'message':'the usuario is not valid ', 'usuario': null})
-        }else{
-            res.json({'message':'the usuario is valid', 'usuario': JSON.stringify(usuarioCheck.recordset[0])});
-        }
-
+    static async eliminarUsuario (req: Request, res: Response) {
+        const { idUsuario } = req.params;
+        await UsuarioService.eliminarUsuario(parseInt(idUsuario));     
+        res.json({'message': 'the usuarios was deleted'});
     }
+
 }
 

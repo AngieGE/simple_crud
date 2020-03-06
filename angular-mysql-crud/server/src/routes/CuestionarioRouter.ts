@@ -16,10 +16,10 @@ export class CuestionarioRouter {
 
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/:id', CuestionarioController.getUserCuestionarios);
-        this.router.get('/', CuestionarioController.getCuestionarios);
-        this.router.post ('/', CuestionarioController.create);
-        this.router.delete ('/:id', CuestionarioController.delete);
-        this.router.put ('/:id', CuestionarioController.update);
+        this.router.get('/', CuestionarioController.listarCuestionarios);
+        this.router.post('/', CuestionarioController.crearCuestionario);
+        this.router.get('/:idCuestionario', CuestionarioController.obtenerCuestionario);
+        this.router.put('/:idCuestionario', CuestionarioController.actualizarCuestionario);
+        this.router.delete('/:idCuestionario', CuestionarioController.eliminarCuestionario);
     }
 }

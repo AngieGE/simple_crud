@@ -5,4 +5,3 @@ export * from './PreguntaController';
 export * from './RespuestaAbiertaController';
 export * from './RespuestaMultipleController';
 export * from './UsuarioController';
-export * from './IndexController';

@@ -1,25 +1,25 @@
-import { RespuestaMultiple } from "../models";
+import { Request, Response} from 'express';
 
 export class RespuestaMultipleController {
     
-    static async listarRespuestaMultiples(): Promise<RespuestaMultiple[]> {
-        return new Array<RespuestaMultiple>();
+    static async listarRespuestaMultiples(req: Request, res: Response) {
+
     }
 
-    static async crearRespuestaMultiple(): Promise<boolean> {
-        return true;
+    static async crearRespuestaMultiple(req: Request, res: Response) {
+
     }
 
-    static async obtenerRespuestaMultiple(): Promise<RespuestaMultiple> {
-        return new RespuestaMultiple();
+    static async obtenerRespuestaMultiple(req: Request, res: Response) {
+
     }
 
-    static async actualizarRespuestaMultiple(): Promise<boolean> {
-        return true;
+    static async actualizarRespuestaMultiple(req: Request, res: Response) {
+
     }
 
-    static async eliminarRespuestaMultiple(): Promise<boolean> {
-        return true;
+    static async eliminarRespuestaMultiple(req: Request, res: Response) {
+
     }
 
 }

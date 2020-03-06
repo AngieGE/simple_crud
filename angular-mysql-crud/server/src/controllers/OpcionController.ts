@@ -1,25 +1,25 @@
-import { Opcion } from "../models";
+import { Request, Response} from 'express';
 
 export class OpcionController {
     
-    static async listarOpciones(): Promise<Opcion[]> {
-        return new Array<Opcion>();
+    static async listarOpciones(req: Request, res: Response) {
+
     }
 
-    static async crearOpcion(): Promise<boolean> {
-        return true;
+    static async crearOpcion(req: Request, res: Response) {
+
     }
 
-    static async obtenerOpcion(): Promise<Opcion> {
-        return new Opcion();
+    static async obtenerOpcion(req: Request, res: Response) {
+
     }
 
-    static async actualizarOpcion(): Promise<boolean> {
-        return true;
+    static async actualizarOpcion(req: Request, res: Response) {
+
     }
 
-    static async eliminarOpcion(): Promise<boolean> {
-        return true;
+    static async eliminarOpcion(req: Request, res: Response) {
+
     }
 
 }

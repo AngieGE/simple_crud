@@ -5,4 +5,3 @@ export * from './PreguntaRouter';
 export * from './RespuestaAbiertaRouter';
 export * from './RespuestaMultipleRouter';
 export * from './UsuarioRouter';
-export * from './IndexRouter';

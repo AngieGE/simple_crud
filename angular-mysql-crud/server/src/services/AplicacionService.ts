@@ -6,8 +6,8 @@ export class AplicacionService {
         return new Array<Aplicacion>();
     }
 
-    static async crearAplicacion(): Promise<boolean> {
-        return true;
+    static async crearAplicacion(): Promise<number> {
+        return -1;
     }
 
     static async obtenerAplicacion(): Promise<Aplicacion> {

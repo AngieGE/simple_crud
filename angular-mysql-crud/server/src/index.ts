@@ -21,14 +21,13 @@ export class Server{
     }
 
     routes(): void{
-        this.app.use('/', IndexRouter.getInstance().router);
         this.app.use('/aplicacion', AplicacionRouter.getInstance().router);
-        this.app.use('/api/cuestionarios', CuestionarioRouter.getInstance().router);
+        this.app.use('/cuestionario', CuestionarioRouter.getInstance().router);
         this.app.use('/opcion', OpcionRouter.getInstance().router);
         this.app.use('/pregunta', PreguntaRouter.getInstance().router);
         this.app.use('/respuestaAbierta', RespuestaAbiertaRouter.getInstance().router);
         this.app.use('/respuestaMultiple', RespuestaMultipleRouter.getInstance().router);
-        this.app.use('/api/usuarios', UsuarioRouter.getInstance().router);
+        this.app.use('/usuario', UsuarioRouter.getInstance().router);
     }
 
     start(): void{

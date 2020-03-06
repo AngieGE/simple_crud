@@ -1,25 +1,24 @@
-import { RespuestaAbierta } from "../models";
+import { Request, Response} from 'express';
 
 export class RespuestaAbiertaController {
     
-    static async listarRespuestaAbiertas(): Promise<RespuestaAbierta[]> {
-        return new Array<RespuestaAbierta>();
+    static async listarRespuestaAbiertas(req: Request, res: Response) {
+
     }
 
-    static async crearRespuestaAbierta(): Promise<boolean> {
-        return true;
+    static async crearRespuestaAbierta(req: Request, res: Response) {
+
     }
 
-    static async obtenerRespuestaAbierta(): Promise<RespuestaAbierta> {
-        return new RespuestaAbierta();
+    static async obtenerRespuestaAbierta(req: Request, res: Response) {
+
     }
 
-    static async actualizarRespuestaAbierta(): Promise<boolean> {
-        return true;
+    static async actualizarRespuestaAbierta(req: Request, res: Response) {
+
     }
 
-    static async eliminarRespuestaAbierta(): Promise<boolean> {
-        return true;
+    static async eliminarRespuestaAbierta(req: Request, res: Response) {
     }
 
 }

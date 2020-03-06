@@ -15,11 +15,11 @@ export class UsuarioRouter{
     }
 
     config():void{
-        //cuando entren en la ruta inicial yo envio un mensaje hello
-        //this.router.get('/', usuariosController.list);
-        this.router.get('/', UsuarioController.login);
-        this.router.post ('/', UsuarioController.create);
-        this.router.delete ('/:id', UsuarioController.delete);
-        this.router.put ('/:id', UsuarioController.update);
+        this.router.get('/login', UsuarioController.login);
+        this.router.get('/', UsuarioController.listarUsuarios);
+        this.router.post('/', UsuarioController.crearUsuario);
+        this.router.get('/:idUsuario', UsuarioController.obtenerUsuario);
+        this.router.put('/:idUsuario', UsuarioController.actualizarUsuario);
+        this.router.delete('/:idUsuario', UsuarioController.eliminarUsuario);
     }
 }
