@@ -20,6 +20,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     NavigationComponent,
     CustionarioFormComponent,
     CustionarioListComponent,
+    CuestionarioListAllComponent,
     LoginFormComponent,
     RegisterFormComponent,
     CuestionarioListAllComponent,
