@@ -1,8 +1,9 @@
 
 export class TipoPregunta {
     idTipoPregunta?: number;
+    tipo?: string;
 
-    constructor() {
-
+    constructor(tipoPregunta: TipoPregunta) {
+        this.tipo=tipoPregunta.tipo;
     }
 }
