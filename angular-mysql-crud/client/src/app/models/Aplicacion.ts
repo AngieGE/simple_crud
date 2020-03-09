@@ -4,8 +4,11 @@ import { Usuario } from "./Usuario";
 export class Aplicacion {
     idAplicacion?: number;
     fecha?: Date;
-    idEncuesta?: number; 
+
+    //fk
+    idCuestionario?: number;
     idUsuario?: number;
+
     // Relaciones
     cuestionario?: Cuestionario;
     usuario?: Usuario;

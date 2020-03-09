@@ -1,6 +1,15 @@
-
+import { CatalogoOpcion } from "./CatalogoOpcion";
+import { Pregunta } from "./Pregunta";
 export class Opcion {
     idOpcion?: number;
+
+    //fk
+    idCatalogoOpcion?: number;
+    idPregunta?: number;
+
+    //relaciones
+    catalogoOpcion? : CatalogoOpcion;
+    pregunta?: Pregunta;
 
     constructor() {
 
@@ -8,7 +17,15 @@ export class Opcion {
 }
 
 export class OpcionRequest {
-    idOpcion?: number;
+  idOpcion?: number;
+
+  //fk
+  idCatalogoOpcion?: number;
+  idPregunta?: number;
+
+  //relaciones
+  catalogoOpcion? : CatalogoOpcion;
+  pregunta?: Pregunta;
 
     constructor() {
 

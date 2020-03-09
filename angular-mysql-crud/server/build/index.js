@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const routes_1 = require("./routes");
+const index_1 = require("./routes/index");
 const keys_1 = require("./keys");
 class Server {
     constructor() {
@@ -16,18 +16,18 @@ class Server {
     }
     config() {
         this.app.use(morgan_1.default('dev'));
-        this.app.use(cors_1.default({ origin: 'http://localhost:4200' }));
+        this.app.use(cors_1.default({ origin: 'http://localhost:4200' })); //omaigoood, no quiten esa url
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use('/aplicacion', routes_1.AplicacionRouter.getInstance().router);
-        this.app.use('/cuestionario', routes_1.CuestionarioRouter.getInstance().router);
-        this.app.use('/opcion', routes_1.OpcionRouter.getInstance().router);
-        this.app.use('/pregunta', routes_1.PreguntaRouter.getInstance().router);
-        this.app.use('/respuestaAbierta', routes_1.RespuestaAbiertaRouter.getInstance().router);
-        this.app.use('/respuestaMultiple', routes_1.RespuestaMultipleRouter.getInstance().router);
-        this.app.use('/usuario', routes_1.UsuarioRouter.getInstance().router);
+        this.app.use('/aplicacion', index_1.AplicacionRouter.getInstance().router);
+        this.app.use('/cuestionario', index_1.CuestionarioRouter.getInstance().router);
+        this.app.use('/opcion', index_1.OpcionRouter.getInstance().router);
+        this.app.use('/pregunta', index_1.PreguntaRouter.getInstance().router);
+        this.app.use('/respuestaAbierta', index_1.RespuestaAbiertaRouter.getInstance().router);
+        this.app.use('/respuestaMultiple', index_1.RespuestaMultipleRouter.getInstance().router);
+        this.app.use('/usuario', index_1.UsuarioRouter.getInstance().router);
     }
     start() {
         this.app.listen(keys_1.apiPort, () => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Pregunta, PreguntaRequest } from '../models';
+import {Pregunta, PreguntaRequest, Usuario} from '../models';
 import { ManagerService } from './Manager.Service';
 
 @Injectable({ providedIn: 'root' })
@@ -13,44 +13,66 @@ export class PreguntaService {
     private manager: ManagerService
   ) { }
 
-  static async listarPreguntas(): Observable<Pregunta[]> {
+  public listarPreguntas(): Observable<Pregunta[]> {
     // Params
+    // Params
+    let params = new HttpParams();
+    //FALTA ALGOO
 
     // Headers
+    let headers = this.defaultHeaders;
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     // Request
+    return this.http.get<Pregunta[]>(`${this.manager.API_URL}/pregunta`, { params, headers } );
+
   }
 
-  static async crearPregunta(pregunta: PreguntaRequest): Observable<any> {
-    // Params
+  public crearPregunta(pregunta: PreguntaRequest): Observable<any> {
 
     // Headers
+    let headers = this.defaultHeaders;
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     // Request
+    return this.http.post<Pregunta>(`${this.manager.API_URL}/pregunta`, pregunta, { headers } );
   }
 
-  static async obtenerPregunta(idPregunta: number): Observable<Pregunta> {
-    // Params
+  public obtenerPregunta(idPregunta: number): Observable<Pregunta> {
 
     // Headers
+    let headers = this.defaultHeaders;
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     // Request
+    return this.http.get<Pregunta>(`${this.manager.API_URL}/pregunta/${idPregunta}`, { headers } );
+
   }
 
-  static async actualizarPregunta(idPregunta: number, pregunta: PreguntaRequest): Observable<any> {
-    // Params
+  public actualizarPregunta(idPregunta: number, pregunta: PreguntaRequest): Observable<any> {
 
     // Headers
+    let headers = this.defaultHeaders;
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     // Request
+    return this.http.put<Pregunta>(`${this.manager.API_URL}/usuario/${idPregunta}`, pregunta, { headers } );
+
   }
 
-  static async eliminarPregunta(idPregunta: number): Observable<any> {
-    // Params
+  public eliminarPregunta(idPregunta: number): Observable<any> {
 
     // Headers
+    let headers = this.defaultHeaders;
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     // Request
+    return this.http.delete(`${this.manager.API_URL}/usuario/${idPregunta}`, { headers } );
   }
 
 }

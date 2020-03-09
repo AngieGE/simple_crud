@@ -5,7 +5,7 @@ export class CuestionarioController {
 
     static async listarCuestionarios (req: Request, res: Response){
         const { id } = req.params;
-        const cuestionarios = await pool.query('SELECT * FROM encuesta WHERE activa = 1 AND idUsuario  = '+ id + ';');
+        const cuestionarios = await pool.query('SELECT * FROM cuestionario WHERE activa = 1 AND idUsuario  = '+ id + ';');
         res.json(cuestionarios.recordset);
         console.log(cuestionarios)
     }
@@ -15,13 +15,13 @@ export class CuestionarioController {
         console.log(req.body.desciption);
          console.log(req.body.title);
  
-         await pool.query("INSERT INTO encuesta ([title], [desciption]) VALUES ('"+ req.body.title +"', '"+ req.body.desciption +"');")
+         await pool.query("INSERT INTO cuestionario ([title], [desciption]) VALUES ('"+ req.body.title +"', '"+ req.body.desciption +"');")
          res.json({'message':'saved questionaire'});
     }
 
     static async obtenerCuestionario (req: Request, res: Response) {
         const { id } = req.params;
-       const cuestionario = await pool.query('SELECT * FROM encuesta WHERE idEncuesta = ' + id);
+       const cuestionario = await pool.query('SELECT * FROM cuestionario WHERE idEncuesta = ' + id);
         if ( cuestionario.recordset.length > 0 ){
             return res.json(cuestionario.recordset[0]);
         }
@@ -30,7 +30,7 @@ export class CuestionarioController {
 
     static async actualizarCuestionario(req: Request, res: Response) {
         const { id } = req.params;
-        await pool.query("UPDATE encuesta set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id +" ;");//, [req.body, id])
+        await pool.query("UPDATE cuestionario set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id +" ;");//, [req.body, id])
         //UPDATE table_name
         // SET column1 = value1, column2 = value2, ...
         // WHERE condition
@@ -39,7 +39,7 @@ export class CuestionarioController {
 
     static async eliminarCuestionario(req: Request, res: Response) {
         const { id } = req.params;
-        await pool.query('UPDATE encuesta SET activa = 0 WHERE idEncuesta = ' + id).
+        await pool.query('UPDATE cuestionario SET activa = 0 WHERE idEncuesta = ' + id).
         catch(err => res.status(400).json({err}));
         res.json({'message': 'the cuetsionrio was deleted'});
     }
