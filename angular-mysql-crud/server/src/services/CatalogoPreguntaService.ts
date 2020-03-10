@@ -4,9 +4,9 @@ import { pool } from "../database";
 
 export class CatalogoPreguntaService {
     
-    static async listarCatalogoPreguntaes(catalogoPregunta?: string): Promise<CatalogoPregunta[]> {
+    static async listarCatalogoPreguntas(pregunta?: string): Promise<CatalogoPregunta[]> {
         let sql: string = "SELECT * FROM CatalogoPregunta WHERE "
-                   sql += catalogoPregunta!=null ? "catalogoPregunta = '" + catalogoPregunta + "' AND " : "";
+                   sql += pregunta!=null ? "pregunta = '" + pregunta + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;

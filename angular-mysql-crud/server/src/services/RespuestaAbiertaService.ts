@@ -4,8 +4,12 @@ import { pool } from "../database";
 
 export class RespuestaAbiertaService {
     
-    static async listarRespuestaAbiertas(): Promise<RespuestaAbierta[]> {
-        return new Array<RespuestaAbierta>();
+    static async listarRespuestaAbiertas(respuestaAbierta?: string): Promise<RespuestaAbierta[]> {
+        let sql: string = "SELECT * FROM RespuestaAbierta WHERE "
+                   sql += respuestaAbierta!=null ? "respuestaAbierta = '" + respuestaAbierta + "' AND " : "";
+                   sql += "1 = 1 ";
+        const recordset = await pool.query(sql);
+        return recordset.recordset;
     }
 
     static async crearRespuestaAbierta(respuestaAbierta: RespuestaAbierta): Promise<boolean> {

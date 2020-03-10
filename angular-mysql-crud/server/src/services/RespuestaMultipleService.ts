@@ -4,12 +4,16 @@ import { pool } from "../database";
 
 export class RespuestaMultipleService {
     
-    static async listarRespuestaMultiples(): Promise<RespuestaMultiple[]> {
-        return new Array<RespuestaMultiple>();
+    static async listarRespuestaMultiples(respuestaMultiple?: string): Promise<RespuestaMultiple[]> {
+        let sql: string = "SELECT * FROM RespuestaMultiple WHERE "
+                   sql += respuestaMultiple!=null ? "respuestaMultiple = '" + respuestaMultiple + "' AND " : "";
+                   sql += "1 = 1 ";
+        const recordset = await pool.query(sql);
+        return recordset.recordset;
     }
 
     static async crearRespuestaMultiple(respuestaMultiple:RespuestaMultiple): Promise<boolean> {
-        let sql: string = "INSERT INTO RespuestaMultiple (idAplicacion, idOpcion, idPregunta)" +
+        let sql: string = "INSERT INTO RespuestaMultiple(idAplicacion, idOpcion, idPregunta)" +
                           "VALUES ('"+ respuestaMultiple.idAplicacion + "', '" +
                                        respuestaMultiple.idOpcion + "', '" +
                                        respuestaMultiple.idPregunta + "');"

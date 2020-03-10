@@ -4,9 +4,9 @@ import { IResult } from "mssql";
 
 export class CatalogoOpcionService {
     
-    static async listarCatalogoOpciones(catalogoOpcion?: string): Promise<CatalogoOpcion[]> {
+    static async listarCatalogoOpciones(descripcion?: string): Promise<CatalogoOpcion[]> {
         let sql: string = "SELECT * FROM CatalogoOpcion WHERE "
-                   sql += catalogoOpcion!=null ? "catalogoOpcion = '" + catalogoOpcion + "' AND " : "";
+                   sql += descripcion!=null ? "descripcion = '" + descripcion + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;

@@ -4,9 +4,10 @@ import { IResult } from "mssql";
 
 export class AplicacionService {
     
-    static async listarAplicaciones(aplicacion?: string): Promise<Aplicacion[]> {
+    static async listarAplicaciones(idUsuario?: number, idCuestionario?: number): Promise<Aplicacion[]> {
         let sql: string = "SELECT * FROM Aplicacion WHERE "
-                   sql += aplicacion!=null ? "usuario = '" + aplicacion + "' AND " : "";
+                   sql += idUsuario!=null ? "idUsuario = '" + idUsuario + "' AND " : "";
+                   sql += idCuestionario!=null ? "idCuestionario = '" + idCuestionario + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;    
