@@ -11,5 +11,8 @@ export class ManagerService {
   constructor() {
     this.usuario = new Usuario();
   }
+  public setUsuario(usuario: Usuario){
+    this.usuario = usuario;
+  }
 
 }

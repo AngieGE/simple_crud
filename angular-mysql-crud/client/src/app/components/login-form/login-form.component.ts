@@ -33,7 +33,8 @@ export class LoginFormComponent implements OnInit {
         if (res.usuario == null) {
           this.enterWrongUserData = true;
         } else {
-          this.manager.usuario = res.usuario;
+          this.manager.setUsuario(res.usuario);
+          console.log(this.manager.usuario);
           this.router.navigate(['/cuestionarios']);
         }
       }, err => {
