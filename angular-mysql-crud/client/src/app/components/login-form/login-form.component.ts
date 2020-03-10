@@ -36,7 +36,6 @@ export class LoginFormComponent implements OnInit {
   iniciarSesion() {
     delete this.us.idUsuario;
     this.resetVar();
-    console.log(this.us.usuario + this.us.contrasena);
     this.usuarioService.login(this.us.usuario, this.us.contrasena)
       .subscribe( res => {
         console.log(res);
@@ -47,7 +46,6 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/cuestionarios']);
         }
       }, err => {
-        console.error('err');
         console.error(err );
       });
   }
