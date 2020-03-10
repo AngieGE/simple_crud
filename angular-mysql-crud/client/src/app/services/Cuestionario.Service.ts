@@ -13,10 +13,13 @@ export class CuestionarioService {
     private manager: ManagerService
   ) { }
 
-  public listarCuestionarios(): Observable<Cuestionario[]> {
+  public listarCuestionarios(idUsuario?: number, nombre?: string): Observable<Cuestionario[]> {
     // Params
     let params = new HttpParams();
-    //AQUI ME FALTA ALGO, QUE ES? JMMM
+    if (idUsuario !== undefined && idUsuario !== null) {
+      params = params.set('idUsuario', idUsuario.toString());
+      params = params.set('nombre', nombre);
+    }
 
     // Headers
     let headers = this.defaultHeaders;
