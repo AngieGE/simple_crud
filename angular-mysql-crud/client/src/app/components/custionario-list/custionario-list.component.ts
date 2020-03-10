@@ -29,12 +29,11 @@ export class CustionarioListComponent implements OnInit {
 
   getCuestionarios() {
     const id: number = this.usuario.idUsuario;
-    console.log(id);
-    this.cuestionariosService.listarCuestionarios(id)
+    this.cuestionariosService.listarCuestionarios(id, null)
       .subscribe(
       res => {
+        console.log(res);
         this.cuestionarios = res;
-        console.log(this.cuestionarios);
       },
       err => {
         console.log(err);

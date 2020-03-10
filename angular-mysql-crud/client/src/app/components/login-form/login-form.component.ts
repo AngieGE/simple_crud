@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../models/Usuario';
-import { UsuarioService } from '../../services/index';
+import { Usuario } from '../../models/index';
+import { UsuarioService, ManagerService } from '../../services/index';
 import { Router } from '@angular/router';
-import {ManagerService} from '../../services/Manager.Service';
 
 @Component({
   selector: 'app-login-form',
@@ -12,21 +11,13 @@ import {ManagerService} from '../../services/Manager.Service';
 export class LoginFormComponent implements OnInit {
   rout: string;
 
-  us: Usuario = {
-    idUsuario : 0,
-    nombre: '',
-    apellido: '',
-    contrasena: '',
-    usuario: '',
-    fechaNacimiento: new Date(),
-    genero: 1
-  }
+  usuario: Usuario;
 
   enterWrongUserData: boolean;
 
   constructor(private usuarioService: UsuarioService, private  router: Router, private manager: ManagerService) {
     this.rout = router.url;
-
+    this.usuario = manager.usuario;
   }
 
   ngOnInit(): void {
@@ -34,9 +25,9 @@ export class LoginFormComponent implements OnInit {
   }
 
   iniciarSesion() {
-    delete this.us.idUsuario;
+    delete this.usuario.idUsuario;
     this.resetVar();
-    this.usuarioService.login(this.us.usuario, this.us.contrasena)
+    this.usuarioService.login(this.usuario.usuario, this.usuario.contrasena)
       .subscribe( res => {
         console.log(res);
         if (res.usuario == null) {

@@ -14,10 +14,13 @@ export class CuestionarioService {
   ) { }
 
   public listarCuestionarios(idUsuario?: number, nombre?: string): Observable<Cuestionario[]> {
+    console.log('service: ' + idUsuario + nombre);
     // Params
     let params = new HttpParams();
     if (idUsuario !== undefined && idUsuario !== null) {
       params = params.set('idUsuario', idUsuario.toString());
+    }
+    if (nombre !== undefined && nombre !== null) {
       params = params.set('nombre', nombre);
     }
 

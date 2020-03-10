@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { Usuario} from '../../models/index';
+import {ManagerService} from '../../services';
+
 
 @Component({
   selector: 'app-my-profile',
@@ -10,8 +13,10 @@ export class MyProfileComponent implements OnInit {
   us: JSON;
   editando: boolean;
   nacimiento: Date;
-  constructor(public datepipe: DatePipe){
+  usuario: Usuario;
+  constructor(public datepipe: DatePipe, private manager: ManagerService) {
     this.editando = false;
+    this.usuario = manager.usuario;
   }
 
   ngOnInit(): void {
