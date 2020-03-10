@@ -4,7 +4,7 @@ export class Cuestionario {
     nombre?: string;
     descripcion?: string;
     idUsuario?: number;
-    activa: number;
+    activa?: number;
 
     constructor() {
 

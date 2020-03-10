@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/Usuario';
-import { LoginService } from '../../services/login.service'
+import { UsuarioService } from '../../services/index';
 import { Router } from '@angular/router';
-import {Cuestionario} from "../../models/Cuestionario";
+import {ManagerService} from '../../services/Manager.Service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,8 +11,9 @@ import {Cuestionario} from "../../models/Cuestionario";
 })
 export class LoginFormComponent implements OnInit {
   rout: string;
-  usuario: Usuario = {
-    idUsuario :0,
+
+  us: Usuario = {
+    idUsuario : 0,
     nombre: '',
     apellido: '',
     contrasena: '',
@@ -22,7 +23,8 @@ export class LoginFormComponent implements OnInit {
   }
 
   enterWrongUserData: boolean;
-  constructor(private loginService: LoginService, private  router: Router) {
+
+  constructor(private usuarioService: UsuarioService, private  router: Router, private manager: ManagerService) {
     this.rout = router.url;
 
   }
@@ -32,32 +34,23 @@ export class LoginFormComponent implements OnInit {
   }
 
   iniciarSesion() {
-    delete this.usuario.idUsuario;
+    delete this.us.idUsuario;
     this.resetVar();
-    this.loginService.getUsuario(this.usuario)
+    this.usuarioService.login(this.us.usuario, this.us.contrasena)
       .subscribe( res => {
+        console.log(res);
         if (res.usuario == null) {
           this.enterWrongUserData = true;
         } else {
+          this.manager.usuario = res.usuario;
           this.router.navigate(['/cuestionarios']);
-          localStorage.setItem('idUsuario', res.usuario.idUsuario);
-          localStorage.setItem('nombre', JSON.parse(res.usuario).nombre);
-          localStorage.setItem('apellido', JSON.parse(res.usuario).apellido);
-          localStorage.setItem('id', JSON.parse(res.usuario).idUsuario);
-          localStorage.setItem('usuario', res.usuario );
-          if (JSON.parse(res.usuario).genero === 1) {// es mujer
-            localStorage.setItem('saludo', 'Bienvenida');
-          } else {
-            localStorage.setItem('saludo', 'Bienvenido');
-          }
         }
-
       }, err => {
-        console.error(err);
+        console.error(err );
       });
   }
 
-  resetVar(){
-    this.enterWrongUserData=false;
+  resetVar() {
+    this.enterWrongUserData = false;
   }
 }

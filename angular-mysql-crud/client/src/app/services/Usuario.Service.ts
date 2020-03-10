@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {DebugElement, Injectable} from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,8 @@ export class UsuarioService {
     private manager: ManagerService
   ) { }
 
-  logIn(usuario: string, contrasena: string): Observable<any> {
+  public login(usuario: string, contrasena: string): Observable<any> {
+      console.log('service: ' + usuario + contrasena)
       // Params
       let params = new HttpParams();
       params = params.set('usuario', usuario);
@@ -29,7 +30,7 @@ export class UsuarioService {
       return this.http.get(`${this.manager.API_URL}/usuario/login`, { params, headers });
   }
 
-  public listarUsuarios(nombre: string): Observable<Usuario[]> {
+  public listarUsuarios(nombre?: string): Observable<Usuario[]> {
     // Params
     let params = new HttpParams();
     if (nombre !== undefined && nombre !== null) {

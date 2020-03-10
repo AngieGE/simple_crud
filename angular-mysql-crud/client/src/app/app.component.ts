@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ActivationStart, Router} from '@angular/router';
-import {NavigationEnd} from "@angular/router"
+import {NavigationEnd} from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

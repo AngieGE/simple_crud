@@ -1,6 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CuestionariosService} from '../../services/cuestionarios.service';
+import { CuestionarioService } from '../../services/Cuestionario.Service';
 @Component({
   selector: 'app-cuestionario-list-all',
   templateUrl: './cuestionario-list-all.component.html',
@@ -12,7 +12,7 @@ export class CuestionarioListAllComponent implements OnInit {
 
   cuestionarios: any = [];
 
-  constructor(private cuestionariosService: CuestionariosService, private router: Router ) {
+  constructor(private cuestionarioService: CuestionarioService, private router: Router ) {
     localStorage.setItem('rout', router.url) ;
   }
 
@@ -21,7 +21,7 @@ export class CuestionarioListAllComponent implements OnInit {
   }
 
   getCuestionarios() {
-    this.cuestionariosService.getCuestionarios().subscribe(
+    this.cuestionarioService.listarCuestionarios(null).subscribe(
       res => {
         this.cuestionarios = res;
         console.log(this.cuestionarios);

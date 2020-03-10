@@ -1,7 +1,9 @@
 import {Component, DebugElement, HostBinding, OnInit} from '@angular/core';
-import { CuestionariosService } from '../../services/cuestionarios.service';
+import { CuestionarioService } from '../../services/Cuestionario.Service';
 import {Router} from '@angular/router';
-import {Cuestionario} from "../../models/Cuestionario";
+import {Cuestionario, Usuario} from '../../models/index';
+import {ManagerService} from '../../services/Manager.Service';
+
 @Component({
   selector: 'app-custionario-list',
   templateUrl: './custionario-list.component.html',
@@ -12,23 +14,24 @@ export class CustionarioListComponent implements OnInit {
   @HostBinding('class') classes = 'row';
 
   cuestionarios: any = [];
-  nombre: string;
-  apellido: string;
-  saludo: string;
-  constructor(private cuestionariosService: CuestionariosService, private router: Router ) {
+  usuario: Usuario;
+
+  constructor(private cuestionariosService: CuestionarioService, private router: Router, private manager: ManagerService) {
       localStorage.setItem('rout', router.url) ;
   }
 
   ngOnInit(): void {
-    this.getCuestionarios();
-    this.nombre = localStorage.getItem('nombre');
-    this.apellido = localStorage.getItem('apellido');
-    this.saludo = localStorage.getItem('saludo');
+      this.usuario = this.manager.usuario;
+      this.getCuestionarios();
+
+
   }
 
   getCuestionarios() {
-    console.log(localStorage.getItem('id'));
-    this.cuestionariosService.getUserCuestionarios( localStorage.getItem('id')).subscribe(
+    const id: number = this.usuario.idUsuario;
+    console.log(id);
+    this.cuestionariosService.listarCuestionarios(id)
+      .subscribe(
       res => {
         this.cuestionarios = res;
         console.log(this.cuestionarios);
@@ -39,12 +42,12 @@ export class CustionarioListComponent implements OnInit {
     );
   }
 
-  deleteCuestionario(id: string){
-    this.cuestionariosService.deleteCuestionario(id).subscribe(
-      res=> {
+  deleteCuestionario(id: number) {
+    this.cuestionariosService.eliminarCuestionario(id).subscribe(
+      res => {
           this.getCuestionarios();
       },
-      err =>{
+      err => {
         console.log(err);
       }
     );
