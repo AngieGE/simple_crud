@@ -5,7 +5,7 @@ export class Cuestionario {
     nombre?: string;
     descripcion?: string;
     idUsuario?: number;
-    activo?: boolean;
+    activa?: boolean;
     //Relaciones
     usuario?: Usuario;
 
@@ -13,6 +13,6 @@ export class Cuestionario {
         this.nombre=cuestionario.nombre,
         this.descripcion=cuestionario.descripcion,
         this.idUsuario=cuestionario.idUsuario,
-        this.activo=cuestionario.activo;
+        this.activa=cuestionario.activa;
     }
 }

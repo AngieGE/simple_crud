@@ -5,13 +5,13 @@ import { IResult } from "mssql";
 export class UsuarioService {
     
     static async login(usuario: string, contrasena: string): Promise<Usuario> {
-        let sql: string = "SELECT * FROM usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; "
+        let sql: string = "SELECT * FROM Usuario WHERE usuario = '" + usuario + "' AND contrasena = '" + contrasena + "'; "
         const recordset = await pool.query(sql);
         return recordset.recordset[0];
     }
 
     static async listarUsuarios(usuario?: string): Promise<Usuario[]> {
-        let sql: string = "SELECT * FROM usuario WHERE "
+        let sql: string = "SELECT * FROM Usuario WHERE "
                    sql += usuario!=null ? "usuario = '" + usuario + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
@@ -19,7 +19,7 @@ export class UsuarioService {
     }
 
     static async crearUsuario(usuario: Usuario): Promise<boolean> {
-        let sql: string = "INSERT INTO usuario (nombre, apellido, contrasena, usuario, fechaNacimiento, genero) " + 
+        let sql: string = "INSERT INTO Usuario (nombre, apellido, contrasena, usuario, fechaNacimiento, genero) " + 
                           "VALUES ('"+ usuario.nombre + "', '" + 
                                        usuario.apellido +"', '" + 
                                        usuario.contrasena + "', '" + 
@@ -31,13 +31,13 @@ export class UsuarioService {
     }
 
     static async obtenerUsuario(idUsuario: number): Promise<Usuario> {
-        let sql: string = "SELECT * FROM usuario WHERE idUsuario = " + idUsuario;
+        let sql: string = "SELECT * FROM Usuario WHERE idUsuario = " + idUsuario;
         const recordset = await pool.query(sql);
         return recordset.recordset[0];
     }
 
     static async actualizarUsuario(idUsuario: number, usuario: Usuario): Promise<boolean> {
-        let sql: string = "UPDATE usuario SET " + 
+        let sql: string = "UPDATE Usuario SET " + 
                                 "nombre = '" +  usuario.nombre + "', " +
                                 "apellido = '" + usuario.apellido +"'," +
                                 "contrasena = '" + usuario.contrasena + "', " +
@@ -50,7 +50,7 @@ export class UsuarioService {
     }
 
     static async eliminarUsuario(idUsuario: number): Promise<boolean> {
-        let sql: string = "DELETE FROM usuario WHERE idUsuario = " + idUsuario;
+        let sql: string = "DELETE FROM Usuario WHERE idUsuario = " + idUsuario;
         await pool.query(sql);
         return true;
     }
