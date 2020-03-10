@@ -4,9 +4,11 @@ import { pool } from "../database";
 
 export class RespuestaMultipleService {
     
-    static async listarRespuestaMultiples(respuestaMultiple?: string): Promise<RespuestaMultiple[]> {
+    static async listarRespuestaMultiples(idAplicacion?: number,idOpcion?: number,idPregunta?: number): Promise<RespuestaMultiple[]> {
         let sql: string = "SELECT * FROM RespuestaMultiple WHERE "
-                   sql += respuestaMultiple!=null ? "respuestaMultiple = '" + respuestaMultiple + "' AND " : "";
+                   sql += idAplicacion!=null ? "idAplicacion = '" + idAplicacion + "' AND " : "";
+                   sql += idOpcion!=null ? "idOpcion = '" + idOpcion + "' AND " : "";
+                   sql += idPregunta!=null ? "idPregunta = '" + idPregunta + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;
