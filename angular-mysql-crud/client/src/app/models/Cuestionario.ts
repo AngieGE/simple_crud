@@ -1,9 +1,10 @@
 
 export class Cuestionario {
-    idEncuesta?: number;
+    idCuestionario?: number;
     nombre?: string;
     descripcion?: string;
     idUsuario?: number;
+    activa: number;
 
     constructor() {
 

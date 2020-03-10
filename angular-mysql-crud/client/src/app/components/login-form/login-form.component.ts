@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
     contrasena: '',
     usuario: '',
     fechaNacimiento: new Date(),
-    genero: false
+    genero: 1
   }
 
   enterWrongUserData: boolean;

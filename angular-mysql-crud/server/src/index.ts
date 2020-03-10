@@ -1,7 +1,7 @@
 import express, {Application} from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { IndexRouter, CuestionarioRouter, UsuarioRouter, AplicacionRouter, OpcionRouter, PreguntaRouter, RespuestaAbiertaRouter, RespuestaMultipleRouter } from './routes'
+import { CuestionarioRouter, UsuarioRouter, AplicacionRouter, OpcionRouter, PreguntaRouter, RespuestaAbiertaRouter, RespuestaMultipleRouter } from './routes/index'
 import { apiPort } from './keys';
 
 export class Server{
