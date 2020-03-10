@@ -4,9 +4,10 @@ import { pool } from "../database";
 
 export class RespuestaAbiertaService {
     
-    static async listarRespuestaAbiertas(respuestaAbierta?: string): Promise<RespuestaAbierta[]> {
+    static async listarRespuestaAbiertas(idAplicacion?: number, idPregunta?: number): Promise<RespuestaAbierta[]> {
         let sql: string = "SELECT * FROM RespuestaAbierta WHERE "
-                   sql += respuestaAbierta!=null ? "respuestaAbierta = '" + respuestaAbierta + "' AND " : "";
+                   sql += idAplicacion!=null ? "idAplicacion = '" + idAplicacion + "' AND " : "";
+                   sql += idPregunta!=null ? "idPregunta = '" + idPregunta + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;

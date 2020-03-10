@@ -1,47 +1,42 @@
 import { Request, Response} from 'express';
-import { pool } from '../database';
+import { CuestionarioService } from '../services';
+import { Cuestionario } from '../models';
 
 export class CuestionarioController {
 
     static async listarCuestionarios (req: Request, res: Response){
-        const { id } = req.params;
-        const cuestionarios = await pool.query('SELECT * FROM cuestionario WHERE activa = 1 AND idUsuario  = '+ id + ';');
-        res.json(cuestionarios.recordset);
-        console.log(cuestionarios)
+        const { cuestionario } = req.query;
+        const _cuestionario: Cuestionario[] = await CuestionarioService.listarCuestionarios(cuestionario);
+        res.json(_cuestionario);
     }
 
     static async crearCuestionario(req: Request, res: Response) {
-        // let cuest=  json(req.body);
-        console.log(req.body.desciption);
-         console.log(req.body.title);
- 
-         await pool.query("INSERT INTO cuestionario ([title], [desciption]) VALUES ('"+ req.body.title +"', '"+ req.body.desciption +"');")
-         res.json({'message':'saved questionaire'});
+        let cuestionario: Cuestionario = req.body;    
+        await CuestionarioService.crearCuestionario(cuestionario);     
+        res.json({'message':'saved cuestionario'});
     }
 
     static async obtenerCuestionario (req: Request, res: Response) {
-        const { id } = req.params;
-       const cuestionario = await pool.query('SELECT * FROM cuestionario WHERE idEncuesta = ' + id);
-        if ( cuestionario.recordset.length > 0 ){
-            return res.json(cuestionario.recordset[0]);
+        const { idCuestionario } = req.params;
+        const _cuestionario: Cuestionario = await CuestionarioService.obtenerCuestionario(parseInt(idCuestionario));
+        if(_cuestionario == null){
+            res.json({message:'the cuestionario is not valid'});
+        }else{
+            res.json(_cuestionario);
         }
-        res.status(404).json({'text':'the cuestionario doesnt exist'})
     }
 
     static async actualizarCuestionario(req: Request, res: Response) {
-        const { id } = req.params;
-        await pool.query("UPDATE cuestionario set title = '" + req.body.title + "', desciption = '" + req.body.desciption + "' WHERE idEncuesta = " + id +" ;");//, [req.body, id])
-        //UPDATE table_name
-        // SET column1 = value1, column2 = value2, ...
-        // WHERE condition
-        res.json({'message':'the questionaire was updated '})
+        const { idCuestionario } = req.params;
+        let cuestionario: Cuestionario = req.body;    
+        await CuestionarioService.actualizarCuestionario(parseInt(idCuestionario), cuestionario);    
+        res.json({'message':'the cuestionario was updated '})
     }
 
     static async eliminarCuestionario(req: Request, res: Response) {
-        const { id } = req.params;
-        await pool.query('UPDATE cuestionario SET activa = 0 WHERE idEncuesta = ' + id).
-        catch(err => res.status(400).json({err}));
-        res.json({'message': 'the cuetsionrio was deleted'});
+        const { idCuestionario } = req.params;
+        await CuestionarioService.eliminarCuestionario(parseInt(idCuestionario));     
+        res.json({'message': 'the cuestionario was deleted'});
     }
 
 }
