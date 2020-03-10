@@ -24,7 +24,6 @@ export class CustionarioListComponent implements OnInit {
       this.usuario = this.manager.usuario;
       this.getCuestionarios();
 
-
   }
 
   getCuestionarios() {

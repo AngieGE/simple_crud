@@ -3,12 +3,12 @@
 <form  name="myform">
 
   <div class="form-group">
-    <input  [(ngModel)]="us['nombre']" value='valor' type="text" ngModel="nombre" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
+    <input  [(ngModel)]="usuario.nombre" value='valor' type="text" ngModel="nombre" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
   </div>
 
 
   <div class="form-group">
-    <input [(ngModel)]="us['apellido']" type="text" ngModel="nombre" class="form-control" id="apellido" placeholder="Apellido" name="apellido" required>
+    <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" id="apellido" placeholder="Apellido" name="apellido" required>
   </div>
 
   <!--
@@ -23,7 +23,7 @@
 
 
   <div class="form-group">
-    <input  [(ngModel)]="us['genero']" type="text" class="form-control" id="genero" placeholder="Género" name="nacimiento" required>
+    <input  [(ngModel)]="usuario.genero" type="text" class="form-control" id="genero" placeholder="Género" name="nacimiento" required>
   </div>
 
 
@@ -37,16 +37,16 @@
 <form name="myform">
 
   <div class="form-group">
-    <input  disabled="" [(ngModel)]="us['nombre']" type="text" ngModel="nombre" class="form-control" id="editandoNombre" placeholder="Nombre" name="nombre" required>
+    <input  disabled="" [(ngModel)]="usuario.nombre" type="text" ngModel="usuario.nombre" class="form-control" id="editandoNombre" placeholder="Nombre" name="nombre" required>
   </div>
-
+{{usuario.nombre}}
 
   <div class="form-group">
-    <input  disabled="" [(ngModel)]="us['apellido']" type="text" ngModel="nombre" class="form-control" id="editandoApellido" placeholder="Apellido" name="apellido" required>
+    <input  disabled="" [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" id="editandoApellido" placeholder="Apellido" name="apellido" required>
   </div>
 
   <div class="form-group">
-    <input  disabled="" [(ngModel)]="us['usuario']" type="text" ngModel="usuario" class="form-control" id="editandoUsuario" placeholder="usuario" name="usuario" required>
+    <input  disabled="" [(ngModel)]="usuario.usuario" type="text" ngModel="usuario" class="form-control" id="editandoUsuario" placeholder="usuario" name="usuario" required>
   </div>
 
   <div class="form-group">
@@ -54,16 +54,13 @@
   </div>
 
 
-
-  <div class="form-group"  *ngIf="us['genero'] == 1; else esHombre">
-    <input  disabled=""  value="Mujer" type="text" class="form-control" id="Mujer" placeholder="Género" name="nacimiento" required>
+  <div  >
+    <input  disabled=""  value="{{usuario.genero == 1? 'Mujer':  'Hombre'}}" type="text" class="form-control" id="Mujer" placeholder="Género" name="nacimiento" required>
   </div>
-  <ng-template #esHombre>
-    <input  disabled=""  value="Hombre" type="text" class="form-control" id="Hombre" placeholder="Género" name="nacimiento" required>
-  </ng-template>
-
+  <br><br>
   <div class="botones col-md-4" >
     <button type="submit" class="btn btn-primary" (click)="editar(true)">Editar</button>
   </div>
+
 </form>
 </ng-template>

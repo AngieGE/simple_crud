@@ -7,4 +7,9 @@ import { Usuario } from  '../models/Usuario';
 export class ManagerService {
   API_URL = 'http://localhost:3000';
   usuario: Usuario;
+
+  constructor() {
+    this.usuario = new Usuario();
+  }
+
 }

@@ -16,14 +16,14 @@ export class MyProfileComponent implements OnInit {
   usuario: Usuario;
   constructor(public datepipe: DatePipe, private manager: ManagerService) {
     this.editando = false;
-    this.usuario = manager.usuario;
   }
 
   ngOnInit(): void {
-    this.us = JSON.parse(localStorage.getItem('usuario'));
+    this.usuario = this.manager.usuario;
+
     //ESTO NO ME ESTA DANDO LA FECHA CORRECTA AIUDA!!!
-    this.nacimiento = new Date (this.datepipe.transform(this.us['fechaNacimiento'], 'yyyy/MM/dd'));
-    console.log('a   '+this.nacimiento);
+    this.nacimiento = this.usuario.fechaNacimiento
+    console.log('a   ' + this.nacimiento);
   }
 
   editar( editando: boolean) {

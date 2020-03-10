@@ -17,10 +17,10 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private usuarioService: UsuarioService, private  router: Router, private manager: ManagerService) {
     this.rout = router.url;
-    this.usuario = manager.usuario;
   }
 
   ngOnInit(): void {
+    this.usuario = this.manager.usuario;
     this.enterWrongUserData = false;
   }
 
