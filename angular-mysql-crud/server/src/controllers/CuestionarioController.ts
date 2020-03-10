@@ -5,8 +5,8 @@ import { Cuestionario } from '../models';
 export class CuestionarioController {
 
     static async listarCuestionarios (req: Request, res: Response){
-        const { cuestionario } = req.query;
-        const _cuestionario: Cuestionario[] = await CuestionarioService.listarCuestionarios(cuestionario);
+        const { idUsuario, nombre} = req.query;
+        const _cuestionario: Cuestionario[] = await CuestionarioService.listarCuestionarios(idUsuario,nombre);
         res.json(_cuestionario);
     }
 
