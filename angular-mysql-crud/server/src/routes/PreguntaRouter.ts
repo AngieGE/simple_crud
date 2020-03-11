@@ -17,7 +17,7 @@ export class PreguntaRouter {
     
     config():void{
         //cuando entren en la ruta inicial yo envio un mensaje hello
-        this.router.get('/', PreguntaController.listarPreguntaes);
+        this.router.get('/', PreguntaController.listarPreguntas);
         this.router.post('/', PreguntaController.crearPregunta);
         this.router.get('/:idPregunta', PreguntaController.obtenerPregunta);
         this.router.put('/:idPregunta', PreguntaController.actualizarPregunta);
