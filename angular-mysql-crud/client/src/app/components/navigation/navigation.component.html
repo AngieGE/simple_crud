@@ -1,20 +1,20 @@
 <nav  class="navbar navbar-expand-lg navbar-light bg-light">
 
   <div class="container">
-    <a class="navbar-brand" href="/cuestionarios">LOS SUPER</a>
+    <a class="navbar-brand" routerLink="/cuestionarios">LOS SUPER</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <li [ngClass]="{'active': rout=='/cuestionarios/contestar'}" class="nav-item">
-          <a class="nav-link" href="/cuestionarios/contestar"><i class="fa fa-pencil" aria-hidden="true"></i> Contestar </a>
+          <a class="nav-link" routerLink="/cuestionarios/contestar"><i class="fa fa-pencil" aria-hidden="true"></i> Contestar </a>
         </li>
         <li class="nav-item ">
-          <a [ngClass]="{'active': rout=='/miPerfil'}" class="nav-link" href="/miPerfil"> <i class="fa fa-user-circle-o" aria-hidden="true"></i> Mi Perfil</a>
+          <a [ngClass]="{'active': rout=='/miPerfil'}" class="nav-link" routerLink="/miPerfil"> <i class="fa fa-user-circle-o" aria-hidden="true"></i> Mi Perfil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/"> <i class="fa fa-sign-out" aria-hidden="true" (click)="logout()"></i> Cerrar Sesión</a>
+          <a class="nav-link" routerLink="/"> <i class="fa fa-sign-out" aria-hidden="true" (click)="logout()"></i> Cerrar Sesión</a>
         </li>
       </ul>
     </div>

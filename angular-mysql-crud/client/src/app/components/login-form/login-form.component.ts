@@ -23,6 +23,7 @@ export class LoginFormComponent implements OnInit {
     this.usuario = this.manager.usuario;
     this.enterWrongUserData = false;
   }
+  
 
   iniciarSesion() {
     delete this.usuario.idUsuario;
