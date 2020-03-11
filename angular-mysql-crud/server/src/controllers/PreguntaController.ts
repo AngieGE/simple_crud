@@ -5,8 +5,8 @@ import { Pregunta } from '../models';
 export class PreguntaController {
     
     static async listarPreguntas(req: Request, res: Response) {
-        const { pregunta } = req.query;
-        const _pregunta: Pregunta[] = await PreguntaService.listarPreguntas(pregunta);
+        const { idCuestionario, idCatalogoPregunta} = req.query;
+        const _pregunta: Pregunta[] = await PreguntaService.listarPreguntas(idCuestionario,idCatalogoPregunta);
         res.json(_pregunta);
     }
 

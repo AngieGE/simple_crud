@@ -5,8 +5,8 @@ import { RespuestaAbierta } from '../models';
 export class RespuestaAbiertaController {
     
     static async listarRespuestaAbiertas(req: Request, res: Response) {
-        const { respuestaAbierta } = req.query;
-        const _respuestaAbierta: RespuestaAbierta[] = await RespuestaAbiertaService.listarRespuestaAbiertas(respuestaAbierta);
+        const { idAplicacion, idPregunta} = req.query;
+        const _respuestaAbierta: RespuestaAbierta[] = await RespuestaAbiertaService.listarRespuestaAbiertas(idAplicacion, idPregunta);
         res.json(_respuestaAbierta);
     }
 

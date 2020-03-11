@@ -5,8 +5,8 @@ import { Opcion } from '../models';
 export class OpcionController {
     
     static async listarOpciones(req: Request, res: Response) {
-        const { opcion } = req.query;
-        const _opcion: Opcion[] = await OpcionService.listarOpciones(opcion);
+        const { idCatalogoOpcion, idPregunta} = req.query;
+        const _opcion: Opcion[] = await OpcionService.listarOpciones(idCatalogoOpcion,idPregunta);
         res.json(_opcion);
     }
 

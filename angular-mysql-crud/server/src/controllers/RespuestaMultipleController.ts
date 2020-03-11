@@ -5,8 +5,8 @@ import { RespuestaMultiple } from '../models';
 export class RespuestaMultipleController {
     
     static async listarRespuestaMultiples(req: Request, res: Response) {
-        const { respuestaMultiple } = req.query;
-        const _respuestaMultiple: RespuestaMultiple[] = await RespuestaMultipleService.listarRespuestaMultiples(respuestaMultiple);
+        const { idAplicacion, idOpcion, idPregunta} = req.query;
+        const _respuestaMultiple: RespuestaMultiple[] = await RespuestaMultipleService.listarRespuestaMultiples(idAplicacion,idOpcion,idPregunta);
         res.json(_respuestaMultiple);
     }
 

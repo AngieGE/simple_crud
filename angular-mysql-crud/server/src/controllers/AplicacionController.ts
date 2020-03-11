@@ -5,8 +5,8 @@ import { Aplicacion } from '../models';
 export class AplicacionController {
     
     static async listarAplicaciones(req: Request, res: Response) {
-        const { aplicacion } = req.query;
-        const _aplicacion: Aplicacion[] = await AplicacionService.listarAplicaciones(aplicacion);
+        const { idUsuario, idCuestionario} = req.query;
+        const _aplicacion: Aplicacion[] = await AplicacionService.listarAplicaciones(idUsuario,idCuestionario);
         res.json(_aplicacion);
     }
     
