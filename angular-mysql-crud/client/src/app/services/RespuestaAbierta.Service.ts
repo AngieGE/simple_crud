@@ -13,10 +13,16 @@ export class RespuestaAbiertaService {
     private manager: ManagerService
   ) { }
 
-  public listarRespuestaAbiertas(): Observable<RespuestaAbierta[]> {
+  public listarRespuestaAbiertas(idAplicacion?: number, idPregunta?: number): Observable<RespuestaAbierta[]> {
     // Params
     let params = new HttpParams();
-    //ALGO AQUI
+    if (idAplicacion !== undefined && idAplicacion !== null) {
+      params = params.set('idAplicacion', idAplicacion.toString());
+    }
+    if (idPregunta !== undefined && idPregunta !== null) {
+      params = params.set('idPregunta', idPregunta.toString());
+    }
+
 
     // Headers
     let headers = this.defaultHeaders;

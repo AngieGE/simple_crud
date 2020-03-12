@@ -13,10 +13,18 @@ export class RespuestaMultipleService {
     private manager: ManagerService
   ) { }
 
-  public listarRespuestaMultiples(): Observable<RespuestaMultiple[]> {
+  public listarRespuestaMultiples(idAplicacion?: number,idOpcion?: number,idPregunta?: number): Observable<RespuestaMultiple[]> {
     // Params
     let params = new HttpParams();
-    //ALGO MAS AQUI
+    if (idAplicacion !== undefined && idAplicacion !== null) {
+      params = params.set('idAplicacion', idAplicacion.toString());
+    }
+    if (idOpcion !== undefined && idOpcion !== null) {
+      params = params.set('idOpcion', idOpcion.toString());
+    }
+    if (idPregunta !== undefined && idPregunta !== null) {
+      params = params.set('idPregunta', idPregunta.toString());
+    }
 
     // Headers
     let headers = this.defaultHeaders;

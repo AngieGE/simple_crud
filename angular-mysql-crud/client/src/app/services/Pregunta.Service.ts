@@ -13,11 +13,15 @@ export class PreguntaService {
     private manager: ManagerService
   ) { }
 
-  public listarPreguntas(): Observable<Pregunta[]> {
-    // Params
+  public listarPreguntas(idCuestionario?: number,idCatalogoPregunta?:number): Observable<Pregunta[]> {
     // Params
     let params = new HttpParams();
-    //FALTA ALGOO
+    if (idCuestionario !== undefined && idCuestionario !== null) {
+      params = params.set('idCuestionario', idCuestionario.toString());
+    }
+    if (idCatalogoPregunta !== undefined && idCatalogoPregunta !== null) {
+      params = params.set('idCatalogoPregunta', idCatalogoPregunta.toString());
+    }
 
     // Headers
     let headers = this.defaultHeaders;

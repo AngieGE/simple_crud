@@ -5,6 +5,14 @@ import { ManagerService } from './Manager.Service';
 
 import {Aplicacion, Usuario} from '../models';
 
+
+/**
+Cuestionario -> idUsuario, nombre
+listarCatalogoOpciones(descripcion?: string)
+listarCatalogoPreguntas(pregunta?: string)
+listarCuestionarios(idUsuario?: number, nombre?: string)
+ */
+
 @Injectable({ providedIn: 'root' })
 export class AplicacionService {
   public defaultHeaders = new HttpHeaders();
@@ -14,10 +22,15 @@ export class AplicacionService {
     private manager: ManagerService
   ) { }
 
-  public listarAplicaciones(): Observable<Aplicacion[]> {
+  public listarAplicaciones(idUsuario?: number, idCuestionario?: number): Observable<Aplicacion[]> {
     // Params
     let params = new HttpParams();
-    //aqui falta algo
+    if (idUsuario !== undefined && idUsuario !== null) {
+      params = params.set('idUsuario', idUsuario.toString());
+    }
+    if (idCuestionario !== undefined && idCuestionario !== null) {
+      params = params.set('idCuestionario', idCuestionario.toString());
+    }
 
     // Headers
     let headers = this.defaultHeaders;

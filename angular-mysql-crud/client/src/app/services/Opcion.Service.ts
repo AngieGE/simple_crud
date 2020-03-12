@@ -3,6 +3,12 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Opcion, OpcionRequest, Usuario} from '../models';
 import { ManagerService } from './Manager.Service';
+/**
+Cuestionario -> idUsuario, nombre
+listarCatalogoOpciones(descripcion?: string)
+listarCatalogoPreguntas(pregunta?: string)
+listarCuestionarios(idUsuario?: number, nombre?: string)
+ */
 
 @Injectable({ providedIn: 'root' })
 export class OpcionService {
@@ -13,10 +19,15 @@ export class OpcionService {
     private manager: ManagerService
   ) { }
 
-  public listarOpcions(): Observable<Opcion[]> {
+  public listarOpcions(idCatalogoOpcion?: number, idPregunta?: number): Observable<Opcion[]> {
     // Params
     let params = new HttpParams();
-    //ALGO MAAAS
+    if (idCatalogoOpcion !== undefined && idCatalogoOpcion !== null) {
+      params = params.set('idCatalogoOpcion', idCatalogoOpcion.toString());
+    }
+    if (idPregunta !== undefined && idPregunta !== null) {
+      params = params.set('idPregunta', idPregunta.toString());
+    }
 
     // Headers
     let headers = this.defaultHeaders;

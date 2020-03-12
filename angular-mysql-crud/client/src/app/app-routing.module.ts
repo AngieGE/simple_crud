@@ -6,6 +6,7 @@ import { CustionarioFormComponent } from './components/custionario-form/custiona
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { CuestionarioFillComponent } from './components/cuestionario-fill/cuestionario-fill.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'miPerfil',
     component: MyProfileComponent
+  },
+  {
+    path: 'cuestionarios/contestar/:idCuestionario',
+    component: CuestionarioFillComponent
   },
 ];
 
