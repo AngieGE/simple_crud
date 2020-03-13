@@ -1,6 +1,6 @@
-import { Aplicacion } from "./Aplicacion";
-import { Opcion } from "./Opcion";
-import { Pregunta } from "./Pregunta";
+import { Aplicacion } from './Aplicacion';
+import { Opcion } from './Opcion';
+import { Pregunta } from './Pregunta';
 
 export class RespuestaMultiple {
     idRespuestaMultiple?: number;
@@ -9,15 +9,15 @@ export class RespuestaMultiple {
     idPregunta?: number;
     // Has many
 
-    // Belongs to 
+    // Belongs to
     aplicacion?: Aplicacion;
     opcion?: Opcion;
     pregunta?: Pregunta;
-    
-    constructor(respuestaMultiple: RespuestaMultiple) {
-        this.idRespuestaMultiple=respuestaMultiple.idRespuestaMultiple,
-        this.idAplicacion=respuestaMultiple.idAplicacion,
-        this.idOpcion=respuestaMultiple.idOpcion,
-        this.idPregunta=respuestaMultiple.idPregunta;
+
+    constructor(respuestaMultiple?: RespuestaMultiple) {
+        this.idRespuestaMultiple = respuestaMultiple.idRespuestaMultiple;
+        this.idAplicacion = respuestaMultiple.idAplicacion;
+        this.idOpcion = respuestaMultiple.idOpcion;
+        this.idPregunta = respuestaMultiple.idPregunta;
     }
 }

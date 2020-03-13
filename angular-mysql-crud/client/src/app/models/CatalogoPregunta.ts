@@ -1,4 +1,4 @@
-import { Pregunta } from "./Pregunta";
+import { Pregunta } from './Pregunta';
 
 export class CatalogoPregunta {
     idCatalogoPregunta?: number;
@@ -7,10 +7,10 @@ export class CatalogoPregunta {
     // Has many
     preguntas?: Pregunta[];
 
-    // Belongs to 
+    // Belongs to
 
-    constructor(catalogoPregunta: CatalogoPregunta) {
-        this.idCatalogoPregunta=catalogoPregunta.idCatalogoPregunta,
-        this.pregunta=catalogoPregunta.pregunta;
+    constructor(catalogoPregunta?: CatalogoPregunta) {
+        this.idCatalogoPregunta = catalogoPregunta.idCatalogoPregunta;
+        this.pregunta = catalogoPregunta.pregunta;
     }
 }

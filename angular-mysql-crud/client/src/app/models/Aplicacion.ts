@@ -1,14 +1,14 @@
-import { Cuestionario } from "./Cuestionario";
-import { Usuario } from "./Usuario";
-import { RespuestaAbierta } from "./RespuestaAbierta";
-import { RespuestaMultiple } from "./RespuestaMultiple";
+import { Cuestionario } from './Cuestionario';
+import { Usuario } from './Usuario';
+import { RespuestaAbierta } from './RespuestaAbierta';
+import { RespuestaMultiple } from './RespuestaMultiple';
 
 
 
 export class Aplicacion {
     idAplicacion?: number;
     fecha?: Date;
-    idCuestionario?: number; 
+    idCuestionario?: number;
     idUsuario?: number;
 
     // Has many
@@ -16,14 +16,14 @@ export class Aplicacion {
     RespuestasMultiples?: RespuestaMultiple[];
 
 
-    // Belongs to 
+    // Belongs to
     usuario?: Usuario;
     cuestionario?: Cuestionario;
 
-    constructor(aplicacion: Aplicacion) {
-        this.idAplicacion=aplicacion.idAplicacion,
-        this.fecha=aplicacion.fecha,
-        this.idCuestionario=aplicacion.idCuestionario,
-        this.idUsuario=aplicacion.idUsuario;
+    constructor(aplicacion?: Aplicacion) {
+        this.idAplicacion = aplicacion.idAplicacion;
+        this.fecha = aplicacion.fecha;
+        this.idCuestionario = aplicacion.idCuestionario;
+        this.idUsuario = aplicacion.idUsuario;
     }
 }

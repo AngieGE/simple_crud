@@ -1,6 +1,6 @@
-import { CatalogoOpcion } from "./CatalogoOpcion";
-import { Pregunta } from "./Pregunta";
-import { RespuestaMultiple } from "./RespuestaMultiple";
+import { CatalogoOpcion } from './CatalogoOpcion';
+import { Pregunta } from './Pregunta';
+import { RespuestaMultiple } from './RespuestaMultiple';
 
 
 export class Opcion {
@@ -11,15 +11,15 @@ export class Opcion {
     // Has many
     RespuestasMultiples?: RespuestaMultiple[];
 
-    // Belongs to 
+    // Belongs to
     catalogoOpcion?: CatalogoOpcion;
     pregunta?: Pregunta;
 
-    constructor(opcion: Opcion) {
-        this.idOpcion=opcion.idOpcion,
-        this.idCatalogoOpcion=opcion.idCatalogoOpcion,
-        this.idPregunta=opcion.idPregunta;
-        this.catalogoOpcion=opcion.catalogoOpcion;
+    constructor(opcion?: Opcion) {
+        this.idOpcion = opcion.idOpcion;
+        this.idCatalogoOpcion = opcion.idCatalogoOpcion;
+        this.idPregunta = opcion.idPregunta;
+        this.catalogoOpcion = opcion.catalogoOpcion;
 
     }
 }
@@ -31,13 +31,13 @@ export class OpcionRequest {
 
     // Has many
 
-    // Belongs to 
+    // Belongs to
     pregunta?: Pregunta;
 
-    constructor(opcion: OpcionRequest) {
-        this.idOpcion=opcion.idOpcion;
-        this.opcion=opcion.opcion;
-        this.idPregunta=opcion.idPregunta;
+    constructor(opcion?: OpcionRequest) {
+        this.idOpcion = opcion.idOpcion;
+        this.opcion = opcion.opcion;
+        this.idPregunta = opcion.idPregunta;
 
     }
 }

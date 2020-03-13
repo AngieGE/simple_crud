@@ -1,5 +1,5 @@
-import { Aplicacion } from "./Aplicacion";
-import { Pregunta } from "./Pregunta";
+import { Aplicacion } from './Aplicacion';
+import { Pregunta } from './Pregunta';
 
 export class RespuestaAbierta {
     idRespuestaAbierta?: number;
@@ -8,14 +8,14 @@ export class RespuestaAbierta {
     idPregunta?: number;
     // Has many
 
-    // Belongs to 
+    // Belongs to
     aplicacion?: Aplicacion;
     pregunta?: Pregunta;
 
-    constructor(respuestaAbierta: RespuestaAbierta) {
-        this.idRespuestaAbierta=respuestaAbierta.idRespuestaAbierta,
-        this.respuesta=respuestaAbierta.respuesta,
-        this.idAplicacion=respuestaAbierta.idAplicacion,
-        this.idPregunta=respuestaAbierta.idPregunta;
+    constructor(respuestaAbierta?: RespuestaAbierta) {
+        this.idRespuestaAbierta = respuestaAbierta.idRespuestaAbierta;
+        this.respuesta = respuestaAbierta.respuesta;
+        this.idAplicacion = respuestaAbierta.idAplicacion;
+        this.idPregunta = respuestaAbierta.idPregunta;
     }
 }
