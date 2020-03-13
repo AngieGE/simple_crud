@@ -6,11 +6,14 @@ export class RespuestaAbierta {
     respuesta?: string;
     idAplicacion?: number;
     idPregunta?: number;
-    //Relaciones
+    // Has many
+
+    // Belongs to 
     aplicacion?: Aplicacion;
     pregunta?: Pregunta;
 
     constructor(respuestaAbierta: RespuestaAbierta) {
+        this.idRespuestaAbierta=respuestaAbierta.idRespuestaAbierta,
         this.respuesta=respuestaAbierta.respuesta,
         this.idAplicacion=respuestaAbierta.idAplicacion,
         this.idPregunta=respuestaAbierta.idPregunta;
