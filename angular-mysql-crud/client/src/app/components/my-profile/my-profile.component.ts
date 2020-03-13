@@ -14,6 +14,7 @@ export class MyProfileComponent implements OnInit {
   us: JSON;
   editando: boolean;
   nacimiento: Date;
+  n: string;
   usuario: Usuario;
   constructor(public datepipe: DatePipe, private manager: ManagerService) {
     this.editando = false;
@@ -24,6 +25,7 @@ export class MyProfileComponent implements OnInit {
    this.usuario = this.manager.usuario;
 
    this.nacimiento = this.usuario.fechaNacimiento;
+   this.n = this.datepipe.transform(this.nacimiento, 'yyyy-MM-dd');
    console.log(this.usuario);
   }
 
