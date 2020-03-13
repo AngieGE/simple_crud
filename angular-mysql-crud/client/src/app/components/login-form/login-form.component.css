@@ -4,3 +4,48 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.wrapper{
+  height: 100vh;
+  position: relative;
+}
+
+.rightBig{
+  background-color:rgba(99, 140, 128, 0.3);
+  height: 100vh;
+}
+
+.leftBig{
+  background-color: #f4f0d9;
+  height: 100vh;
+}
+
+.imageContainer{
+  display: flex;
+  width: 97%;
+  margin-top: 15%;
+}
+.theImage{
+  width: 100%;
+}
+.formContainer{
+  display: flex;
+  justify-content: center;
+  background-color: rgba(99, 140, 128, 0.93);
+  margin-right: 0px;
+  margin-left: 500px;
+  margin-top: 10%;
+  height: 60vh;
+  width: 1000px;
+  position: absolute;
+  z-index: 10;
+}
+.myform{
+  margin-right: 50px;
+  padding-top: 35px;
+
+}
+.row, .leftBig, .rightBig{
+  position: relative;
+}
+
+
