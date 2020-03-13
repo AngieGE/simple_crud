@@ -18,10 +18,12 @@ export class Cuestionario {
     usuario?: Usuario;
 
     constructor(cuestionario?: Cuestionario) {
-        this.idCuestionario = cuestionario.idCuestionario;
-        this.nombre = cuestionario.nombre;
-        this.descripcion = cuestionario.descripcion;
-        this.idUsuario = cuestionario.idUsuario;
-        this.activa = cuestionario.activa;
+        if (cuestionario != null) {
+            this.idCuestionario = cuestionario.idCuestionario;
+            this.nombre = cuestionario.nombre;
+            this.descripcion = cuestionario.descripcion;
+            this.idUsuario = cuestionario.idUsuario;
+            this.activa = cuestionario.activa;
+        }
     }
 }

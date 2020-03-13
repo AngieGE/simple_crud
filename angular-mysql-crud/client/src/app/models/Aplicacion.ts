@@ -21,9 +21,11 @@ export class Aplicacion {
     cuestionario?: Cuestionario;
 
     constructor(aplicacion?: Aplicacion) {
-        this.idAplicacion = aplicacion.idAplicacion;
-        this.fecha = aplicacion.fecha;
-        this.idCuestionario = aplicacion.idCuestionario;
-        this.idUsuario = aplicacion.idUsuario;
+        if (aplicacion != null) {
+            this.idAplicacion = aplicacion.idAplicacion;
+            this.fecha = aplicacion.fecha;
+            this.idCuestionario = aplicacion.idCuestionario;
+            this.idUsuario = aplicacion.idUsuario;
+        }
     }
 }

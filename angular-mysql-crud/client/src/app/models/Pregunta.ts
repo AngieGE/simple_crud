@@ -25,11 +25,13 @@ export class Pregunta {
 
 
     constructor(pregunta?: Pregunta) {
-        this.idPregunta = pregunta.idPregunta;
-        this.idCuestionario = pregunta.idCuestionario;
-        this.idCatalogoPregunta = pregunta.idCatalogoPregunta;
-        this.idTipoPregunta = pregunta.idTipoPregunta;
-        this.catalogoPregunta = pregunta.catalogoPregunta;
+        if (pregunta != null) {
+            this.idPregunta = pregunta.idPregunta;
+            this.idCuestionario = pregunta.idCuestionario;
+            this.idCatalogoPregunta = pregunta.idCatalogoPregunta;
+            this.idTipoPregunta = pregunta.idTipoPregunta;
+            this.catalogoPregunta = pregunta.catalogoPregunta;
+        }
     }
 }
 
@@ -46,9 +48,11 @@ export class PreguntaRequest {
     tipoPregunta?: TipoPregunta;
 
     constructor(pregunta?: PreguntaRequest) {
-        this.idPregunta = pregunta.idPregunta;
-        this.idCuestionario = pregunta.idCuestionario;
-        this.pregunta = pregunta.pregunta;
-        this.idTipoPregunta = pregunta.idTipoPregunta;
+        if (pregunta != null) {
+            this.idPregunta = pregunta.idPregunta;
+            this.idCuestionario = pregunta.idCuestionario;
+            this.pregunta = pregunta.pregunta;
+            this.idTipoPregunta = pregunta.idTipoPregunta;
+        }
     }
 }
