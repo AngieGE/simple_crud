@@ -4,17 +4,17 @@ import { IResult } from "mssql";
 
 export class CatalogoOpcionService {
     
-    static async listarCatalogoOpciones(descripcion?: string): Promise<CatalogoOpcion[]> {
+    static async listarCatalogoOpciones(opcion?: string): Promise<CatalogoOpcion[]> {
         let sql: string = "SELECT * FROM CatalogoOpcion WHERE "
-                   sql += descripcion!=null ? "descripcion = '" + descripcion + "' AND " : "";
+                   sql += opcion!=null ? "opcion = '" + opcion + "' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset;
     }
 
     static async crearCatalogoOpcion(catalogoOpcion: CatalogoOpcion): Promise<boolean> {
-        let sql: string = "INSERT INTO CatalogoOpcion (descripcion)" +
-                            "VALUES ('"+ catalogoOpcion.descripcion +"');"
+        let sql: string = "INSERT INTO CatalogoOpcion (opcion)" +
+                            "VALUES ('"+ catalogoOpcion.opcion +"');"
         await pool.query(sql);
         return true;
         
@@ -28,7 +28,7 @@ export class CatalogoOpcionService {
 
     static async actualizarCatalogoOpcion(idCatalogoOpcion: number, catalogoOpcion: CatalogoOpcion): Promise<boolean> {
         let sql: string = "UPDATE CatalogoOpcion SET " + 
-                                "descripcion = '" +  catalogoOpcion.descripcion + 
+                                "opcion = '" +  catalogoOpcion.opcion + 
                                 "WHERE idCatalogoOpcion = " + idCatalogoOpcion +" ;";
         await pool.query(sql);
         return true;

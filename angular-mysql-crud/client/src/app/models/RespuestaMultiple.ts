@@ -4,18 +4,20 @@ import { Pregunta } from "./Pregunta";
 
 export class RespuestaMultiple {
     idRespuestaMultiple?: number;
-
-    //FK
     idAplicacion?: number;
     idOpcion?: number;
     idPregunta?: number;
+    // Has many
 
-    //Relaciones
+    // Belongs to 
     aplicacion?: Aplicacion;
     opcion?: Opcion;
     pregunta?: Pregunta;
-
-    constructor() {
-
+    
+    constructor(respuestaMultiple: RespuestaMultiple) {
+        this.idRespuestaMultiple=respuestaMultiple.idRespuestaMultiple,
+        this.idAplicacion=respuestaMultiple.idAplicacion,
+        this.idOpcion=respuestaMultiple.idOpcion,
+        this.idPregunta=respuestaMultiple.idPregunta;
     }
 }

@@ -1,3 +1,7 @@
+import { Aplicacion } from "./Aplicacion";
+import { Cuestionario } from "./Cuestionario";
+
+
 
 export class Usuario {
     idUsuario?: number;
@@ -8,7 +12,19 @@ export class Usuario {
     fechaNacimiento?: Date;
     genero?: number;
 
-    constructor() {
+    // Has many
+    aplicaciones?: Aplicacion[];
+    cuestionarios?: Cuestionario[];
 
+    // Belongs to 
+
+    constructor(usuario: Usuario) {
+        this.idUsuario=usuario.idUsuario,
+        this.nombre=usuario.nombre,
+        this.apellido=usuario.apellido,
+        this.contrasena=usuario.contrasena,
+        this.usuario=usuario.usuario,
+        this.fechaNacimiento=usuario.fechaNacimiento,
+        this.genero=usuario.genero;
     }
 }

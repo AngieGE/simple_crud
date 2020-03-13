@@ -7,12 +7,15 @@ export class RespuestaMultiple {
     idAplicacion?: number;
     idOpcion?: number;
     idPregunta?: number;
-    //Relaciones
+    // Has many
+
+    // Belongs to 
     aplicacion?: Aplicacion;
     opcion?: Opcion;
     pregunta?: Pregunta;
     
     constructor(respuestaMultiple: RespuestaMultiple) {
+        this.idRespuestaMultiple=respuestaMultiple.idRespuestaMultiple,
         this.idAplicacion=respuestaMultiple.idAplicacion,
         this.idOpcion=respuestaMultiple.idOpcion,
         this.idPregunta=respuestaMultiple.idPregunta;

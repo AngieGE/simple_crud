@@ -1,7 +1,16 @@
+import { Opcion } from "./Opcion";
 
 export class CatalogoOpcion {
     idCatalogoOpcion?: number;
-    descripcion?:      string;
+    opcion?: string;
+    
+    // Has many
+    opciones?: Opcion[];
 
-    constructor() { }
+    // Belongs to 
+
+    constructor(catalogoOpcion: CatalogoOpcion) {
+        this.idCatalogoOpcion=catalogoOpcion.idCatalogoOpcion,
+        this.opcion=catalogoOpcion.opcion;
+    }
 }
