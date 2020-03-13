@@ -1,20 +1,7 @@
 <div class="wrapper">
 
-  <div class="row" >
-    <div class="col-7 leftBig">
-      <div class="imageContainer">
-        <img src="https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-             alt="laptop image"
-             class="theImage">
-      </div>
-
-    </div>
-
-    <div class="col-5 rightBig">
-    </div>
-
-    <div class="formContainer">
-      <form name="myform" class="myform col-md-5">
+  <div class="formContainer">
+    <form name="myform" class="myform col-md-8">
       <div *ngIf="enterWrongUserData">
         <p style="color:red">El usuario y/o contraseña son incorrectos</p>
       </div>
@@ -25,19 +12,13 @@
       <div class="form-group">
         <label for="contrasena">Contraseña</label>
         <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contraseña" name="contrasena" required>
-        <small id="contrasenaHelp" class="form-text text-muted"><a href="">Olvidaste tu contraseña?</a></small>
+        <small id="" class="form-text text-muted"><a href="" id="contrasenaHelp">Olvidaste tu contraseña?</a></small>
       </div>
       <div class="botones ">
-        <button type="submit" class="btn btn-primary" (click)="iniciarSesion()">Iniciar Sesión</button>
         <a royerLink="/registro"><button type="button" class="btn btn-secondary"  >Únete ahora</button></a>
+        <button type="submit" class="btn btn-primary" (click)="iniciarSesion()">Iniciar Sesión</button>
       </div>
     </form>
-    </div>
   </div>
-
+    
 </div>
-
-
-
-
-
