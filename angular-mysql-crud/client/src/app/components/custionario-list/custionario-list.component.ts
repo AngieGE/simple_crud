@@ -1,8 +1,7 @@
-import {Component, DebugElement, HostBinding, OnInit} from '@angular/core';
-import { CuestionarioService } from '../../services/Cuestionario.Service';
+import {Component, DebugElement, HostBinding, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {Cuestionario, Usuario} from '../../models/index';
-import {ManagerService} from '../../services/Manager.Service';
+import {ManagerService, CuestionarioService} from '../../services/index';
 
 @Component({
   selector: 'app-custionario-list',
@@ -12,9 +11,17 @@ import {ManagerService} from '../../services/Manager.Service';
 export class CustionarioListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row';
-
+  @ViewChild('closeModal') private closeModal: ElementRef;
   cuestionarios: any = [];
   usuario: Usuario;
+
+  cuestionario: Cuestionario = {
+    idCuestionario: null,
+    nombre: '',
+    descripcion: '',
+    idUsuario: null,
+    activa: 0,
+  }
 
   constructor(private cuestionariosService: CuestionarioService, private router: Router, private manager: ManagerService) {
       localStorage.setItem('rout', router.url) ;
@@ -23,7 +30,7 @@ export class CustionarioListComponent implements OnInit {
   ngOnInit(): void {
       this.usuario = this.manager.usuario;
       this.getCuestionarios();
-
+      this.cuestionario.idUsuario = this.manager.usuario.idUsuario;
   }
 
   getCuestionarios() {
@@ -52,7 +59,15 @@ export class CustionarioListComponent implements OnInit {
   }
 
   crearCuestionario(){
-    
+    this.cuestionariosService.crearCuestionario(this.cuestionario)
+      .subscribe( res => {
+        console.log(this.cuestionario);
+        console.log(res);
+        this.getCuestionarios();
+        this.closeModal.nativeElement.click();
+      }, err => {
+        console.error(err );
+      });
   }
 
 }

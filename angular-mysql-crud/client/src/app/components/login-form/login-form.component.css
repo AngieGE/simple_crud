@@ -16,14 +16,18 @@
 }
 .formContainer{
   background-color: rgba(79, 79, 79, 0.93);
-  width: 40vw;
-  height: 40vh;
+  width: 50vw;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+
 }
 label, #contrasenaHelp{
   color: white;
+}
+.myForm{
+  margin:30px;
 }
 

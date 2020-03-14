@@ -6,10 +6,10 @@
   </div>
 
   <div class="centerFlex">
-    <div class="myCard card card-4"> 
+    <div class="myCard card card-4">
         <div class="card-header">
           <div class="MisEncuestas">
-            <p >Mis encuestas </p> 
+            <p >Mis encuestas </p>
           </div>
            <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
              Crear Cuestionario
@@ -47,10 +47,10 @@
                 </button>
               </td>
             </tr>
-         
+
           </tbody>
         </table>
-    
+
     </div>
   </div>
 
@@ -71,19 +71,19 @@
 
           <div class="form-group">
             <label for="nombreEncuesta">Nombre</label>
-            <input type="text" class="form-control" id="nombreEncuesta" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="nombreEncuesta"  [(ngModel)]="cuestionario.nombre"  name="nombreEncuesta">
           </div>
 
           <div class="form-group">
             <label for="descripcionEncuesta">Descripción </label>
-            <textarea class="form-control" id="descripcionEncuesta" rows="3"></textarea>
+            <textarea class="form-control" id="descripcionEncuesta" rows="3" [(ngModel)]="cuestionario.descripcion" name="descripcionEncuesta"></textarea>
             <small id="descripcionHelp" class="form-text text-muted">Esta información será visible para los usuarios que contestaran tu encuesta.</small>
           </div>
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button #closeModal type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="crearCuestionario()">Crear</button>
       </div>
     </div>
