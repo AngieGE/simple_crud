@@ -24,6 +24,7 @@ import { PreguntaService } from './services/Pregunta.Service';
 import { RespuestaAbiertaService } from './services/RespuestaAbierta.Service';
 import { RespuestaMultipleService } from './services/RespuestaMultiple.Service';
 import { UsuarioService } from './services/Usuario.Service';
+import { CuestionarioFillComponent } from './components/cuestionario-fill/cuestionario-fill.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { UsuarioService } from './services/Usuario.Service';
     RegisterFormComponent,
     CuestionarioListAllComponent,
     MyProfileComponent,
+    CuestionarioFillComponent,
   ],
   imports: [
     BrowserModule,

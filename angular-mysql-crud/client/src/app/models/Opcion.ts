@@ -1,33 +1,45 @@
-import { CatalogoOpcion } from "./CatalogoOpcion";
-import { Pregunta } from "./Pregunta";
+import { CatalogoOpcion } from './CatalogoOpcion';
+import { Pregunta } from './Pregunta';
+import { RespuestaMultiple } from './RespuestaMultiple';
+
+
 export class Opcion {
     idOpcion?: number;
-
-    //fk
     idCatalogoOpcion?: number;
     idPregunta?: number;
 
-    //relaciones
-    catalogoOpcion? : CatalogoOpcion;
+    // Has many
+    RespuestasMultiples?: RespuestaMultiple[];
+
+    // Belongs to
+    catalogoOpcion?: CatalogoOpcion;
     pregunta?: Pregunta;
 
-    constructor() {
-
+    constructor(opcion?: Opcion) {
+        if (opcion != null) {
+            this.idOpcion = opcion.idOpcion;
+            this.idCatalogoOpcion = opcion.idCatalogoOpcion;
+            this.idPregunta = opcion.idPregunta;
+            this.catalogoOpcion = opcion.catalogoOpcion;
+        }
     }
 }
 
 export class OpcionRequest {
-  idOpcion?: number;
+    idOpcion?: number;
+    opcion?: string;
+    idPregunta?: number;
 
-  //fk
-  idCatalogoOpcion?: number;
-  idPregunta?: number;
+    // Has many
 
-  //relaciones
-  catalogoOpcion? : CatalogoOpcion;
-  pregunta?: Pregunta;
+    // Belongs to
+    pregunta?: Pregunta;
 
-    constructor() {
-
+    constructor(opcion?: OpcionRequest) {
+        if (opcion != null) {
+            this.idOpcion = opcion.idOpcion;
+            this.opcion = opcion.opcion;
+            this.idPregunta = opcion.idPregunta;
+        }
     }
 }

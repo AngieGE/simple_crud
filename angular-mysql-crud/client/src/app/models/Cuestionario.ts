@@ -1,3 +1,7 @@
+import { Usuario } from './Usuario';
+import { Aplicacion } from './Aplicacion';
+import { Pregunta } from './Pregunta';
+
 
 export class Cuestionario {
     idCuestionario?: number;
@@ -6,7 +10,20 @@ export class Cuestionario {
     idUsuario?: number;
     activa?: number;
 
-    constructor() {
+    // Has many
+    aplicaciones?: Aplicacion[];
+    preguntas?: Pregunta[];
 
+    // Belongs to
+    usuario?: Usuario;
+
+    constructor(cuestionario?: Cuestionario) {
+        if (cuestionario != null) {
+            this.idCuestionario = cuestionario.idCuestionario;
+            this.nombre = cuestionario.nombre;
+            this.descripcion = cuestionario.descripcion;
+            this.idUsuario = cuestionario.idUsuario;
+            this.activa = cuestionario.activa;
+        }
     }
 }

@@ -1,39 +1,58 @@
-import { Cuestionario } from "./Cuestionario";
-import { CatalogoPregunta } from "./CatalogoPregunta";
-import { TipoPregunta } from "./TipoPregunta";
-
+import { Cuestionario } from './Cuestionario';
+import { CatalogoPregunta } from './CatalogoPregunta';
+import { TipoPregunta } from './TipoPregunta';
+import { Opcion } from './Opcion';
+import { RespuestaAbierta } from './RespuestaAbierta';
+import { RespuestaMultiple } from './RespuestaMultiple';
 
 export class Pregunta {
     idPregunta?: number;
-
-    //FK
     idCuestionario?: number;
     idCatalogoPregunta?: number;
     idTipoPregunta?: number;
 
-    //Relaciones
+    // Has many
+    opciones?: Opcion[];
+    RespuestasAbiertas?: RespuestaAbierta[];
+    RespuestasMultiples?: RespuestaMultiple[];
+
+
+
+    // Belongs to
     cuestionario?: Cuestionario;
     catalogoPregunta?: CatalogoPregunta;
     tipoPregunta?: TipoPregunta;
 
-    constructor() {
 
+    constructor(pregunta?: Pregunta) {
+        if (pregunta != null) {
+            this.idPregunta = pregunta.idPregunta;
+            this.idCuestionario = pregunta.idCuestionario;
+            this.idCatalogoPregunta = pregunta.idCatalogoPregunta;
+            this.idTipoPregunta = pregunta.idTipoPregunta;
+            this.catalogoPregunta = pregunta.catalogoPregunta;
+        }
     }
 }
 
 export class PreguntaRequest {
     idPregunta?: number;
+    idCuestionario?: number;
+    pregunta?: string;
+    idTipoPregunta?: number;
 
-  //FK
-  idCuestionario?: number;
-  idCatalogoPregunta?: number;
-  idTipoPregunta?: number;
+    // Has many
 
-  //Relaciones
-  cuestionario?: Cuestionario;
-  catalogoPregunta?: CatalogoPregunta;
-  tipoPregunta?: TipoPregunta;
-    constructor() {
+    // Belongs to
+    cuestionario?: Cuestionario;
+    tipoPregunta?: TipoPregunta;
 
+    constructor(pregunta?: PreguntaRequest) {
+        if (pregunta != null) {
+            this.idPregunta = pregunta.idPregunta;
+            this.idCuestionario = pregunta.idCuestionario;
+            this.pregunta = pregunta.pregunta;
+            this.idTipoPregunta = pregunta.idTipoPregunta;
+        }
     }
 }

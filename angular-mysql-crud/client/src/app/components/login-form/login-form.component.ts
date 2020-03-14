@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
   rout: string;
-
   usuario: Usuario;
-
   enterWrongUserData: boolean;
 
   constructor(private usuarioService: UsuarioService, private  router: Router, private manager: ManagerService) {

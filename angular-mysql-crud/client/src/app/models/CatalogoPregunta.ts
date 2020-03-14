@@ -1,7 +1,18 @@
+import { Pregunta } from './Pregunta';
 
 export class CatalogoPregunta {
     idCatalogoPregunta?: number;
-    pregunta: string;
+    pregunta?: string;
 
-    constructor() { }
+    // Has many
+    preguntas?: Pregunta[];
+
+    // Belongs to
+
+    constructor(catalogoPregunta?: CatalogoPregunta) {
+        if (catalogoPregunta != null) {
+            this.idCatalogoPregunta = catalogoPregunta.idCatalogoPregunta;
+            this.pregunta = catalogoPregunta.pregunta;
+        }
+    }
 }

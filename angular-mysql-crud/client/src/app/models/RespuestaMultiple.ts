@@ -1,21 +1,25 @@
-import { Aplicacion } from "./Aplicacion";
-import { Opcion } from "./Opcion";
-import { Pregunta } from "./Pregunta";
+import { Aplicacion } from './Aplicacion';
+import { Opcion } from './Opcion';
+import { Pregunta } from './Pregunta';
 
 export class RespuestaMultiple {
     idRespuestaMultiple?: number;
-
-    //FK
     idAplicacion?: number;
     idOpcion?: number;
     idPregunta?: number;
+    // Has many
 
-    //Relaciones
+    // Belongs to
     aplicacion?: Aplicacion;
     opcion?: Opcion;
     pregunta?: Pregunta;
 
-    constructor() {
-
+    constructor(respuestaMultiple?: RespuestaMultiple) {
+        if (respuestaMultiple != null) {
+            this.idRespuestaMultiple = respuestaMultiple.idRespuestaMultiple;
+            this.idAplicacion = respuestaMultiple.idAplicacion;
+            this.idOpcion = respuestaMultiple.idOpcion;
+            this.idPregunta = respuestaMultiple.idPregunta;
+        }
     }
 }

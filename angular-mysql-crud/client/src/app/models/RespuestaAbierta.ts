@@ -1,20 +1,23 @@
-import { Aplicacion } from "./Aplicacion";
-import { Pregunta } from "./Pregunta";
-
+import { Aplicacion } from './Aplicacion';
+import { Pregunta } from './Pregunta';
 
 export class RespuestaAbierta {
     idRespuestaAbierta?: number;
-
-
-    //FK
+    respuesta?: string;
     idAplicacion?: number;
-    idPregunta: number;
+    idPregunta?: number;
+    // Has many
 
-    //Relaciones
+    // Belongs to
     aplicacion?: Aplicacion;
     pregunta?: Pregunta;
 
-    constructor() {
-
+    constructor(respuestaAbierta?: RespuestaAbierta) {
+        if (respuestaAbierta != null) {
+            this.idRespuestaAbierta = respuestaAbierta.idRespuestaAbierta;
+            this.respuesta = respuestaAbierta.respuesta;
+            this.idAplicacion = respuestaAbierta.idAplicacion;
+            this.idPregunta = respuestaAbierta.idPregunta;
+        }
     }
 }

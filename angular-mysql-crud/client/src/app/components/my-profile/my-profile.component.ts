@@ -15,6 +15,7 @@ export class MyProfileComponent implements OnInit {
   us: JSON;
   editando: boolean;
   nacimiento: Date;
+  n: string;
   usuario: Usuario;
   datestring: string;
   constructor(public datepipe: DatePipe, private manager: ManagerService) {
@@ -24,10 +25,12 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
    // this.usuario = this.manager.usuario;
    this.usuario = this.manager.usuario;
+
    this.nacimiento = this.usuario.fechaNacimiento;
+
    this.datestring = this.datepipe.transform(this.nacimiento, 'yyyy-MM-dd');
 
-   
+
    console.log(this.usuario);
   }
 
@@ -36,7 +39,18 @@ export class MyProfileComponent implements OnInit {
   }
 
   saveChanges(){
+    //Obtener los datos de los input de tu htm
+
+    //guardarlos
+
+    //guardarlo en la BD
+    
+    
+      //obteer una resp o err
+
+
     this.editar(false);
+    
   }
 
 }

@@ -1,19 +1,31 @@
-import { Cuestionario } from "./Cuestionario";
-import { Usuario } from "./Usuario";
+import { Cuestionario } from './Cuestionario';
+import { Usuario } from './Usuario';
+import { RespuestaAbierta } from './RespuestaAbierta';
+import { RespuestaMultiple } from './RespuestaMultiple';
+
+
 
 export class Aplicacion {
     idAplicacion?: number;
     fecha?: Date;
-
-    //fk
     idCuestionario?: number;
     idUsuario?: number;
 
-    // Relaciones
-    cuestionario?: Cuestionario;
+    // Has many
+    RespuestasAbiertas?: RespuestaAbierta[];
+    RespuestasMultiples?: RespuestaMultiple[];
+
+
+    // Belongs to
     usuario?: Usuario;
+    cuestionario?: Cuestionario;
 
-    constructor() {
-
+    constructor(aplicacion?: Aplicacion) {
+        if (aplicacion != null) {
+            this.idAplicacion = aplicacion.idAplicacion;
+            this.fecha = aplicacion.fecha;
+            this.idCuestionario = aplicacion.idCuestionario;
+            this.idUsuario = aplicacion.idUsuario;
+        }
     }
 }
