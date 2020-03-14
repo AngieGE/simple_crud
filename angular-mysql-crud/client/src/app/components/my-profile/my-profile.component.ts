@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Usuario} from '../../models/index';
 import {ManagerService} from '../../services';
+import * as moment from 'moment';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class MyProfileComponent implements OnInit {
   nacimiento: Date;
   n: string;
   usuario: Usuario;
+  datestring: string;
   constructor(public datepipe: DatePipe, private manager: ManagerService) {
     this.editando = false;
   }
@@ -25,7 +27,10 @@ export class MyProfileComponent implements OnInit {
    this.usuario = this.manager.usuario;
 
    this.nacimiento = this.usuario.fechaNacimiento;
-   this.n = this.datepipe.transform(this.nacimiento, 'yyyy-MM-dd');
+
+   this.datestring = this.datepipe.transform(this.nacimiento, 'yyyy-MM-dd');
+
+
    console.log(this.usuario);
   }
 

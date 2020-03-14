@@ -13,9 +13,11 @@ export class RespuestaAbierta {
     pregunta?: Pregunta;
 
     constructor(respuestaAbierta?: RespuestaAbierta) {
-        this.idRespuestaAbierta = respuestaAbierta.idRespuestaAbierta;
-        this.respuesta = respuestaAbierta.respuesta;
-        this.idAplicacion = respuestaAbierta.idAplicacion;
-        this.idPregunta = respuestaAbierta.idPregunta;
+        if (respuestaAbierta != null) {
+            this.idRespuestaAbierta = respuestaAbierta.idRespuestaAbierta;
+            this.respuesta = respuestaAbierta.respuesta;
+            this.idAplicacion = respuestaAbierta.idAplicacion;
+            this.idPregunta = respuestaAbierta.idPregunta;
+        }
     }
 }

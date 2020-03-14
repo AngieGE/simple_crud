@@ -10,7 +10,9 @@ export class CatalogoPregunta {
     // Belongs to
 
     constructor(catalogoPregunta?: CatalogoPregunta) {
-        this.idCatalogoPregunta = catalogoPregunta.idCatalogoPregunta;
-        this.pregunta = catalogoPregunta.pregunta;
+        if (catalogoPregunta != null) {
+            this.idCatalogoPregunta = catalogoPregunta.idCatalogoPregunta;
+            this.pregunta = catalogoPregunta.pregunta;
+        }
     }
 }

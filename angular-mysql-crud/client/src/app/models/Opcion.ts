@@ -16,11 +16,12 @@ export class Opcion {
     pregunta?: Pregunta;
 
     constructor(opcion?: Opcion) {
-        this.idOpcion = opcion.idOpcion;
-        this.idCatalogoOpcion = opcion.idCatalogoOpcion;
-        this.idPregunta = opcion.idPregunta;
-        this.catalogoOpcion = opcion.catalogoOpcion;
-
+        if (opcion != null) {
+            this.idOpcion = opcion.idOpcion;
+            this.idCatalogoOpcion = opcion.idCatalogoOpcion;
+            this.idPregunta = opcion.idPregunta;
+            this.catalogoOpcion = opcion.catalogoOpcion;
+        }
     }
 }
 
@@ -35,9 +36,10 @@ export class OpcionRequest {
     pregunta?: Pregunta;
 
     constructor(opcion?: OpcionRequest) {
-        this.idOpcion = opcion.idOpcion;
-        this.opcion = opcion.opcion;
-        this.idPregunta = opcion.idPregunta;
-
+        if (opcion != null) {
+            this.idOpcion = opcion.idOpcion;
+            this.opcion = opcion.opcion;
+            this.idPregunta = opcion.idPregunta;
+        }
     }
 }

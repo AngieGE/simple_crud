@@ -15,9 +15,11 @@ export class RespuestaMultiple {
     pregunta?: Pregunta;
 
     constructor(respuestaMultiple?: RespuestaMultiple) {
-        this.idRespuestaMultiple = respuestaMultiple.idRespuestaMultiple;
-        this.idAplicacion = respuestaMultiple.idAplicacion;
-        this.idOpcion = respuestaMultiple.idOpcion;
-        this.idPregunta = respuestaMultiple.idPregunta;
+        if (respuestaMultiple != null) {
+            this.idRespuestaMultiple = respuestaMultiple.idRespuestaMultiple;
+            this.idAplicacion = respuestaMultiple.idAplicacion;
+            this.idOpcion = respuestaMultiple.idOpcion;
+            this.idPregunta = respuestaMultiple.idPregunta;
+        }
     }
 }

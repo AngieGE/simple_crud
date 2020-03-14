@@ -10,7 +10,9 @@ export class CatalogoOpcion {
     // Belongs to
 
     constructor(catalogoOpcion?: CatalogoOpcion) {
-        this.idCatalogoOpcion = catalogoOpcion.idCatalogoOpcion;
-        this.opcion = catalogoOpcion.opcion;
+        if (catalogoOpcion != null) {
+            this.idCatalogoOpcion = catalogoOpcion.idCatalogoOpcion;
+            this.opcion = catalogoOpcion.opcion;
+        }
     }
 }

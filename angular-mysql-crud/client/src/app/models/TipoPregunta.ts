@@ -10,8 +10,10 @@ export class TipoPregunta {
     // Belongs to
 
     constructor(tipoPregunta?: TipoPregunta) {
-        this.idTipoPregunta = tipoPregunta.idTipoPregunta;
-        this.tipo = tipoPregunta.tipo;
+        if (tipoPregunta != null) {
+            this.idTipoPregunta = tipoPregunta.idTipoPregunta;
+            this.tipo = tipoPregunta.tipo;
+        }
     }
 }
 // tslint:disable-next-line:no-namespace
