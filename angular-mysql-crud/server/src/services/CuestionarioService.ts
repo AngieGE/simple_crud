@@ -30,12 +30,15 @@ export class CuestionarioService {
     }
 
     static async actualizarCuestionario(idCuestionario: number,cuestionario: Cuestionario): Promise<boolean> {
-        let sql: string = "UPDATE Cuestionario SET " + 
+        console.log('----------------');
+        console.log('cuestionario.activa ----->' + typeof cuestionario.activa);
+        console.log('----------------');
+        let sql: string = "UPDATE Cuestionario SET " +
                                 "nombre = '" +  cuestionario.nombre + "', " +
                                 "descripcion = '" + cuestionario.descripcion +"'," +
                                 "idUsuario = '" + cuestionario.idUsuario + "', " +
-                                "activa = '" + cuestionario.activa +
-                                "WHERE idCuestionario = " + idCuestionario +" ;";
+                                "activa = " + cuestionario.activa +
+                                " WHERE idCuestionario = " + idCuestionario;
         await pool.query(sql);
         return true;
     }

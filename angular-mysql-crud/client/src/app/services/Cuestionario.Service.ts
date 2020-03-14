@@ -62,7 +62,7 @@ export class CuestionarioService {
     headers = headers.set('Content-Type', 'application/json');
 
     // Request
-    return this.http.put<Cuestionario>(`${this.manager.API_URL}/usuario/${idCuestionario}`, cuestionario,  { headers } );
+    return this.http.put<Cuestionario>(`${this.manager.API_URL}/cuestionario/${idCuestionario}`, cuestionario,  { headers } );
   }
 
   public eliminarCuestionario(idCuestionario: number): Observable<any> {
@@ -73,7 +73,7 @@ export class CuestionarioService {
 
 
     // Request
-    return this.http.delete(`${this.manager.API_URL}/usuario/${idCuestionario}`, { headers } );
+    return this.http.delete(`${this.manager.API_URL}/cuestionario/${idCuestionario}`, { headers } );
 
   }
 

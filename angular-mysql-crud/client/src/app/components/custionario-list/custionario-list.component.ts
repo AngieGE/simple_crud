@@ -70,4 +70,8 @@ export class CustionarioListComponent implements OnInit {
       });
   }
 
+  editarCuestionario(idCuestionario: number){
+    this.router.navigate(['/cuestionarios/editar/', idCuestionario]);
+  }
+
 }

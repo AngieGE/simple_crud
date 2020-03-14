@@ -27,7 +27,7 @@ const routes: Routes = [
     component: CustionarioListComponent
   },
   {
-    path: 'cuestionarios/crear',
+    path: 'cuestionarios/editar/:idCuestionario',
     component: CustionarioFormComponent
   },
   {
