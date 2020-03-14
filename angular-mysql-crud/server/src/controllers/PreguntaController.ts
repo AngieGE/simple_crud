@@ -17,8 +17,12 @@ export class PreguntaController {
 
     static async crearPregunta(req: Request, res: Response) {
         let preguntaR: PreguntaRequest = req.body;    
-        let pregunta = new Pregunta(preguntaR);
+        let pregunta = new Pregunta(preguntaR as Pregunta);
         let catalogos = await CatalogoPreguntaService.listarCatalogoPreguntas(preguntaR.pregunta);
+        let tipos = await TipoPreguntaService.listarTipoPreguntas(preguntaR.tipoPregunta);
+        if(tipos.length>0){
+            pregunta.idTipoPregunta = tipos[0].idTipoPregunta;
+        }
         if (catalogos.length > 0) { // La nueva pregunta ya existe
             pregunta.idCatalogoPregunta = catalogos[0].idCatalogoPregunta
         } else {                    // La nueva pregunta no existe
@@ -49,10 +53,14 @@ export class PreguntaController {
     static async actualizarPregunta(req: Request, res: Response) {
         const { idPregunta } = req.params;
         let preguntaR: PreguntaRequest = req.body;    
-        let pregunta = new Pregunta(preguntaR);
+        let pregunta = new Pregunta(preguntaR as Pregunta);
         let preguntaAnterior = await PreguntaService.obtenerPregunta(parseInt(idPregunta));
         let preguntasMismoCatalogo = await PreguntaService.listarPreguntas(preguntaAnterior.idCatalogoPregunta);
         let catalogos = await CatalogoPreguntaService.listarCatalogoPreguntas(preguntaR.pregunta); 
+        let tipos = await TipoPreguntaService.listarTipoPreguntas(preguntaR.tipoPregunta);
+        if(tipos.length>0){
+            pregunta.idTipoPregunta = tipos[0].idTipoPregunta;
+        }
         if (preguntasMismoCatalogo.length <= 1 && catalogos.length > 0) { //La opcion anterior solo yo la uso y la nueva ya existe
             pregunta.idCatalogoPregunta = catalogos[0].idCatalogoPregunta;
             await PreguntaService.actualizarPregunta(parseInt(idPregunta), pregunta);    

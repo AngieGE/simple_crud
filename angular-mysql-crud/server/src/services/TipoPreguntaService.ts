@@ -4,8 +4,12 @@ import { pool } from "../database";
 
 export class TipoPreguntaService {
     
-    static async listarTipoPreguntaes(): Promise<TipoPregunta[]> {
-        return new Array<TipoPregunta>();
+    static async listarTipoPreguntas(tipo?: string): Promise<TipoPregunta[]> {
+        let sql: string = "SELECT * FROM TipoPregunta WHERE "
+                   sql += tipo!=null ? "tipo = '" + tipo + "' AND " : "";
+                   sql += "1 = 1 ";
+        const recordset = await pool.query(sql);
+        return recordset.recordset;
     }
 
     static async crearTipoPregunta(tipoPregunta: TipoPregunta): Promise<boolean> {
