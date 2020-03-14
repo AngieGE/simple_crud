@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Usuario} from '../../models/index';
 import {ManagerService} from '../../services';
-import * as moment from 'moment';
 
 
 @Component({
