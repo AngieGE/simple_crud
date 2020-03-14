@@ -51,4 +51,8 @@ export class CustionarioListComponent implements OnInit {
     );
   }
 
+  crearCuestionario(){
+    
+  }
+
 }

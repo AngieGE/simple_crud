@@ -1,0 +1,79 @@
+/*.plus{
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+}*/
+.background{
+    /* background-image: url(https://images.pexels.com/photos/732895/pexels-photo-732895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+     opacity: 0.5;
+     background-repeat: no-repeat;
+     background-size: cover;*/
+     background-color:rgba( 232, 232, 232, 0.08);  /*rgba( 167, 167, 167, 0.2);*/
+   
+     width: 100vw;
+     height: 100vh;
+   
+     position: absolute;
+     z-index: -100;
+   }
+   
+   .bienvenida{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 20px;
+     margin-bottom: 20px;
+   }
+   
+   .loop{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+   
+   .centerFlex{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100vw;
+   }
+   
+   .myCard{
+   background-color: white;
+   width: 80%;
+   border-radius: 15px;
+   
+   }
+   
+   .card-1:hover {
+     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+   }
+   
+   .card {
+     background: #fff;
+   
+     display: inline-block;
+    
+     margin: 1rem;
+     position: relative;
+   
+   }
+   
+   .card-4 {
+     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+   }
+   
+   .card-header{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+   }
+   .MisEncuestas{
+   
+   vertical-align: middle;
+   }
+   p{
+     vertical-align: middle;
+     padding-top: 15px;
+   
+   }

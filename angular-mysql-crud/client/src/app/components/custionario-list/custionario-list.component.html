@@ -11,9 +11,9 @@
           <div class="MisEncuestas">
             <p >Mis encuestas </p> 
           </div>
-           <a routerLink="/cuestionarios/crear"  class="btn btn-primary">
+           <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
              Crear Cuestionario
-           </a>
+           </button>
         </div>
         <table class="table">
           <thead>
@@ -53,3 +53,39 @@
     
     </div>
   </div>
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"> Creación </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group">
+            <label for="nombreEncuesta">Nombre</label>
+            <input type="text" class="form-control" id="nombreEncuesta" aria-describedby="emailHelp">
+          </div>
+
+          <div class="form-group">
+            <label for="descripcionEncuesta">Descripción </label>
+            <textarea class="form-control" id="descripcionEncuesta" rows="3"></textarea>
+            <small id="descripcionHelp" class="form-text text-muted">Esta información será visible para los usuarios que contestaran tu encuesta.</small>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="crearCuestionario()">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>

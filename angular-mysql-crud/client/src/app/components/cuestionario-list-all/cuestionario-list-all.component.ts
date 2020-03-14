@@ -32,4 +32,8 @@ export class CuestionarioListAllComponent implements OnInit {
       }
     );
   }
+
+  contestarCuestionario(idCuestionario: number){
+    this.router.navigate(['/cuestionarios/contestar/', idCuestionario]);
+  }
 }
