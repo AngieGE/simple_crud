@@ -37,18 +37,17 @@ export class PreguntaRequest {
     idPregunta?: number;
     idCuestionario?: number;
     pregunta?: string;
-    idTipoPregunta?: number;
+    tipoPregunta?: string;
 
     // Has many
 
     // Belongs to 
     cuestionario?: Cuestionario;
-    tipoPregunta?: TipoPregunta;
 
     constructor(pregunta: PreguntaRequest) {
         this.idPregunta=pregunta.idPregunta;
         this.idCuestionario=pregunta.idCuestionario,
         this.pregunta=pregunta.pregunta,
-        this.idTipoPregunta=pregunta.idTipoPregunta;        
+        this.tipoPregunta=pregunta.tipoPregunta;        
     }
 }

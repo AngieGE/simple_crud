@@ -28,6 +28,7 @@ export class Pregunta {
             this.idCatalogoPregunta = pregunta.idCatalogoPregunta;
             this.idTipoPregunta = pregunta.idTipoPregunta;
             this.catalogoPregunta = pregunta.catalogoPregunta;
+            this.tipoPregunta = pregunta.tipoPregunta;
         }
     }
 }
@@ -36,20 +37,19 @@ export class PreguntaRequest {
     idPregunta?: number;
     idCuestionario?: number;
     pregunta?: string;
-    idTipoPregunta?: number;
+    tipoPregunta?: string;
 
     // Has many
 
     // Belongs to
     cuestionario?: Cuestionario;
-    tipoPregunta?: TipoPregunta;
 
     constructor(pregunta?: PreguntaRequest) {
         if (pregunta != null) {
             this.idPregunta = pregunta.idPregunta;
             this.idCuestionario = pregunta.idCuestionario;
             this.pregunta = pregunta.pregunta;
-            this.idTipoPregunta = pregunta.idTipoPregunta;
+            this.tipoPregunta = pregunta.tipoPregunta;
         }
     }
 }
