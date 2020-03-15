@@ -1,9 +1,9 @@
 import {Component, OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
-import { Cuestionario, PreguntaRequest, Opcion } from '../../models/index';
+import { Cuestionario, PreguntaRequest, Opcion, Pregunta } from '../../models/index';
 import { CuestionarioService, PreguntaService } from '../../services/index'
 import {provideRoutes} from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
-import {ManagerService} from "../../services";
+import { ManagerService } from '../../services';
 
 @Component({
   selector: 'app-custionario-form',
@@ -20,20 +20,20 @@ export class CustionarioFormComponent implements OnInit {
     descripcion: '',
     idUsuario: 0,
     activa: 1
-  }
-  pregunta: PreguntaRequest = new PreguntaRequest();
+  };
+  preguntas: Pregunta[] = new Array(0);
   opcion: Opcion;
 
-  preguntas: PreguntaService[];
+  pregunta: PreguntaRequest = new PreguntaRequest();
   opciones: Opcion[];
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
               private router: Router, private activatedRoute: ActivatedRoute) {
-    this.cuestionario.idCuestionario = +this.activatedRoute.snapshot.paramMap.get("idCuestionario")
+    this.cuestionario.idCuestionario = +this.activatedRoute.snapshot.paramMap.get('idCuestionario');
   }
 
   ngOnInit(): void {
-    //obtener la info genereal de cuestionario
+    // obtener la info genereal de cuestionario
     this.cuestionariosServices.obtenerCuestionario( this.cuestionario.idCuestionario)
       .subscribe( res => {
         this.cuestionario = res;
@@ -42,17 +42,16 @@ export class CustionarioFormComponent implements OnInit {
         console.log(err);
       });
 
-      //Obtener todas las preguntas
-      this.listarPreguntas();
-
+    // Obtener todas las preguntas
+    this.listarPreguntas();
   }
 
   guardarCambios() {
-    //update cuestionario
+    // update cuestionario
     this.actualizarCuestionario();
   }
 
-  actualizarCuestionario(){
+  actualizarCuestionario() {
     console.log('actualizarCuestionario');
     this.cuestionariosServices.actualizarCuestionario(  this.cuestionario.idCuestionario, this.cuestionario)
       .subscribe( res => {
@@ -65,7 +64,7 @@ export class CustionarioFormComponent implements OnInit {
     return  false;
   }
 
-  agregarPregunta(){
+  agregarPregunta() {
     console.log(this.cuestionario);
     this.preguntaService.crearPregunta(this.pregunta)
       .subscribe( res => {
@@ -78,13 +77,13 @@ export class CustionarioFormComponent implements OnInit {
    // this.closeModal.nativeElement.click();
   }
 
-  listarPreguntas(){
-    //Obtener todas las preguntas
+  listarPreguntas() {
+    // Obtener todas las preguntas
     this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
       .subscribe( res => {
         console.log(res);
-        //QERIA HACER ESTO PERO NO SE PUEDE :(
-       ///// this.preguntas = res;
+        // QERIA HACER ESTO PERO NO SE PUEDE :(
+        this.preguntas = res;
       }, err => {
         console.log(err);
       });
