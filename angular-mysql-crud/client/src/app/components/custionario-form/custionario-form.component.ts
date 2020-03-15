@@ -1,6 +1,6 @@
 import {Component, OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
 import { Cuestionario, PreguntaRequest, Opcion, Pregunta } from '../../models/index';
-import { CuestionarioService, PreguntaService } from '../../services/index'
+import { CuestionarioService, PreguntaService } from '../../services/index';
 import {provideRoutes} from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ManagerService } from '../../services';
@@ -55,7 +55,7 @@ export class CustionarioFormComponent implements OnInit {
     console.log('actualizarCuestionario');
     this.cuestionariosServices.actualizarCuestionario(  this.cuestionario.idCuestionario, this.cuestionario)
       .subscribe( res => {
-        console.log(res)
+        console.log(res);
         this.router.navigate(['/cuestionarios/']);
       }, err => {
         console.log(err);
