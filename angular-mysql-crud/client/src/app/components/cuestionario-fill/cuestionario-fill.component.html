@@ -1,1 +1,29 @@
-<p>Aqui entra fer!</p>
+
+<form>
+    <h2>Información general</h2>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input [(ngModel)]="cuestionario.nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre de tu encuesta" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción cuestionario</label>
+      <textarea  [(ngModel)]="cuestionario.descripcion" class="form-control" id="descripcion" rows="3"  name="descripcion"></textarea>
+    </div>
+  
+    <h2>Preguntas</h2>
+  
+    <div *ngFor="let pregunta of preguntas; let i = index">
+      <div class="myCard card card-4">
+        
+        <p>{{i+1}}. {{pregunta['catalogoPregunta'].pregunta}}</p>
+        <div *ngFor="let pregunta of preguntas; let i = index">
+          <div class="myCard card card-4">
+            
+            Holi
+          </div>
+        </div>
+      </div>
+    </div>
+  
+   </form>
+  
