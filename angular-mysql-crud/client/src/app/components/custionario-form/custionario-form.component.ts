@@ -24,7 +24,7 @@ export class CustionarioFormComponent implements OnInit {
   pregunta: PreguntaRequest = new PreguntaRequest();
   opcion: Opcion;
 
-  preguntas: PreguntaRequest[];
+  preguntas: PreguntaService[];
   opciones: Opcion[];
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
@@ -83,7 +83,8 @@ export class CustionarioFormComponent implements OnInit {
     this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
       .subscribe( res => {
         console.log(res);
-        this.preguntas = res;
+        //QERIA HACER ESTO PERO NO SE PUEDE :(
+       ///// this.preguntas = res;
       }, err => {
         console.log(err);
       });
