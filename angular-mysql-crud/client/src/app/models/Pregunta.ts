@@ -16,13 +16,10 @@ export class Pregunta {
     RespuestasAbiertas?: RespuestaAbierta[];
     RespuestasMultiples?: RespuestaMultiple[];
 
-
-
     // Belongs to
     cuestionario?: Cuestionario;
     catalogoPregunta?: CatalogoPregunta;
     tipoPregunta?: TipoPregunta;
-
 
     constructor(pregunta?: Pregunta) {
         if (pregunta != null) {

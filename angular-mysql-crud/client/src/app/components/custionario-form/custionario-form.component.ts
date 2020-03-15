@@ -1,5 +1,5 @@
 import {Component, OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
-import { Cuestionario, Pregunta, Opcion } from '../../models/index';
+import { Cuestionario, PreguntaRequest, Opcion } from '../../models/index';
 import { CuestionarioService, PreguntaService } from '../../services/index'
 import {provideRoutes} from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,10 +21,10 @@ export class CustionarioFormComponent implements OnInit {
     idUsuario: 0,
     activa: 1
   }
-  pregunta: Pregunta = new Pregunta();
+  pregunta: PreguntaRequest = new PreguntaRequest();
   opcion: Opcion;
 
-  preguntas: Pregunta[];
+  preguntas: PreguntaRequest[];
   opciones: Opcion[];
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
@@ -41,6 +41,9 @@ export class CustionarioFormComponent implements OnInit {
       }, err => {
         console.log(err);
       });
+
+      //Obtener todas las preguntas
+      this.listarPreguntas();
 
   }
 
@@ -64,9 +67,25 @@ export class CustionarioFormComponent implements OnInit {
 
   agregarPregunta(){
     console.log(this.cuestionario);
-
+    this.preguntaService.crearPregunta(this.pregunta)
+      .subscribe( res => {
+        console.log(res);
+        this.closeModal.nativeElement.click();
+        this.listarPreguntas();
+      }, err => {
+        console.log(err);
+      });
    // this.closeModal.nativeElement.click();
+  }
 
-
+  listarPreguntas(){
+    //Obtener todas las preguntas
+    this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
+      .subscribe( res => {
+        console.log(res);
+        this.preguntas = res;
+      }, err => {
+        console.log(err);
+      });
   }
 }
