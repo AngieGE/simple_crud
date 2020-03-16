@@ -16,8 +16,6 @@ export class Pregunta {
     RespuestasAbiertas?: RespuestaAbierta[];
     RespuestasMultiples?: RespuestaMultiple[];
 
-
-
     // Belongs to 
     cuestionario?: Cuestionario;
     catalogoPregunta?: CatalogoPregunta;

@@ -15,7 +15,7 @@ export class TipoPregunta {
     }
 }
 export namespace _TipoPregunta {
-    export type TipoPreguntaEnum = 'Abierta' | 'Opcion Multiple' | 'Selección Multiple';
+    export type TipoPreguntaEnum = 'Abierta' | 'Opcion Multiple' | 'Seleccion Multiple';
     export const TipoPreguntaEnum = {
         ABIERTA: 'Abierta' as TipoPreguntaEnum,
         OPCION_MULTIPLE: 'Opcion Multiple' as TipoPreguntaEnum,
