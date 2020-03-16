@@ -1,5 +1,5 @@
 
-<form class="m-5">
+<form class="formulario">
     <h2>Información general</h2>
     <div class="form-group">
       <label for="nombre">Nombre</label>
@@ -16,16 +16,15 @@
     
         <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
         <div *ngIf="pregunta.opciones != null">
-          <div *ngFor="let opcion of pregunta.opciones;">
-              <p>{{opcion.catalogoOpcion.opcion}}</p>
-          </div>
+          <div   *ngFor="let opcion of pregunta.opciones;" (click)="localSelected(opcion)">
+              <p class="opcion" *ngIf="opcion.localSelected == false">{{opcion.catalogoOpcion.opcion}}</p>
+              <p class="opcion-Selected" *ngIf="opcion.localSelected == true">{{opcion.catalogoOpcion.opcion}}</p>
         </div>
+      </div>
+
         <div *ngIf="pregunta.opciones == null">
           <input class="form-control" type="text" placeholder="Escribe tu respuesta">
         </div>
-
-          
-
 
     </div>
   

@@ -40,4 +40,9 @@ export class CuestionarioFillComponent implements OnInit {
 
   }
 
+  localSelected(opcion?: Opcion) {
+    opcion.localSelected = !opcion.localSelected; // El orgullo de Fer
+    console.log( "LOCAL" + opcion.localSelected);
+  }
+
 }

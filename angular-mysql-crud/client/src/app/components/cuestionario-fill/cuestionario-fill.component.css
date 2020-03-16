@@ -1,0 +1,23 @@
+.opcion {
+    background-color: white;
+    padding: 5px;
+}
+
+.opcion:hover {
+    background-color: #5ccccc;
+    padding: 5px;
+
+}
+
+.opcion-Selected {
+    background-color: #5ccccc;
+    padding: 5px;
+}
+
+.formulario {
+margin: 100px;
+
+}
+
+
+

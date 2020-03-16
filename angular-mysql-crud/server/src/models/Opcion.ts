@@ -7,6 +7,7 @@ export class Opcion {
     idOpcion?: number;
     idCatalogoOpcion?: number;
     idPregunta?: number;
+    
 
     // Has many
     RespuestasMultiples?: RespuestaMultiple[];
@@ -14,6 +15,8 @@ export class Opcion {
     // Belongs to 
     catalogoOpcion?: CatalogoOpcion;
     pregunta?: Pregunta;
+
+
 
     constructor(opcion: Opcion) {
         this.idOpcion=opcion.idOpcion,
