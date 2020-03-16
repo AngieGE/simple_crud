@@ -1,8 +1,9 @@
-import {Component, OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
-import { Cuestionario, PreguntaRequest, Opcion, Pregunta } from '../../models/index';
-import { CuestionarioService, PreguntaService } from '../../services/index';
-import {provideRoutes} from '@angular/router';
+import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
+import { Cuestionario, PreguntaRequest, Opcion, Pregunta, _TipoPregunta } from '../../models/index';
+import { CuestionarioService, PreguntaService, OpcionService } from '../../services/index';
+import { provideRoutes } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
+import { parseHostBindings } from '@angular/compiler';
 
 @Component({
   selector: 'app-cuestionario-fill',
@@ -11,49 +12,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CuestionarioFillComponent implements OnInit {
 
-  cuestionario: Cuestionario = {
-    idCuestionario: 0,
-    nombre: '',
-    descripcion: '',
-    idUsuario: 0,
-    activa: 1
-  };
-  preguntas: Pregunta[] = new Array(0);
-  opcion: Opcion;
-
-  pregunta: PreguntaRequest = new PreguntaRequest();
-  opciones: Opcion[];
-
+  cuestionario?: Cuestionario;
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
-    this.cuestionario.idCuestionario = +this.activatedRoute.snapshot.paramMap.get('idCuestionario');
+              private opcionService: OpcionService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.cuestionario = new Cuestionario();
+    this.cuestionario.idCuestionario = parseInt(this.activatedRoute.snapshot.paramMap.get('idCuestionario'), 10);
   }
 
   ngOnInit(): void {
-    // obtener la info genereal de cuestionario
-    this.cuestionariosServices.obtenerCuestionario( this.cuestionario.idCuestionario)
-      .subscribe( res => {
-        this.cuestionario = res;
-        this.pregunta.idCuestionario = this.cuestionario.idCuestionario;
-      }, err => {
-        console.log(err);
+    // obtener la info general de cuestionario
+    this.cuestionariosServices.obtenerCuestionario(this.cuestionario.idCuestionario).subscribe(res => {
+      this.cuestionario = new Cuestionario(res);
+
+      this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario).subscribe(preguntas => {
+        this.cuestionario.preguntas = preguntas.map((item: Pregunta) => new Pregunta(item));
+        for (const pregunta of this.cuestionario.preguntas) {
+          if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+            this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+              pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+            });
+          }
+
+        }
       });
 
-    // Obtener todas las preguntas
-    this.listarPreguntas();
-  }
+    });
 
-  listarPreguntas() {
-    // Obtener todas las preguntas
-    this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
-      .subscribe( res => {
-        console.log(res);
-        // QERIA HACER ESTO PERO NO SE PUEDE :(
-        this.preguntas = res;
-      }, err => {
-        console.log(err);
-      });
   }
-
 
 }

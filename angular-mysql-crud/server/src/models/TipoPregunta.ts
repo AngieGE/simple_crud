@@ -8,7 +8,7 @@ export class TipoPregunta {
     preguntas?: Pregunta[];
     
     // Belongs to 
-    
+
     constructor(tipoPregunta: TipoPregunta) {
         this.idTipoPregunta=tipoPregunta.idTipoPregunta,
         this.tipo=tipoPregunta.tipo;
