@@ -14,6 +14,7 @@ export class RespuestaAbiertaService {
     }
 
     static async crearRespuestaAbierta(respuestaAbierta: RespuestaAbierta): Promise<boolean> {
+        
         let sql: string = "INSERT INTO RespuestaAbierta (respuesta, idAplicacion, idPregunta)" +
                           "VALUES ('"+ respuestaAbierta.respuesta + "', '" +
                                        respuestaAbierta.idAplicacion + "', '" +

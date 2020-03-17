@@ -44,6 +44,7 @@ export class AplicacionService {
   }
 
   public crearAplicacion(aplicacion: Aplicacion): Observable<any> {
+    console.log('Si llego a Aplicacion service front');
     // Headers
     let headers = this.defaultHeaders;
     headers = headers.set('Accept', 'application/json');

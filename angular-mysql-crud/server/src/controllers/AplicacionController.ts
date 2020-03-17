@@ -11,9 +11,10 @@ export class AplicacionController {
     }
     
     static async crearAplicacion(req: Request, res: Response) {
+        console.log('Si llego a Aplicacion Controller');
         let aplicacion: Aplicacion = req.body;    
-        await AplicacionService.crearAplicacion(aplicacion);     
-        res.json({'message':'saved aplicacion'});
+        const inserted=await AplicacionService.crearAplicacion(aplicacion);     
+        res.json({inserted});
     }
 
     static async obtenerAplicacion(req: Request, res: Response) {

@@ -27,6 +27,8 @@ export class Pregunta {
       { data: [65, 59, 80, 81, 56, 55, 40], label: '' }
     ];
     localChartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    // Local variables
+    localRespuestaAbierta?: RespuestaAbierta;
 
     constructor(pregunta?: Pregunta) {
         if (pregunta != null) {
@@ -36,6 +38,8 @@ export class Pregunta {
             this.idTipoPregunta = pregunta.idTipoPregunta;
             this.catalogoPregunta = pregunta.catalogoPregunta;
             this.tipoPregunta = pregunta.tipoPregunta;
+            this.localRespuestaAbierta = new RespuestaAbierta({idPregunta: pregunta.idPregunta});
+
         }
         this.localChartType = 'bar';
         this.localChartDatasets = [{ data: [], label: '' }];

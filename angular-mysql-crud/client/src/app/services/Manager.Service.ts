@@ -16,7 +16,7 @@ export class ManagerService {
 
   }
 
-  public setUsuario(usuario: Usuario){
+  public setUsuario(usuario: Usuario) {
     this.usuario = usuario;
     localStorage.setItem('usuario', JSON.stringify(this.usuario));
   }
