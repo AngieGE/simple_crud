@@ -24,4 +24,9 @@ export namespace _TipoPregunta {
         OPCION_MULTIPLE: 'Opcion Multiple' as TipoPreguntaEnum,
         SELECCION_MULTIPLE: 'Seleccion Multiple' as TipoPreguntaEnum
     };
+    export const listTipos: TipoPreguntaEnum[] = [TipoPreguntaEnum.ABIERTA,
+                                                  TipoPreguntaEnum.SELECCION_MULTIPLE,
+                                                  TipoPreguntaEnum.OPCION_MULTIPLE];
+
 }
+

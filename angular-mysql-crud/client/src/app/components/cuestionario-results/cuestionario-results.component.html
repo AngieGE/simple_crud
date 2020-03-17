@@ -10,9 +10,9 @@
     <div *ngIf="pregunta.tipoPregunta.tipo != TipoPreguntaEnum.ABIERTA">
       <div style="display: block;">
         <canvas mdbChart height='100px'
-            [chartType]="chartType"
-            [datasets]="chartDatasets"
-            [labels]="chartLabels"
+            [chartType]="pregunta.localChartType"
+            [datasets]="pregunta.localChartDatasets"
+            [labels]="pregunta.localChartLabels"
             [colors]="chartColors"
             [options]="chartOptions">
         </canvas>
