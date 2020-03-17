@@ -15,13 +15,19 @@ export class Opcion {
     catalogoOpcion?: CatalogoOpcion;
     pregunta?: Pregunta;
 
+    // Variables locales
+
+    localSelected?: boolean;
+
     constructor(opcion?: Opcion) {
         if (opcion != null) {
             this.idOpcion = opcion.idOpcion;
             this.idCatalogoOpcion = opcion.idCatalogoOpcion;
             this.idPregunta = opcion.idPregunta;
             this.catalogoOpcion = opcion.catalogoOpcion;
+
         }
+        this.localSelected = false;
     }
 }
 
