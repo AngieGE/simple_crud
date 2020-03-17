@@ -42,6 +42,7 @@ export class CuestionarioResultsComponent implements OnInit {
                 this.respuestaMultipleService.listarRespuestaMultiples(null, opcion.idOpcion).subscribe(
                   respuestas => {
                     opcion.respuestasMultiples = respuestas.map((item: any) => new RespuestaMultiple(item));
+                    pregunta.setChart();
                 });
               }
             });

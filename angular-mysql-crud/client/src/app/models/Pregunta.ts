@@ -22,11 +22,9 @@ export class Pregunta {
     tipoPregunta?: TipoPregunta;
 
     // Local
-    localChartType = 'bar';
-    localChartDatasets: Array<any> = [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: '' }
-    ];
-    localChartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    localChartType: string;
+    localChartDatasets: Array<any>;
+    localChartLabels: Array<string>;
 
     constructor(pregunta?: Pregunta) {
         if (pregunta != null) {
@@ -43,8 +41,12 @@ export class Pregunta {
     }
 
     setChart() {
-      this.localChartLabels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
-      this.localChartDatasets = [{ data: [], label: '' }];
+      this.localChartLabels = this.opciones.map((item: Opcion) => item.catalogoOpcion.opcion);
+      const data: number[] = new Array<number>(this.opciones.length);
+      for (let i = 0; i < this.opciones.length; i++) {
+        data[i] = this.opciones[i].respuestasMultiples.length;
+      }
+      this.localChartDatasets = [{ data, label: '' }];
     }
 }
 

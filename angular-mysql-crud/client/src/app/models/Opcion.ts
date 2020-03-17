@@ -27,6 +27,7 @@ export class Opcion {
             this.catalogoOpcion = opcion.catalogoOpcion;
         }
         this.localSelected = false;
+        this.respuestasMultiples = new Array(0);
     }
 }
 
