@@ -11,12 +11,12 @@ export class ManagerService {
   constructor() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
     if (this.usuario == null) {
-      this.usuario = new Usuario();  
+      this.usuario = new Usuario();
     }
 
   }
 
-  public setUsuario(usuario: Usuario){
+  public setUsuario(usuario: Usuario) {
     this.usuario = usuario;
     localStorage.setItem('usuario', JSON.stringify(this.usuario));
   }

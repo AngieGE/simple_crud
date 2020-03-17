@@ -14,6 +14,8 @@ export class AplicacionService {
     }
 
     static async crearAplicacion(aplicacion: Aplicacion): Promise<boolean> {
+        aplicacion.fecha = new Date();
+        console.log('Si llego a Aplicacion service');
         let sql: string = "INSERT INTO Aplicacion (fecha, idCuestionario, idUsuario)" +
                           "VALUES ('"+ aplicacion.fecha + "', '" +
                                        aplicacion.idCuestionario + "', '" +

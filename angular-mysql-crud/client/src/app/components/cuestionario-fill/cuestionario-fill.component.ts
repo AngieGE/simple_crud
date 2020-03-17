@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
-import { Cuestionario, PreguntaRequest, Opcion, Pregunta, _TipoPregunta } from '../../models/index';
-import { CuestionarioService, PreguntaService, OpcionService } from '../../services/index';
+import { Cuestionario, PreguntaRequest, Opcion, Pregunta, _TipoPregunta, Aplicacion } from '../../models/index';
+import { CuestionarioService, PreguntaService, OpcionService, AplicacionService, ManagerService } from '../../services/index';
 import { provideRoutes } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
 import { parseHostBindings } from '@angular/compiler';
@@ -11,10 +11,13 @@ import { parseHostBindings } from '@angular/compiler';
   styleUrls: ['./cuestionario-fill.component.css']
 })
 export class CuestionarioFillComponent implements OnInit {
-
   cuestionario?: Cuestionario;
+  aplicacion ?: Aplicacion;
+
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
-              private opcionService: OpcionService, private router: Router, private activatedRoute: ActivatedRoute) {
+              private opcionService: OpcionService, private aplicacionService: AplicacionService,
+              private router: Router, private activatedRoute: ActivatedRoute, private manager: ManagerService
+              ) {
     this.cuestionario = new Cuestionario();
     this.cuestionario.idCuestionario = parseInt(this.activatedRoute.snapshot.paramMap.get('idCuestionario'), 10);
   }
@@ -40,16 +43,30 @@ export class CuestionarioFillComponent implements OnInit {
 
   }
 
-  localSelectedSeleccion(opcion?: Opcion) {
-    opcion.localSelected = !opcion.localSelected; // El orgullo de Fer
-    console.log( "LOCAL" + opcion.localSelected);
+
+  localSelected(pregunta?: Pregunta, opcionS?: Opcion) {
+      if (pregunta.tipoPregunta.tipo === _TipoPregunta.TipoPreguntaEnum.OPCION_MULTIPLE) {
+        for (const opcion of pregunta.opciones) {
+        if (opcion !== opcionS) {
+          opcion.localSelected = false;
+        }
+      }
+    }
+      opcionS.localSelected = !opcionS.localSelected;
   }
 
-  localSelectedOpcion(pregunta?: Pregunta, opcionS?: Opcion) {
-    for (const opcion of pregunta.opciones) {
-      opcion.localSelected = false;
-    }
-    opcionS.localSelected = true;
+  guardarCuestionario() {
+    // Crear y llenar aplicacion
+    console.log('SI ENTRA AL BOTON');
+    this.aplicacion = new Aplicacion();
+    this.aplicacion.idCuestionario = this.cuestionario.idCuestionario;
+    this.aplicacion.idUsuario = this.manager.usuario.idUsuario;
+    this.aplicacionService.crearAplicacion(this.aplicacion).subscribe(
+      res => {
+        console.log(res);
+      });
+
+    // Guardar respuestas abiertas
   }
 
 }

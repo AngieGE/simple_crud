@@ -37,19 +37,18 @@ export class MyProfileComponent implements OnInit {
     this.editando = editando;
   }
 
-  saveChanges(){
-    //Obtener los datos de los input de tu htm
+  saveChanges() {
+    // Obtener los datos de los input de tu htm
 
-    //guardarlos
+    // guardarlos
 
-    //guardarlo en la BD
-    
-    
-      //obteer una resp o err
+    // guardarlo en la BD
+
+    // obteer una resp o err
 
 
     this.editar(false);
-    
+
   }
 
 }
