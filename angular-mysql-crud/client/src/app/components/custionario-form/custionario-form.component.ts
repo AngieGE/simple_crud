@@ -1,91 +1,125 @@
 import {Component, OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
-import { Cuestionario, PreguntaRequest, Opcion, Pregunta } from '../../models/index';
-import { CuestionarioService, PreguntaService } from '../../services/index';
+import {Cuestionario, PreguntaRequest, Opcion, OpcionRequest,Pregunta, _TipoPregunta} from '../../models/index';
+import { CuestionarioService, PreguntaService, OpcionService } from '../../services/index';
 import {provideRoutes} from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ManagerService } from '../../services';
 
 @Component({
   selector: 'app-custionario-form',
   templateUrl: './custionario-form.component.html',
   styleUrls: ['./custionario-form.component.css']
 })
+
 export class CustionarioFormComponent implements OnInit {
 
   @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChild('closeModalOpcion') private closeModalOpcion: ElementRef;
 
-  cuestionario: Cuestionario = {
-    idCuestionario: 0,
-    nombre: '',
-    descripcion: '',
-    idUsuario: 0,
-    activa: 1
-  };
-  preguntas: Pregunta[] = new Array(0);
-  opcion: Opcion;
+  cuestionario?: Cuestionario = new Cuestionario();
 
-  pregunta: PreguntaRequest = new PreguntaRequest();
-  opciones: Opcion[];
+  listTipos = _TipoPregunta.listTipos;
+  pregunta?: PreguntaRequest = new PreguntaRequest();
+  opcion?: OpcionRequest = new OpcionRequest();
+
+  idPregunta?: number;      //El id de la pregunta a la que pertenece la opcion
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
+              private opcionService: OpcionService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.cuestionario.idCuestionario = +this.activatedRoute.snapshot.paramMap.get('idCuestionario');
+    this.pregunta.idCuestionario = +this.activatedRoute.snapshot.paramMap.get('idCuestionario');
   }
 
   ngOnInit(): void {
+    this.cuestionario.idCuestionario = parseInt(this.activatedRoute.snapshot.paramMap.get('idCuestionario'), 10);
+    this.cargarCuestionario();
+  }
+
+  cargarCuestionario() {
     // obtener la info genereal de cuestionario
     this.cuestionariosServices.obtenerCuestionario( this.cuestionario.idCuestionario)
-      .subscribe( res => {
-        this.cuestionario = res;
-        this.pregunta.idCuestionario = this.cuestionario.idCuestionario;
+      .subscribe( resCuestionario => {
+        this.cuestionario = resCuestionario;
+
+        // Obtener todas las preguntas
+        this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
+          .subscribe( resPreguntas => {
+            this.cuestionario.preguntas = resPreguntas.map((item: Pregunta) => new Pregunta(item));
+
+            //Obtener todas las opciones
+            for (const pregunta of this.cuestionario.preguntas) {
+              if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+                this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+                  pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+                });
+              }
+            }
+          }, err => {
+            console.log(err);
+          });
       }, err => {
         console.log(err);
       });
-
-    // Obtener todas las preguntas
-    this.listarPreguntas();
   }
 
   guardarCambios() {
-    // update cuestionario
-    this.actualizarCuestionario();
-  }
 
-  actualizarCuestionario() {
-    console.log('actualizarCuestionario');
-    this.cuestionariosServices.actualizarCuestionario(  this.cuestionario.idCuestionario, this.cuestionario)
-      .subscribe( res => {
-        console.log(res);
-        this.router.navigate(['/cuestionarios/']);
-      }, err => {
-        console.log(err);
-
-      });
-    return  false;
   }
 
   agregarPregunta() {
-    console.log(this.cuestionario);
+    console.log(this.pregunta);
     this.preguntaService.crearPregunta(this.pregunta)
       .subscribe( res => {
-        console.log(res);
-        this.closeModal.nativeElement.click();
-        this.listarPreguntas();
-      }, err => {
+          console.log(res);
+          this.closeModal.nativeElement.click();
+          this.cargarCuestionario();
+        }, err => {
         console.log(err);
       });
-   // this.closeModal.nativeElement.click();
   }
 
-  listarPreguntas() {
-    // Obtener todas las preguntas
-    this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
-      .subscribe( res => {
-        console.log(res);
-        // QERIA HACER ESTO PERO NO SE PUEDE :(
-        this.preguntas = res;
-      }, err => {
-        console.log(err);
-      });
+
+  ///////////////////////////   OPCIONES ////////////////////////////////////
+  asignarIdPregunta(idPregunta: number) {
+    this.opcion.idPregunta = idPregunta;
+    console.log("Agregando una opcion a la pregunta " + this.idPregunta);
   }
+
+  agregarOpcion(){
+      console.log(this.opcion);
+      this.opcionService.crearOpcion(this.opcion)
+        .subscribe( res => {
+            console.log(res);
+          this.closeModalOpcion.nativeElement.click();
+          //Obtener todas las opciones
+          for (const pregunta of this.cuestionario.preguntas) {
+            if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+              this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+                pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+              });
+            }
+          }
+        }, err => {
+            console.log(err);
+        });
+  }
+
+  eliminarOpcion(idOpcion: number) {
+      console.log('eliminando la opcion' + idOpcion)
+      this.opcionService.eliminarOpcion(idOpcion)
+        .subscribe( res => {
+          console.log(res);
+          //Obtener todas las opciones
+          for (const pregunta of this.cuestionario.preguntas) {
+            if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+              this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+                pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+              });
+            }
+          }
+        }, err => {
+          console.log(err);
+          console.log('err');
+        });
+  }
+
 }

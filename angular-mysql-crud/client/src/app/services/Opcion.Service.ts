@@ -45,7 +45,7 @@ export class OpcionService {
     headers = headers.set('Content-Type', 'application/json');
 
     // Request
-    return this.http.post<Usuario>(`${this.manager.API_URL}/opcio`, opcion, { headers } );
+    return this.http.post<Usuario>(`${this.manager.API_URL}/opcion`, opcion, { headers } );
   }
 
   public obtenerOpcion(idOpcion: number): Observable<Opcion> {

@@ -13,11 +13,34 @@
 
   <h2>Preguntas</h2>
 
-  <div *ngFor="let pregunta of preguntas; let i = index">
-    <div class="myCard card card-4">
-      {{i+1}} <br>
-      <p>{{pregunta['catalogoPregunta'].pregunta}}</p>
+  <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+
+    <p>{{i+1}}.</p> <input value=" {{pregunta.catalogoPregunta.pregunta}}">
+
+    <div *ngIf="pregunta.opciones != null">
+
+      <div *ngIf="pregunta.tipoPregunta.tipo == 'Opcion Multiple' || pregunta.tipoPregunta.tipo == 'Seleccion Multiple' ">
+
+        <div *ngFor="let opcion of pregunta.opciones;" >
+          <div  class="opcion">
+            <div>
+              <p>{{opcion.catalogoOpcion.opcion}}</p>
+            </div>
+
+            <div>
+              <i (click)="eliminarOpcion(opcion.idOpcion)" class="fas fa-times"></i>
+            </div>
+          </div>
+        </div>
+        <i data-toggle="modal" data-target="#staticBackdropOpcion" (click)="asignarIdPregunta(pregunta.idPregunta)" class="fas fa-plus"></i>
+      </div>
     </div>
+
+    <div *ngIf="pregunta.opciones == null">
+      <input class="form-control" type="text" placeholder="Escribe tu respuesta">
+
+    </div>
+
   </div>
   <br>
   <div class="plus">
@@ -31,7 +54,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal crear pregunta -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -46,24 +69,49 @@
 
           <div class="form-group">
             <label for="nombrePregunta">Pregunta</label>
-            <input type="text" class="form-control" id="nombrePregunta"  [(ngModel)]="cuestionario.nombre"  name="nombrePregunta">
+            <input type="text" class="form-control" id="nombrePregunta"  [(ngModel)]="pregunta.pregunta"  name="nombrePregunta">
           </div>
 
           <div class="form-group ">
             <label for="inputState">Tipo de pregunta</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" [(ngModel)]="pregunta.tipoPregunta" name="selector">
               <option selected>Escoge...</option>
-              <option value="1">Abierta --- El usuario escribe la respuesta</option>
-              <option value="2">Opción Multiple --- El usuario selecciona una respuesta</option>
-              <option value="3">Selección Multiple --- El usuario selecciona una o mas respuestas</option>
-            </select>
+              <option *ngFor="let tipo of listTipos" [value]="tipo">{{tipo}}</option>
+           </select>
           </div>
-
         </form>
       </div>
       <div class="modal-footer">
         <button #closeModal type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="agregarPregunta()">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal crear opcion -->
+<div class="modal fade" id="staticBackdropOpcion" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabelOpcion"> Creación de opción</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombreOpcion">Opción</label>
+            <input type="text" class="form-control" id="nombreOpcion"  [(ngModel)]="opcion.opcion"  name="nombreOpcion">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #closeModalOpcion type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="agregarOpcion()">Crear</button>
       </div>
     </div>
   </div>
