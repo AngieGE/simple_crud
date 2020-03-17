@@ -1,12 +1,27 @@
-<div style="display: block">
-  <canvas mdbChart
-      [chartType]="chartType"
-      [datasets]="chartDatasets"
-      [labels]="chartLabels"
-      [colors]="chartColors"
-      [options]="chartOptions"
-      [legend]="true"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
-  </canvas>
+<div class="formulario">
+  <h2>{{cuestionario.nombre}}</h2>
+  <h3>{{cuestionario.descripcion}}</h3>
+
+  <h2>Preguntas</h2>
+
+  <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+
+    <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
+    <div *ngIf="pregunta.tipoPregunta.tipo != TipoPreguntaEnum.ABIERTA">
+      <div style="display: block;">
+        <canvas mdbChart height='100px'
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [colors]="chartColors"
+            [options]="chartOptions">
+        </canvas>
+      </div>
+    </div>
+    <div *ngIf="pregunta.tipoPregunta.tipo == TipoPreguntaEnum.ABIERTA">
+      <p *ngFor="let respuestaAbierta of pregunta.respuestasAbiertas">{{respuestaAbierta.respuesta}}</p>
+    </div>
+
+  </div>
+
 </div>

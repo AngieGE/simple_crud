@@ -13,13 +13,20 @@ export class Pregunta {
 
     // Has many
     opciones?: Opcion[];
-    RespuestasAbiertas?: RespuestaAbierta[];
-    RespuestasMultiples?: RespuestaMultiple[];
+    respuestasAbiertas?: RespuestaAbierta[];
+    respuestasMultiples?: RespuestaMultiple[];
 
     // Belongs to
     cuestionario?: Cuestionario;
     catalogoPregunta?: CatalogoPregunta;
     tipoPregunta?: TipoPregunta;
+
+    // Local
+    localChartType = 'bar';
+    localChartDatasets: Array<any> = [
+      { data: [65, 59, 80, 81, 56, 55, 40], label: '' }
+    ];
+    localChartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
 
     constructor(pregunta?: Pregunta) {
         if (pregunta != null) {
@@ -30,6 +37,14 @@ export class Pregunta {
             this.catalogoPregunta = pregunta.catalogoPregunta;
             this.tipoPregunta = pregunta.tipoPregunta;
         }
+        this.localChartType = 'bar';
+        this.localChartDatasets = [{ data: [], label: '' }];
+        this.localChartLabels = [];
+    }
+
+    setChart() {
+      this.localChartLabels = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+      this.localChartDatasets = [{ data: [], label: '' }];
     }
 }
 

@@ -9,7 +9,7 @@ export class Opcion {
     idPregunta?: number;
 
     // Has many
-    RespuestasMultiples?: RespuestaMultiple[];
+    respuestasMultiples?: RespuestaMultiple[];
 
     // Belongs to
     catalogoOpcion?: CatalogoOpcion;
@@ -25,7 +25,6 @@ export class Opcion {
             this.idCatalogoOpcion = opcion.idCatalogoOpcion;
             this.idPregunta = opcion.idPregunta;
             this.catalogoOpcion = opcion.catalogoOpcion;
-
         }
         this.localSelected = false;
     }
