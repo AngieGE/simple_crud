@@ -17,6 +17,10 @@
   z-index: -100;
 }
 
+.blanco {
+  color: #fff;
+}
+
 .bienvenida{
   display: flex;
   justify-content: center;
@@ -53,7 +57,7 @@ border-radius: 15px;
   background: #fff;
 
   display: inline-block;
- 
+
   margin: 1rem;
   position: relative;
 

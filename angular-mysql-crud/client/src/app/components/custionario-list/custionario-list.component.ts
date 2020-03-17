@@ -21,7 +21,7 @@ export class CustionarioListComponent implements OnInit {
     descripcion: '',
     idUsuario: null,
     activa: 0,
-  }
+  };
 
   constructor(private cuestionariosService: CuestionarioService, private router: Router, private manager: ManagerService) {
       localStorage.setItem('rout', router.url) ;
@@ -58,7 +58,7 @@ export class CustionarioListComponent implements OnInit {
     );
   }
 
-  crearCuestionario(){
+  crearCuestionario() {
     this.cuestionariosService.crearCuestionario(this.cuestionario)
       .subscribe( res => {
         console.log(this.cuestionario);
@@ -70,8 +70,12 @@ export class CustionarioListComponent implements OnInit {
       });
   }
 
-  editarCuestionario(idCuestionario: number){
+  editarCuestionario(idCuestionario: number) {
     this.router.navigate(['/cuestionarios/editar/', idCuestionario]);
+  }
+
+  resultadosCuestionario(idCuestionario: number) {
+    this.router.navigate(['/cuestionarios/resultados/', idCuestionario]);
   }
 
 }

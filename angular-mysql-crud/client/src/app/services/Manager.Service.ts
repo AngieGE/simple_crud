@@ -11,7 +11,7 @@ export class ManagerService {
   constructor() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
     if (this.usuario == null) {
-      this.usuario = new Usuario();  
+      this.usuario = new Usuario();
     }
 
   }

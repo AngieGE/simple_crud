@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // COMPONENTS
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -25,6 +26,7 @@ import { RespuestaAbiertaService } from './services/RespuestaAbierta.Service';
 import { RespuestaMultipleService } from './services/RespuestaMultiple.Service';
 import { UsuarioService } from './services/Usuario.Service';
 import { CuestionarioFillComponent } from './components/cuestionario-fill/cuestionario-fill.component';
+import { CuestionarioResultsComponent } from './components/cuestionario-results/cuestionario-results.component';
 
 
 @NgModule({
@@ -39,12 +41,14 @@ import { CuestionarioFillComponent } from './components/cuestionario-fill/cuesti
     CuestionarioListAllComponent,
     MyProfileComponent,
     CuestionarioFillComponent,
+    CuestionarioResultsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     DatePipe,
