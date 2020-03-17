@@ -25,8 +25,8 @@ export class CuestionarioFillComponent implements OnInit {
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
     private opcionService: OpcionService, private aplicacionService: AplicacionService,
-    private respuestaMultipleService: RespuestaMultipleService,
-    private router: Router, private activatedRoute: ActivatedRoute, private manager: ManagerService,
+    private respuestaMultipleService: RespuestaMultipleService, private router: Router,
+    private activatedRoute: ActivatedRoute, private manager: ManagerService,
     private respuestaAbiertaService: RespuestaAbiertaService
   ) {
     this.cuestionario = new Cuestionario();
@@ -87,7 +87,7 @@ export class CuestionarioFillComponent implements OnInit {
               res => {
                 console.log(res);
               });
-            // Guardar respuestas opcion y seleccion cmultiple
+            // Guardar respuestas opcion y seleccion multiple
           } else {
             this.respuestaMultiple = new RespuestaMultiple();
             this.respuestaMultiple.idAplicacion = idAp.inserted;
