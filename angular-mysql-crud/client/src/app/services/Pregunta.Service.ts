@@ -13,7 +13,7 @@ export class PreguntaService {
     private manager: ManagerService
   ) { }
 
-  public listarPreguntas(idCuestionario?: number,idCatalogoPregunta?:number): Observable<Pregunta[]> {
+  public listarPreguntas(idCuestionario?: number, idCatalogoPregunta?: number): Observable<Pregunta[]> {
     // Params
     let params = new HttpParams();
     if (idCuestionario !== undefined && idCuestionario !== null) {

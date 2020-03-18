@@ -1,4 +1,4 @@
-<form class="formulario">
+<div class="formulario">
   <h2>Información general</h2>
   <div class="form-group">
     <label for="nombre">Nombre</label>
@@ -18,27 +18,20 @@
     <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
     <div *ngIf="pregunta.opciones != null">
 
-      <div *ngIf="pregunta.tipoPregunta.tipo == 'Seleccion Multiple'">
-      <div *ngFor="let opcion of pregunta.opciones;" (click)="localSelectedSeleccion(opcion)">
+      <div *ngFor="let opcion of pregunta.opciones;" (click)="localSelected(pregunta, opcion)">
         <p class="opcion" *ngIf="opcion.localSelected == false">{{opcion.catalogoOpcion.opcion}}</p>
         <p class="opcion-Selected" *ngIf="opcion.localSelected == true">{{opcion.catalogoOpcion.opcion}}</p>
-      </div>
-      </div>
-
-      <div *ngIf="pregunta.tipoPregunta.tipo == 'Opcion Multiple'">
-      <div *ngFor="let opcion of pregunta.opciones;" (click)="localSelectedOpcion(pregunta, opcion)">
-        <p class="opcion" *ngIf="opcion.localSelected == false">{{opcion.catalogoOpcion.opcion}}</p>
-        <p class="opcion-Selected" *ngIf="opcion.localSelected == true">{{opcion.catalogoOpcion.opcion}}</p>
-      </div>
       </div>
 
     </div>
 
     <div *ngIf="pregunta.opciones == null">
-      <input class="form-control" type="text" placeholder="Escribe tu respuesta">
-
+      <input [(ngModel)]="pregunta.localRespuestaAbierta.respuesta" class="form-control" type="text"  placeholder="Escribe tu respuesta">
     </div>
+
 
   </div>
 
-</form>
+    <button (click)="guardarCuestionario()" type="button" class="enviarEncuesta btn btn-info mt-5">Enviar encuesta</button>
+
+</div>

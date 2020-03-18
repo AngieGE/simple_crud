@@ -13,13 +13,15 @@ export class AplicacionService {
         return recordset.recordset;    
     }
 
-    static async crearAplicacion(aplicacion: Aplicacion): Promise<boolean> {
+    static async crearAplicacion(aplicacion: Aplicacion): Promise<any> {
+        aplicacion.fecha = new Date();
+        console.log('Si llego a Aplicacion service');
         let sql: string = "INSERT INTO Aplicacion (fecha, idCuestionario, idUsuario)" +
-                          "VALUES ('"+ aplicacion.fecha + "', '" +
+                          "VALUES ('"+ aplicacion.fecha.toISOString() + "', '" +
                                        aplicacion.idCuestionario + "', '" +
-                                       aplicacion.idUsuario + "');"
-        await pool.query(sql);
-        return true;
+                                       aplicacion.idUsuario + "'); SELECT SCOPE_IDENTITY() AS id"
+        const resultado= await pool.query(sql);
+        return resultado.recordset[0].id;
     }
 
     static async obtenerAplicacion(idAplicacion: number): Promise<Aplicacion> {

@@ -21,7 +21,9 @@ export class Pregunta {
     catalogoPregunta?: CatalogoPregunta;
     tipoPregunta?: TipoPregunta;
 
-    // Local
+    // Local variables
+    localRespuestaAbierta?: RespuestaAbierta;
+
     localChartType: string;
     localChartDatasets: Array<any>;
     localChartLabels: Array<string>;
@@ -34,6 +36,8 @@ export class Pregunta {
             this.idTipoPregunta = pregunta.idTipoPregunta;
             this.catalogoPregunta = pregunta.catalogoPregunta;
             this.tipoPregunta = pregunta.tipoPregunta;
+            this.localRespuestaAbierta = new RespuestaAbierta({idPregunta: pregunta.idPregunta});
+
         }
         this.localChartType = 'bar';
         this.localChartDatasets = [{ data: [], label: '' }];
