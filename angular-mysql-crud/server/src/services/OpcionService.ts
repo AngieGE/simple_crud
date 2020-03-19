@@ -29,9 +29,9 @@ export class OpcionService {
 
     static async actualizarOpcion(idOpcion: number,opcion: Opcion): Promise<boolean> {
         let sql: string = "UPDATE Opcion SET " + 
-                                "idCatalogoOpcion = '" +  opcion.idCatalogoOpcion + "', " +
-                                "idPregunta = '" + opcion.idPregunta +
-                                "WHERE idOpcion = " + idOpcion +" ;";
+                                "idCatalogoOpcion = " +  opcion.idCatalogoOpcion + ", " +
+                                "idPregunta = " + opcion.idPregunta +
+                                " WHERE idOpcion = " + idOpcion ;
         await pool.query(sql);
         return true;
     }

@@ -14,6 +14,7 @@ export class CustionarioFormComponent implements OnInit {
 
   @ViewChild('closeModal') private closeModal: ElementRef;
   @ViewChild('closeModalOpcion') private closeModalOpcion: ElementRef;
+  @ViewChild('closeModalOpcionEditar') private closeModalOpcionEditar: ElementRef;
 
   cuestionario?: Cuestionario = new Cuestionario();
 
@@ -21,8 +22,7 @@ export class CustionarioFormComponent implements OnInit {
   pregunta?: PreguntaRequest = new PreguntaRequest();
   opcion?: OpcionRequest = new OpcionRequest();
 
-  idPregunta?: number;      //El id de la pregunta a la que pertenece la opcion
-
+  laOpcionString?: string;
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
               private opcionService: OpcionService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.cuestionario.idCuestionario = +this.activatedRoute.snapshot.paramMap.get('idCuestionario');
@@ -46,13 +46,7 @@ export class CustionarioFormComponent implements OnInit {
             this.cuestionario.preguntas = resPreguntas.map((item: Pregunta) => new Pregunta(item));
 
             //Obtener todas las opciones
-            for (const pregunta of this.cuestionario.preguntas) {
-              if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
-                this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
-                  pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
-                });
-              }
-            }
+            this.listarOpciones();
           }, err => {
             console.log(err);
           });
@@ -61,39 +55,59 @@ export class CustionarioFormComponent implements OnInit {
       });
   }
 
+  listarOpciones() {
+    //Obtener todas las opciones
+    for (const pregunta of this.cuestionario.preguntas) {
+      if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+        this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+          pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+        });
+      }
+    }
+  }
+
+  ///////////////////////////   ASIGNACIONES ////////////////////////////////////
+  asignarPregunta(idPregunta: number) {
+    this.opcion.idPregunta = idPregunta;
+    console.log("Agregando una opcion a la pregunta " +   this.opcion.idPregunta);
+  }
+  asignarOpcion( opcion: OpcionRequest){
+    this.opcion=opcion;
+    this.laOpcionString =this.opcion['catalogoOpcion'].opcion;
+  }
+
+  ///////////////////////////   PREGUNTA ////////////////////////////////////
   agregarPregunta() {
     console.log(this.pregunta);
     this.preguntaService.crearPregunta(this.pregunta)
       .subscribe( res => {
-          console.log(res);
-          this.closeModal.nativeElement.click();
-          this.cargarCuestionario();
-        }, err => {
+        console.log(res);
+        this.closeModal.nativeElement.click();
+        this.pregunta.pregunta = '';
+        this.cargarCuestionario();
+      }, err => {
         console.log(err);
       });
   }
 
-
-  ///////////////////////////   OPCIONES ////////////////////////////////////
-  asignarIdPregunta(idPregunta: number) {
-    this.opcion.idPregunta = idPregunta;
-    console.log("Agregando una opcion a la pregunta " + this.idPregunta);
+  eliminarPregunta(idPregunta: number) {
+      this.preguntaService.eliminarPregunta(idPregunta)
+        .subscribe( res => {
+          console.log(res);
+          this.cargarCuestionario();
+        }, err => {
+          console.log(err);
+        });
   }
-
+  ///////////////////////////   OPCIONES ////////////////////////////////////
   agregarOpcion(){
       console.log(this.opcion);
       this.opcionService.crearOpcion(this.opcion)
         .subscribe( res => {
             console.log(res);
           this.closeModalOpcion.nativeElement.click();
-          //Obtener todas las opciones
-          for (const pregunta of this.cuestionario.preguntas) {
-            if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
-              this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
-                pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
-              });
-            }
-          }
+          this.opcion.opcion = '';
+          this.listarOpciones();
         }, err => {
             console.log(err);
         });
@@ -105,17 +119,25 @@ export class CustionarioFormComponent implements OnInit {
         .subscribe( res => {
           console.log(res);
           //Obtener todas las opciones
-          for (const pregunta of this.cuestionario.preguntas) {
-            if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
-              this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
-                pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
-              });
-            }
-          }
+          this.listarOpciones();
         }, err => {
           console.log(err);
           console.log('err');
         });
   }
 
+  editarOpcion() {
+      console.log('editando');
+      this.opcion.opcion = this.laOpcionString;
+    console.log(this.opcion);
+      this.opcionService.actualizarOpcion(this.opcion.idOpcion, this.opcion)
+        .subscribe( res => {
+          console.log(res);
+          this.listarOpciones();
+          this.closeModalOpcionEditar.nativeElement.click();
+          this.laOpcionString = '';
+        }, err => {
+          console.log(err);
+        });
+  }
 }

@@ -64,7 +64,7 @@ export class PreguntaService {
     headers = headers.set('Content-Type', 'application/json');
 
     // Request
-    return this.http.put<Pregunta>(`${this.manager.API_URL}/usuario/${idPregunta}`, pregunta, { headers } );
+    return this.http.put<Pregunta>(`${this.manager.API_URL}/pregunta/${idPregunta}`, pregunta, { headers } );
 
   }
 
@@ -76,7 +76,7 @@ export class PreguntaService {
     headers = headers.set('Content-Type', 'application/json');
 
     // Request
-    return this.http.delete(`${this.manager.API_URL}/usuario/${idPregunta}`, { headers } );
+    return this.http.delete(`${this.manager.API_URL}/pregunta/${idPregunta}`, { headers } );
   }
 
 }
