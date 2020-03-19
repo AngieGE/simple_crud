@@ -3,3 +3,29 @@
   display: flex;
   justify-content: space-between;
 }
+.table-primary{
+  text-align: center;
+  margin-top: 15px;
+}
+.lasOpciones{
+  width: 50%;
+}
+.subtitle{
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.card-4, .subtitle{
+  margin-bottom: 15px;
+}
+.plus{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.listaDeOpciones{
+  margin-left: 15px;
+}
+.mas{
+  margin-bottom: 5px;
+}

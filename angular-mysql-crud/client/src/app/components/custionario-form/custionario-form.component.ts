@@ -61,10 +61,6 @@ export class CustionarioFormComponent implements OnInit {
       });
   }
 
-  guardarCambios() {
-
-  }
-
   agregarPregunta() {
     console.log(this.pregunta);
     this.preguntaService.crearPregunta(this.pregunta)

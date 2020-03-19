@@ -11,9 +11,6 @@ export class AppComponent {
   rout: string;
 
   constructor(private router: Router){
-    //console.log('EN APP COMPONENT');
-    //localStorage.setItem('rout', router.url) ;
-    //this.rout = localStorage.getItem('rout');
     router.events.subscribe((val:ActivationStart) => {
       // see also
       //console.log( router.url);

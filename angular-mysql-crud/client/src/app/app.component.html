@@ -1,5 +1,4 @@
-<app-navigation *ngIf="rout == '/cuestionarios' || rout == '/cuestionarios/editar/' ||
-                       rout == '/cuestionarios/contestar' || rout == '/miPerfil' ">
-</app-navigation> <!--component I want hidden unless url /home-->
+<app-navigation *ngIf="rout != '/index' ">
+</app-navigation>
 <router-outlet></router-outlet>
 
