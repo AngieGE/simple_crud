@@ -34,7 +34,7 @@ export class AplicacionService {
         let sql: string = "UPDATE Aplicacion SET " + 
                                 "fecha = '" +  aplicacion.fecha + "', " +
                                 "idCuestionario = '" + aplicacion.idCuestionario +"'," +
-                                "idUsuario = '" + aplicacion.idUsuario +
+                                "idUsuario = " + aplicacion.idUsuario + " " +
                                 "WHERE idAplicacion = " + idAplicacion +" ;";
         await pool.query(sql);
         return true;

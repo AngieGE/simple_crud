@@ -27,7 +27,7 @@ export class CatalogoPreguntaService {
 
     static async actualizarCatalogoPregunta(idCatalogoPregunta: number,catalogoPregunta: CatalogoPregunta): Promise<boolean> {
         let sql: string = "UPDATE CatalogoPregunta SET " + 
-                                "pregunta = '" +  catalogoPregunta.pregunta + 
+                                "pregunta = '" +  catalogoPregunta.pregunta + "' " +
                                 "WHERE idCatalogoPregunta = " + idCatalogoPregunta +" ;";
         await pool.query(sql);
         return true;

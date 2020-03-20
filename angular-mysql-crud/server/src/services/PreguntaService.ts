@@ -32,7 +32,7 @@ export class PreguntaService {
         let sql: string = "UPDATE Pregunta SET " + 
                                 "idCuestionario = '" +  pregunta.idCuestionario + "', " +
                                 "idCatalogoPregunta = '" + pregunta.idCatalogoPregunta +"', " +
-                                "idTipoPregunta = '" + pregunta.idTipoPregunta +
+                                "idTipoPregunta = " + pregunta.idTipoPregunta + " " +
                                 "WHERE idPregunta = " + idPregunta +" ;";
         await pool.query(sql);
         return true;

@@ -37,8 +37,8 @@ export class CuestionarioService {
                                 "nombre = '" +  cuestionario.nombre + "', " +
                                 "descripcion = '" + cuestionario.descripcion +"'," +
                                 "idUsuario = '" + cuestionario.idUsuario + "', " +
-                                "activa = " + cuestionario.activa +
-                                " WHERE idCuestionario = " + idCuestionario;
+                                "activa = " + cuestionario.activa + " " +
+                                "WHERE idCuestionario = " + idCuestionario;
         await pool.query(sql);
         return true;
     }

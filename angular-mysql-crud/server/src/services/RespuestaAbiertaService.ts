@@ -33,7 +33,7 @@ export class RespuestaAbiertaService {
         let sql: string = "UPDATE RespuestaAbierta SET " + 
                                 "respuesta = '" +  respuestaAbierta.respuesta + "', " +
                                 "idAplicacion = '" +  respuestaAbierta.idAplicacion + "', " +
-                                "idPregunta = '" + respuestaAbierta.idPregunta +
+                                "idPregunta = " + respuestaAbierta.idPregunta + " " +
                                 "WHERE idRespuestaAbierta = " + idRespuestaAbierta +" ;";
         await pool.query(sql);
         return true;

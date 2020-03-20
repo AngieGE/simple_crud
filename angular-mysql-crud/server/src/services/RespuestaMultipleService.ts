@@ -33,7 +33,7 @@ export class RespuestaMultipleService {
         let sql: string = "UPDATE RespuestaMultiple SET " + 
                                 "idAplicacion = '" +  respuestaMultiple.idAplicacion + "', " +
                                 "idOpcion = '" +  respuestaMultiple.idOpcion + "', " +
-                                "idPregunta = '" + respuestaMultiple.idPregunta +
+                                "idPregunta = " + respuestaMultiple.idPregunta + " " +
                                 "WHERE idRespuestaMultiple = " + idRespuestaMultiple +" ;";
         await pool.query(sql);
         return true;
