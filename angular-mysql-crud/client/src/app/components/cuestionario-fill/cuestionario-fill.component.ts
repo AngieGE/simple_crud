@@ -24,10 +24,10 @@ export class CuestionarioFillComponent implements OnInit {
   respuestaMultiple?: RespuestaMultiple;
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
-    private opcionService: OpcionService, private aplicacionService: AplicacionService,
-    private respuestaMultipleService: RespuestaMultipleService, private router: Router,
-    private activatedRoute: ActivatedRoute, private manager: ManagerService,
-    private respuestaAbiertaService: RespuestaAbiertaService
+              private opcionService: OpcionService, private aplicacionService: AplicacionService,
+              private respuestaMultipleService: RespuestaMultipleService, private router: Router,
+              private activatedRoute: ActivatedRoute, private manager: ManagerService,
+              private respuestaAbiertaService: RespuestaAbiertaService
   ) {
     this.cuestionario = new Cuestionario();
     this.cuestionario.idCuestionario = parseInt(this.activatedRoute.snapshot.paramMap.get('idCuestionario'), 10);

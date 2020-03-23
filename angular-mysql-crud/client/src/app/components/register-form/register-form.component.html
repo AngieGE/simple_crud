@@ -1,1 +1,39 @@
-<p>register-form works!</p>
+<form action="action_page.php">
+    <div class="container">
+      <h1>Registro</h1>
+      <p>Llena el formulario para finalizar el registro.</p>
+      <hr>
+  
+      <label for="email"><b>Nombre</b></label>
+      <input [(ngModel)]="usuario.nombre" type="text" placeholder="Ingresar nombre" name="nombre" required>
+  
+      <label for="psw"><b>Apellidos</b></label>
+      <input [(ngModel)]="usuario.apellido" type="password" placeholder="Ingresar apellidos" name="apellido" required>
+  
+      <label for="psw-repeat"><b>Usuario</b></label>
+      <input [(ngModel)]="usuario.usuario" type="password" placeholder="Ingresar usuario" name="usuario" required>
+
+      <label for="psw"><b>Contraseña</b></label>
+      <input type="password" placeholder="Ingresar contraseña" name="contrasena" required>
+  
+      <label for="psw-repeat"><b>Contraseña</b></label>
+      <input [(ngModel)]="usuario.contrasena" type="password" placeholder="Ingresar contraseña nuevamente" name="contrasena-repeat" required>
+
+      <label for="birthday">Fecha de nacimiento:</label>
+      <input [(ngModel)]="usuario.fechaNacimiento" type="date" id="birthday" name="birthday">
+
+      <label class="gender2" for="gender">Género:</label>
+      <select name="genero" class="gender" >
+        <option value="1">Femenino</option>
+        <option value="0">Masculino</option>
+      </select>
+
+      <hr>
+  
+      <button type="submit" class="registerbtn">Register</button>
+    </div>
+  
+    <div class="signIn">
+      <p>Ya tienes una cuenta? <a href="#">Iniciar Sesión</a>.</p>
+    </div>
+  </form>
