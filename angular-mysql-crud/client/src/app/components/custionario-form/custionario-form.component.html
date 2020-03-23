@@ -12,7 +12,7 @@
   </div>
 
   <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
-    <div class="card-header">
+    <div class="card-header" (click)="asignarPregunta(pregunta); AbrirModalEditarPregunta()">
       <div>
         <p><strong>{{i+1}}.</strong> {{pregunta.catalogoPregunta.pregunta}}</p>
       </div>
@@ -33,13 +33,13 @@
             </div>
 
             <div class="eliminarOpcion">
-              <i (click)="eliminarOpcion(opcion.idOpcion)" class="fas fa-times"></i>
+              <i (click)="eliminarOpcion(opcion.idOpcion, pregunta)" class="fas fa-times"></i>
             </div>
           </div>
         </div>
         <div class="dropdown-divider"></div>
         <div  class="signoMas">
-          <i data-toggle="modal" data-target="#staticBackdropOpcion" (click)="asignarPregunta(pregunta.idPregunta)" class="fas fa-plus"></i>
+          <i data-toggle="modal" data-target="#staticBackdropOpcion" (click)="asignarPregunta(pregunta)" class="fas fa-plus"></i>
         </div>
       </div>
     </div>
@@ -92,6 +92,34 @@
     </div>
   </div>
 </div>
+
+<!-- Modal editar pregunta -->
+<div class="modal fade" id="staticBackdropPreguntaEditar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabelPreguntaEditar"> Edición de pregunta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nombrePreguntaEditar">Pregunta</label>
+            <input type="text" class="form-control" id="nombrePreguntaEditar"  [(ngModel)]="laPreguntaString" name="nombrePreguntaEditar">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #closeModalPreguntaEditar type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="editarPregunta()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button [hidden]="true" id="openModalButton" data-toggle="modal" data-target="#staticBackdropPreguntaEditar" class="fas fa-plus"></button>
+
 
 <!-- Modal crear opcion -->
 <div class="modal fade" id="staticBackdropOpcion" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -7,10 +7,10 @@
   display: flex;
   justify-content: space-between;
 }
-/*
+
 .card-header:hover{
-  background-color: pink;
-}*/
+  background-color: #b2b2b2;
+}
 .table-primary{
   text-align: center;
   margin-top: 15px;
