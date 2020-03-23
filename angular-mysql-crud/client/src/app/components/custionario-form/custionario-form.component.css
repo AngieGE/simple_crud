@@ -9,7 +9,7 @@
 }
 
 .card-header:hover{
-  background-color: #b2b2b2;
+  background-color:#e0e0e0;
 }
 .table-primary{
   text-align: center;
@@ -19,8 +19,12 @@
   width: 50%;
 }
 .subtitle{
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #33b5e5;
+  text-align: center;
 }
 .card-4, .subtitle{
   margin-bottom: 15px;
@@ -44,7 +48,7 @@
   padding-left: 15px;
 }
 .opcionHover:hover{
-  background-color:#b2b2b2;
+  background-color:#e0e0e0;
 }
 .eliminarOpcion i:hover, .trash i:hover{
   color: #771717;

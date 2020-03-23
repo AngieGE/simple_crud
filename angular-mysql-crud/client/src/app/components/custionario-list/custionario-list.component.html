@@ -11,11 +11,19 @@
           <div class="MisEncuestas">
             <p >Mis encuestas </p>
           </div>
-           <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-             Crear Cuestionario
-           </button>
+
+           <div class="d-flex justify-content-end">
+            <div class="md-form m-1 input-right">
+              <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput/>
+              <label for="search">Buscar</label>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+            Crear Cuestionario
+          </button>
         </div>
-        <table class="table">
+        <table mdbTable #tableEl="mdbTable" class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -49,7 +57,12 @@
             </tr>
 
           </tbody>
+
         </table>
+        
+        <div class="grey lighten-5 w-100 card-footer">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+        </div>
 
     </div>
   </div>

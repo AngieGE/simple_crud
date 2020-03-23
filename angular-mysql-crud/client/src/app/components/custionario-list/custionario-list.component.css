@@ -43,7 +43,7 @@
 }
 
 .myCard{
-background-color: white;
+background-color: #fafafa;
 width: 80%;
 border-radius: 15px;
 
@@ -80,4 +80,7 @@ p{
   vertical-align: middle;
   padding-top: 15px;
 
+}
+tfoot{
+  background-color:  #fafafa;
 }
