@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {  TruncatePipe }   from './app.pipe';
 
 // COMPONENTS
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -42,6 +43,7 @@ import { CuestionarioResultsComponent } from './components/cuestionario-results/
     MyProfileComponent,
     CuestionarioFillComponent,
     CuestionarioResultsComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,9 @@ export class CustionarioListComponent implements OnInit {
   @ViewChild('closeModal') private closeModal: ElementRef;
   cuestionarios: any = [];
   usuario: Usuario;
+  searchText: string;
+  elements: any = [];  
+  limite: string = '100';
 
   cuestionario: Cuestionario = {
     idCuestionario: null,

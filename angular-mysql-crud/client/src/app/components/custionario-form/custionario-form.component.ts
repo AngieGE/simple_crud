@@ -26,7 +26,7 @@ export class CustionarioFormComponent implements OnInit {
   opcion?: OpcionRequest = new OpcionRequest();
 
   laOpcionString?: string;
-  //laPreguntaString?: string;
+  laPreguntaString?: string;
 
   eliminandoPregunta?: boolean = false;
 
