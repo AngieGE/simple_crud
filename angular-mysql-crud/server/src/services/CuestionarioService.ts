@@ -7,7 +7,7 @@ export class CuestionarioService {
     static async listarCuestionarios(idUsuario?: number, nombre?: string): Promise<Cuestionario[]> {
         let sql: string = "SELECT * FROM Cuestionario WHERE "
                    sql += idUsuario!=null ? "idUsuario = '" + idUsuario + "' AND " : "";
-                   sql += nombre!=null ? "nombre = '" + nombre + "' AND " : "";
+                   sql += nombre!=null ? "nombre LIKE '%" + nombre + "%' AND " : "";
                    sql += "1 = 1 ";
         const recordset = await pool.query(sql);
         return recordset.recordset; 

@@ -1,39 +1,50 @@
 
-<div class="background"></div>
+<div class="background">
 
-
-<div class="centerFlex">
-  <div class="myCard card card-4"> 
+  <div class="centerFlex">
+    <div class="myCard card card-4">
       <div class="card-header">
         <div class="MisEncuestas">
-          <p >Todas las encuestas </p> 
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Cuestinario</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Contestar</th>
-          </tr>
-        </thead>
-        <tbody  *ngFor="let cuestionario of cuestionarios; let i = index">
-          <tr>
-            <th scope="row">{{i+1}}</th>
-            <td> {{cuestionario.nombre}}</td>
-            <td>{{cuestionario.descripcion}}</td>
-            <td>
-              <a (click)="contestarCuestionario(cuestionario.idCuestionario)" class="btn btn-info btn-block">
-                <i class="fas fa-edit"></i>
-              </a>
-            </td>
-          </tr>
-       
-        </tbody>
-      </table>
-  
+          <p>Todas las encuestas </p>
+          <div class="d-flex justify-content-end">
+            <div class="md-form m-1 input-right">
+              <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput/>
+              <label for="search">Search</label>
+            </div>
+          </div>
+          <table mdbTable #tableEl="mdbTable" class="table miTabla">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Cuestinario</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Contestar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cuestionario of cuestionarios; let i = index">
+              <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{i+1}}</th>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"> {{cuestionario.nombre}}</td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{cuestionario.descripcion}}</td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+                  <a (click)="contestarCuestionario(cuestionario.idCuestionario)" class="btn btn-info btn-block"> <i class="fas fa-edit blanco"></i> </a>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot class="grey lighten-5 w-100">
+            <tr>
+              <td colspan="4">
+                <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
+</div>
 <!--<div class="col-md-4"  *ngFor="let cuestionario of cuestionarios">
   <div class="card text-center" >
     <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
