@@ -36,20 +36,20 @@
           </thead>
           <tbody  *ngFor="let cuestionario of cuestionarios; let i = index">
             <tr>
-              <th scope="row">{{i+1}}</th>
-              <td> {{cuestionario.nombre}}</td>
-              <td>{{cuestionario.descripcion | limitTo: limite}} </td>
-              <td>
+              <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{i+1}}</th>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" > {{cuestionario.nombre}}</td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >{{cuestionario.descripcion | limitTo: limite}} </td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >
                 <a  (click)="editarCuestionario(cuestionario.idCuestionario)" class="btn btn-info btn-block">
                   <i class="fas fa-edit blanco"></i>
                 </a>
               </td>
-              <td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >
                 <a (click)="resultadosCuestionario(cuestionario.idCuestionario)" class="btn btn-info btn-block">
                     <i class="fas fa-chart-pie blanco"></i>
                 </a>
               </td>
-              <td>
+              <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" >
                 <button class="btn btn-danger" (click)="deleteCuestionario(cuestionario.idEncuesta)">
                   <i class="far fa-trash-alt blanco"></i>
                 </button>

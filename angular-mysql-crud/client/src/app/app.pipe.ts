@@ -1,3 +1,4 @@
+//Codigo obtenido de: https://stackoverflow.com/questions/40028456/angular-limitto-pipe-not-working
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

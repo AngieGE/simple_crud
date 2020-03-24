@@ -1,6 +1,6 @@
 import { Usuario } from './Usuario';
 import { Aplicacion } from './Aplicacion';
-import { Pregunta } from './Pregunta';
+import { Pregunta, PreguntaRequest } from './Pregunta';
 
 
 export class Cuestionario {
@@ -13,6 +13,7 @@ export class Cuestionario {
     // Has many
     aplicaciones?: Aplicacion[];
     preguntas?: Pregunta[];
+    preguntasRequest?: PreguntaRequest[];
 
     // Belongs to
     usuario?: Usuario;

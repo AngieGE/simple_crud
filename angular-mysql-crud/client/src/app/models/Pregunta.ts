@@ -1,7 +1,7 @@
 import { Cuestionario } from './Cuestionario';
 import { CatalogoPregunta } from './CatalogoPregunta';
 import { TipoPregunta } from './TipoPregunta';
-import { Opcion } from './Opcion';
+import { Opcion, OpcionRequest } from './Opcion';
 import { RespuestaAbierta } from './RespuestaAbierta';
 import { RespuestaMultiple } from './RespuestaMultiple';
 
@@ -15,6 +15,7 @@ export class Pregunta {
     opciones?: Opcion[];
     respuestasAbiertas?: RespuestaAbierta[];
     respuestasMultiples?: RespuestaMultiple[];
+    opcionesRequest?: OpcionRequest[];
 
     // Belongs to
     cuestionario?: Cuestionario;
@@ -42,6 +43,15 @@ export class Pregunta {
         this.localChartType = 'bar';
         this.localChartDatasets = [{ data: [], label: '' }];
         this.localChartLabels = [];
+    }
+
+    toPreguntaRequest(): PreguntaRequest{
+        return new PreguntaRequest({
+            idPregunta: this.idPregunta,
+            idCuestionario: this.idCuestionario,
+            pregunta: this.catalogoPregunta.pregunta,
+            tipoPregunta: this.tipoPregunta.tipo
+        });
     }
 
     setChart() {

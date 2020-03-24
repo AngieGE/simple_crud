@@ -29,6 +29,14 @@ export class Opcion {
         this.localSelected = false;
         this.respuestasMultiples = new Array(0);
     }
+
+    toOpcionRequest(): OpcionRequest{
+        return new OpcionRequest({
+            idOpcion: this.idOpcion,
+            opcion: this.catalogoOpcion.opcion,
+            idPregunta: this.idPregunta,
+        });
+    }
 }
 
 export class OpcionRequest {

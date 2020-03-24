@@ -1,7 +1,10 @@
-import {Component, DebugElement, HostBinding, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, DebugElement, HostBinding, OnInit,
+       ViewChild, ElementRef, ChangeDetectorRef, 
+       HostListener} from '@angular/core';
 import {Router} from '@angular/router';
 import {Cuestionario, Usuario} from '../../models/index';
 import {ManagerService, CuestionarioService} from '../../services/index';
+import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-custionario-list',
@@ -12,10 +15,15 @@ export class CustionarioListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row';
   @ViewChild('closeModal') private closeModal: ElementRef;
+  @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  @HostListener('input') onInput() { this.searchItems(); }
+
   cuestionarios: any = [];
   usuario: Usuario;
   searchText: string;
   elements: any = [];  
+  previous: any = [];
   limite: string = '100';
 
   cuestionario: Cuestionario = {
@@ -26,7 +34,7 @@ export class CustionarioListComponent implements OnInit {
     activa: 0,
   };
 
-  constructor(private cuestionariosService: CuestionarioService, private router: Router, private manager: ManagerService) {
+  constructor(private cuestionariosService: CuestionarioService, private router: Router, private manager: ManagerService, private cdRef: ChangeDetectorRef) {
       localStorage.setItem('rout', router.url) ;
   }
 
@@ -36,6 +44,32 @@ export class CustionarioListComponent implements OnInit {
       this.cuestionario.idUsuario = this.manager.usuario.idUsuario;
   }
 
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous); this.cuestionarios = this.mdbTable.getDataSource();
+    }
+    if (this.searchText) {
+      this.cuestionarios = this.mdbTable.searchLocalDataByMultipleFields(
+        this.searchText, ['nombre', 'descripcion']
+      );
+      this.mdbTable.setDataSource(prev);
+
+    }
+  }
+
+  setTable() {
+    this.mdbTable.setDataSource(this.cuestionarios);
+    this.cuestionarios = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
+
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
+    this.mdbTablePagination.calculateFirstItemIndex();
+    this.mdbTablePagination.calculateLastItemIndex();
+    this.cdRef.detectChanges();
+  }
+
+
   getCuestionarios() {
     const id: number = this.usuario.idUsuario;
     this.cuestionariosService.listarCuestionarios(id, null)
@@ -43,6 +77,7 @@ export class CustionarioListComponent implements OnInit {
       res => {
         console.log(res);
         this.cuestionarios = res;
+        this.setTable();
       },
       err => {
         console.log(err);

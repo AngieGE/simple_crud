@@ -57,6 +57,7 @@ export class CustionarioFormComponent implements OnInit {
   listarPreguntas(listarOpciones: boolean) {
     this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
       .subscribe( resPreguntas => {
+        this.cuestionario.preguntasRequest = resPreguntas.map((item: Pregunta) => new Pregunta(item).toPreguntaRequest());
         this.cuestionario.preguntas = resPreguntas.map((item: Pregunta) => new Pregunta(item));
 
         //Obtener todas las opciones
@@ -67,6 +68,7 @@ export class CustionarioFormComponent implements OnInit {
         console.log(err);
       });
   }
+
 
   listarOpciones(pregunta?: Pregunta) {
     //Obtener todas las opciones
@@ -81,11 +83,13 @@ export class CustionarioFormComponent implements OnInit {
         if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
           this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
             pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+            pregunta.opcionesRequest = opciones.map((item: Opcion) => new Opcion(item).toOpcionRequest());
           });
         }
       }
 
   }
+
 
   ///////////////////////////   ASIGNACIONES ////////////////////////////////////
   asignarPregunta(pregunta: PreguntaRequest) {
