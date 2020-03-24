@@ -25,9 +25,6 @@ export class CustionarioFormComponent implements OnInit {
   pregunta?: PreguntaRequest = new PreguntaRequest();
   opcion?: OpcionRequest = new OpcionRequest();
 
-  laOpcionString?: string;
-  laPreguntaString?: string;
-
   eliminandoPregunta?: boolean = false;
 
   constructor(private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
@@ -57,7 +54,6 @@ export class CustionarioFormComponent implements OnInit {
   listarPreguntas(listarOpciones: boolean) {
     this.preguntaService.listarPreguntas(this.cuestionario.idCuestionario)
       .subscribe( resPreguntas => {
-        this.cuestionario.preguntasRequest = resPreguntas.map((item: Pregunta) => new Pregunta(item).toPreguntaRequest());
         this.cuestionario.preguntas = resPreguntas.map((item: Pregunta) => new Pregunta(item));
 
         //Obtener todas las opciones
@@ -70,36 +66,38 @@ export class CustionarioFormComponent implements OnInit {
   }
 
 
-  listarOpciones(pregunta?: Pregunta) {
+  listarOpciones(idPregunta?: number) {
     //Obtener todas las opciones
-    let preguntas: Pregunta[] ;
-    if (pregunta == null) {
-      preguntas = this.cuestionario.preguntas;
-    }else{
-      preguntas = newArray<Pregunta>(1);
-      preguntas[0] = pregunta;
-    }
-      for (const pregunta of preguntas) {
+    if (idPregunta) {
+      this.preguntaService.obtenerPregunta(idPregunta)
+          .subscribe( pregunta => {
+            if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
+              this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
+                pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
+              });
+            }
+          }, err => {console.log(err)});
+    } else {
+      for (const pregunta of this.cuestionario.preguntas) {
         if (pregunta.tipoPregunta.tipo !== _TipoPregunta.TipoPreguntaEnum.ABIERTA) {
           this.opcionService.listarOpcions(null, pregunta.idPregunta).subscribe(opciones => {
             pregunta.opciones = opciones.map((item: Opcion) => new Opcion(item));
-            pregunta.opcionesRequest = opciones.map((item: Opcion) => new Opcion(item).toOpcionRequest());
           });
         }
-      }
+      }      
+    }
+
 
   }
 
 
   ///////////////////////////   ASIGNACIONES ////////////////////////////////////
-  asignarPregunta(pregunta: PreguntaRequest) {
-    this.pregunta = pregunta;
-    this.opcion.idPregunta = pregunta.idPregunta;
-    this.laPreguntaString = this.pregunta['catalogoPregunta'].pregunta;
+  asignarPregunta(pregunta: Pregunta) {
+    this.pregunta =  new Pregunta(pregunta).toPreguntaRequest();
   }
-  asignarOpcion( opcion: OpcionRequest){
-    this.opcion = opcion;
-    this.laOpcionString = this.opcion['catalogoOpcion'].opcion;
+
+  asignarOpcion( opcion: Opcion){
+    this.opcion = new Opcion(opcion).toOpcionRequest();
   }
 
   ///////////////////////////   PREGUNTA ////////////////////////////////////
@@ -134,14 +132,12 @@ export class CustionarioFormComponent implements OnInit {
   editarPregunta() {
     if (this.eliminandoPregunta == true ) return;
     console.log('editar pregunta');
-    this.pregunta.pregunta = this.laPreguntaString;
     console.log(this.pregunta);
     this.preguntaService.actualizarPregunta(this.pregunta.idPregunta, this.pregunta)
       .subscribe( res => {
         console.log(res);
         this.cargarCuestionario();
         this.closeModalPreguntaEditar.nativeElement.click();
-        this.laPreguntaString = '';
       }, err => {
         console.log(err);
       });
@@ -172,7 +168,7 @@ export class CustionarioFormComponent implements OnInit {
         .subscribe( res => {
           console.log(res);
           //Volver a listar las opciones de esta pregunta
-          this.listarOpciones(pregunta);
+          this.listarOpciones(pregunta.idPregunta);
         }, err => {
           console.log(err);
           console.log('err');
@@ -181,14 +177,15 @@ export class CustionarioFormComponent implements OnInit {
 
   editarOpcion() {
       console.log('editando');
-      this.opcion.opcion = this.laOpcionString;
-    console.log(this.opcion);
+      console.log(this.opcion);
+      console.log(this.opcion.idOpcion);
+      console.log(this.opcion.idPregunta);
+
       this.opcionService.actualizarOpcion(this.opcion.idOpcion, this.opcion)
         .subscribe( res => {
-          console.log(res);
-          this.listarOpciones();
+          console.log(res); //No me imprime esto PEEERO si le hace el update
           this.closeModalOpcionEditar.nativeElement.click();
-          this.laOpcionString = '';
+          this.listarOpciones(this.opcion.idPregunta);
         }, err => {
           console.log(err);
         });

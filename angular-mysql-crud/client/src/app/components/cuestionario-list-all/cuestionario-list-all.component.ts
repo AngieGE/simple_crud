@@ -17,7 +17,7 @@ export class CuestionarioListAllComponent implements OnInit {
   searchText: string;
 
   cuestionarios: any = [];
-
+  limite: string = '100';
   @HostListener('input') onInput() { this.searchItems(); }
 
   constructor(private cuestionarioService: CuestionarioService, private router: Router, private cdRef: ChangeDetectorRef) {

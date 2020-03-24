@@ -89,3 +89,8 @@ p{
   max-width: 350px;
   width: 100%;
 }
+.paginacion{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

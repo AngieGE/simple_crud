@@ -62,7 +62,8 @@ export class OpcionService {
   }
 
   public actualizarOpcion(idOpcion: number, opcion: OpcionRequest): Observable<any> {
-
+    console.log(idOpcion);
+    console.log(opcion);
     // Headers
     let headers = this.defaultHeaders;
     headers = headers.set('Accept', 'application/json');
