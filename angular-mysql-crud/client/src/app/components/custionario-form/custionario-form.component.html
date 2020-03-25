@@ -3,9 +3,10 @@
   <div class="subtitle ">
     <h3>Información general</h3>
   </div>
-
-    <p>{{cuestionario.nombre}}</p>
-    <p>{{cuestionario.descripcion}}</p>
+    <div data-toggle="modal" data-target="#staticBackdropInfoEditar" class="opcionHover">
+      <p>{{cuestionario.nombre}}</p>
+      <p>{{cuestionario.descripcion}}</p>
+    </div>
 
   <div class="subtitle">
     <h3>Preguntas</h3>
@@ -59,13 +60,46 @@
 
 </div>
 
+<!-- Modal editar informacion general -->
+<div class="modal fade" id="staticBackdropInfoEditar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabelInfoEditar"> Edición de información</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <label for="nombreInfoEditar">Nombre</label>
+            <input type="text" class="form-control" id="nombreInfoEditar"  [(ngModel)]="cuestionario.nombre" name="nombreInfoEditar">
+          </div>
+          <div class="form-group">
+            <label for="descripcionInfoEditar">Descripción</label>
+            <textarea type="text" class="form-control" id="descripcionInfoEditar"  [(ngModel)]="cuestionario.descripcion" name="nombreInfoEditar"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeModalInfoEditar type="button"class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="editarInfo()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button [hidden]="true" id="openModalButton" data-toggle="modal" data-target="#staticBackdropPreguntaEditar" class="fas fa-plus"></button>
+
+
+
 <!-- Modal crear pregunta -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel"> Creación de pregunta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" (click)="asignarPregunta()" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -86,7 +120,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button #closeModal type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button #closeModal type="button" class="btn btn-secondary" (click)="asignarPregunta()" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="agregarPregunta()">Crear</button>
       </div>
     </div>
@@ -99,7 +133,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabelPreguntaEditar"> Edición de pregunta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" (click)="asignarPregunta()" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -112,7 +146,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button #closeModalPreguntaEditar type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button #closeModalPreguntaEditar type="button" (click)="asignarPregunta()" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="editarPregunta()">Editar</button>
       </div>
     </div>
@@ -127,7 +161,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabelOpcion"> Creación de opción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button"  (click)="asignarOpcion()"  class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -140,7 +174,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button #closeModalOpcion type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button #closeModalOpcion type="button" (click)="asignarOpcion()" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="agregarOpcion()">Crear</button>
       </div>
     </div>
@@ -153,7 +187,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabelOpcionEditar"> Edición de opción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" (click)="asignarOpcion()" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -166,7 +200,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button #closeModalOpcionEditar type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button #closeModalOpcionEditar type="button" (click)="asignarOpcion()" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="editarOpcion()">Editar</button>
       </div>
     </div>
