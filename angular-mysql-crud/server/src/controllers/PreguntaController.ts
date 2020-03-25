@@ -89,7 +89,7 @@ export class PreguntaController {
     static async eliminarPregunta(req: Request, res: Response) {
         const { idPregunta } = req.params;
         await PreguntaService.eliminarPregunta(parseInt(idPregunta));     
-        res.json({'message': 'the aplicacion was deleted'});
+        res.json({'message': 'the pregunta was deleted'});
     }
 
 }

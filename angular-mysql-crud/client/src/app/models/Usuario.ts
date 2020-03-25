@@ -17,7 +17,6 @@ export class Usuario {
     cuestionarios?: Cuestionario[];
 
     // Belongs to
-
     constructor(usuario?: Usuario) {
         if (usuario != null) {
             this.idUsuario  =  usuario.idUsuario;
