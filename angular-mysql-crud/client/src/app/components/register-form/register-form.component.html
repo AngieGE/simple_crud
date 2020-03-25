@@ -1,39 +1,39 @@
-<form action="action_page.php">
+<div>
     <div class="container">
       <h1>Registro</h1>
       <p>Llena el formulario para finalizar el registro.</p>
       <hr>
   
-      <label for="email"><b>Nombre</b></label>
-      <input [(ngModel)]="usuario.nombre" type="text" placeholder="Ingresar nombre" name="nombre" required>
+      <label for="nombre"><b>Nombre</b></label>
+      <input [(ngModel)]="usuario.nombre" id="nombre" type="text" placeholder="Ingresar nombre" required>
   
-      <label for="psw"><b>Apellidos</b></label>
-      <input [(ngModel)]="usuario.apellido" type="password" placeholder="Ingresar apellidos" name="apellido" required>
+      <label for="lname"><b>Apellidos</b></label>
+      <input [(ngModel)]="usuario.apellido" id="lname" type="text" placeholder="Ingresar apellidos" required>
   
-      <label for="psw-repeat"><b>Usuario</b></label>
-      <input [(ngModel)]="usuario.usuario" type="password" placeholder="Ingresar usuario" name="usuario" required>
+      <label for="user"><b>Usuario</b></label>
+      <input [(ngModel)]="usuario.usuario" id="user" type="text" placeholder="Ingresar usuario" required>
 
       <label for="psw"><b>Contraseña</b></label>
-      <input type="password" placeholder="Ingresar contraseña" name="contrasena" required>
+      <input type="password" id="psw" placeholder="Ingresar contraseña" required>
   
       <label for="psw-repeat"><b>Contraseña</b></label>
-      <input [(ngModel)]="usuario.contrasena" type="password" placeholder="Ingresar contraseña nuevamente" name="contrasena-repeat" required>
+      <input [(ngModel)]="usuario.contrasena" id="psw-repeat" type="password" placeholder="Ingresar contraseña nuevamente" required>
 
       <label for="birthday">Fecha de nacimiento:</label>
-      <input [(ngModel)]="usuario.fechaNacimiento" type="date" id="birthday" name="birthday">
+      <input [(ngModel)]="usuario.fechaNacimiento" id="birthday" type="date" id="birthday">
 
       <label class="gender2" for="gender">Género:</label>
-      <select name="genero" class="gender" >
+      <select [(ngModel)]="usuario.genero" name="genero" class="gender" >
         <option value="1">Femenino</option>
         <option value="0">Masculino</option>
       </select>
 
       <hr>
   
-      <button type="submit" class="registerbtn">Register</button>
+      <button type="submit" class="registerbtn" (click)="registrarUsuario()">Registrar</button>
     </div>
   
     <div class="signIn">
       <p>Ya tienes una cuenta? <a href="#">Iniciar Sesión</a>.</p>
     </div>
-  </form>
+  </div>

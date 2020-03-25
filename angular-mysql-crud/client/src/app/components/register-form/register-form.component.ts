@@ -12,9 +12,18 @@ export class RegisterFormComponent implements OnInit {
 
   usuario: Usuario;
 
-  constructor(private usuarioService: UsuarioService, private  router: Router, private manager: ManagerService) { }
+  constructor(private usuarioService: UsuarioService) {
+    this.usuario = new Usuario();
+   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  registrarUsuario() {
+    this.usuarioService.crearUsuario(this.usuario)
+    .subscribe( res => {
+      console.log(res);
+
+    });
+  }
 }
