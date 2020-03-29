@@ -30,7 +30,7 @@
       </div>
 
       <label for="birthday">Fecha de nacimiento:</label>
-      <input [(ngModel)]="usuario.fechaNacimiento" id="birthday" type="date" id="birthday">
+      <input [(ngModel)]="usuario.localFechaNacimiento" id="birthday" type="date" id="birthday">
 
       <label class="gender2" for="gender">Género:</label>
       <select [(ngModel)]="usuario.genero" name="genero" class="gender" >
@@ -40,7 +40,7 @@
 
       <hr>
   
-      <button type="submit" class="registerbtn" (click)="registrarUsuario()"  data-toggle="modal" data-target="#myModal">Registrar</button>
+      <button type="submit" class="registerbtn" (click)="registrarUsuario()" >Registrar</button>
     </div>
   
     <div class="signIn">
@@ -49,7 +49,7 @@
   </div>
 
   <!-- The Modal -->
-<div *ngIf="showModal" class="modal" id="myModal">
+<div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 

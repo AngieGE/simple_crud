@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/index';
 import { UsuarioService, ManagerService } from '../../services/index';
 import { Router, ActivatedRoute } from '@angular/router';
-
+declare var $: any ;
 
 @Component({
   selector: 'app-register-form',
@@ -15,7 +15,6 @@ export class RegisterFormComponent implements OnInit {
   userExists: boolean;
   wrongP: boolean;
   wrongData: boolean;
-  showModal: boolean;
 
   constructor(private usuarioService: UsuarioService, private router: Router) {
     this.usuario = new Usuario();
@@ -25,15 +24,14 @@ export class RegisterFormComponent implements OnInit {
     this.userExists = false;
     this.wrongP = false;
     this.wrongData = false;
-    this.showModal = false;
   }
 
   registrarUsuario() {
-
+    console.log(this.usuario.localFechaNacimiento);
     if (this.usuario.nombre == null || this.usuario.apellido == null || this.usuario.contrasena == null ||
-      this.usuario.contrasena2 == null || this.usuario.usuario == null || this.usuario.fechaNacimiento == null ||
+      this.usuario.contrasena2 == null || this.usuario.usuario == null || this.usuario.localFechaNacimiento == null ||
       this.usuario.genero == null || this.usuario.nombre === '' || this.usuario.apellido === '' || this.usuario.contrasena === '' ||
-      this.usuario.contrasena2 === '' || this.usuario.usuario === '') {
+      this.usuario.contrasena2 === '' || this.usuario.usuario === '' || this.usuario.localFechaNacimiento === '') {
       this.wrongData = true;
       this.wrongP = false;
       this.userExists = false;
@@ -44,17 +42,15 @@ export class RegisterFormComponent implements OnInit {
     } else {
       this.wrongData = false;
       this.wrongP = false;
+      this.usuario.fechaNacimiento = new Date(this.usuario.localFechaNacimiento);
       this.usuarioService.crearUsuario(this.usuario)
         .subscribe(res => {
           console.log(res);
           if (!res.saved) {
             this.userExists = true;
           } else {
-            console.log(this.showModal);
+            $('#myModal').show();
             this.userExists = false;
-            this.showModal = true;
-            console.log('si llega' + this.showModal);
-
           }
 
         });
