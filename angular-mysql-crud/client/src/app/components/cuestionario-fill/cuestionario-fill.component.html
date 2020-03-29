@@ -27,7 +27,7 @@
     </div>
 
     <div *ngIf="pregunta.opciones == null">
-      <input [(ngModel)]="pregunta.localRespuestaAbierta.respuesta" class="form-control" type="text"  placeholder="Escribe tu respuesta">
+      <input [(ngModel)]="pregunta.localRespuestaAbierta.respuesta" class="form-control" type="text">
     </div>
 
 
@@ -39,7 +39,7 @@
 </div>
 
 <!-- The Modal -->
-<div *ngIf="saved" class="modal" id="myModal">
+<div *ngIf="!empty" class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -50,7 +50,7 @@
       </div>
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="logIn()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
       </div>
 
     </div>
@@ -58,7 +58,7 @@
 </div>
 
 <!-- The Modal -->
-<div *ngIf="error" class="modal" id="myModal">
+<div *ngIf="empty" class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 

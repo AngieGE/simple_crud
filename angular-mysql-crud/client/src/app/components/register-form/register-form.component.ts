@@ -30,8 +30,7 @@ export class RegisterFormComponent implements OnInit {
     if (this.usuario.nombre == null || this.usuario.apellido == null || this.usuario.contrasena == null ||
       this.usuario.contrasena2 == null || this.usuario.usuario == null || this.usuario.fechaNacimiento == null ||
       this.usuario.genero == null || this.usuario.nombre === '' || this.usuario.apellido === '' || this.usuario.contrasena === '' ||
-      this.usuario.contrasena2 === '' || this.usuario.usuario === '' ||
-      (this.usuario.genero !== 1 && this.usuario.genero !== 0)) {
+      this.usuario.contrasena2 === '' || this.usuario.usuario === '') {
       this.wrongData = true;
       this.wrongP = false;
       this.userExists = false;

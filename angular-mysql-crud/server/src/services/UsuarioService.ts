@@ -18,8 +18,12 @@ export class UsuarioService {
         return recordset.recordset;
     }
 
-    static async crearUsuario(usuario: Usuario): Promise<boolean> {
-        let sql: string = "INSERT INTO Usuario (nombre, apellido, contrasena, usuario, fechaNacimiento, genero) " + 
+    static async crearUsuario(usuario: Usuario): Promise<Boolean> {
+        console.log("id uduario encontrado");
+        let sql1: string = "SELECT idUsuario FROM Usuario WHERE usuario = '" + usuario.usuario + "'";
+        const recordset = await pool.query(sql1);
+        if(recordset.recordset[0] == null){
+            let sql: string = "INSERT INTO Usuario (nombre, apellido, contrasena, usuario, fechaNacimiento, genero) " + 
                           "VALUES ('"+ usuario.nombre + "', '" + 
                                        usuario.apellido +"', '" + 
                                        usuario.contrasena + "', '" + 
@@ -28,10 +32,13 @@ export class UsuarioService {
                                        usuario.genero + "');"
         await pool.query(sql);
         return true;
+        }else{
+            return false;
+        }
     }
 
     static async obtenerUsuario(idUsuario: number): Promise<Usuario> {
-        let sql: string = "SELECT * FROM Usuario WHERE idUsuario = " + idUsuario;
+        let sql: string = "SELECT * FROM Usuario WHERE idUsuario = '" + idUsuario;
         const recordset = await pool.query(sql);
         return recordset.recordset[0];
     }

@@ -23,8 +23,12 @@ export class UsuarioController {
 
     static async crearUsuario(req: Request, res: Response) {
         let usuario: Usuario = req.body;    
-        await UsuarioService.crearUsuario(usuario);     
-        res.json({'message':'saved usuario'});
+        const saved: Boolean = await UsuarioService.crearUsuario(usuario);   
+        if(!saved){
+            res.json({'message':' usuario already exists', saved});
+        }else{
+            res.json({'message':'saved usuario', saved});
+        }
     }
 
     static async obtenerUsuario (req: Request, res: Response) {
