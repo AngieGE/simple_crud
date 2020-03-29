@@ -86,7 +86,6 @@ export class CuestionarioFillComponent implements OnInit {
             this.mSelected = true;
           }
         }
-
         if (!this.mSelected) {
           this.empty = true;
         }

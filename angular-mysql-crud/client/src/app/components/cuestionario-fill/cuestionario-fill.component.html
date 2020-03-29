@@ -3,13 +3,13 @@
   <h2>Información general</h2>
   <div class="form-group preguntas">
     <label for="nombre">Nombre</label>
-    <span [(ngModel)]="cuestionario.nombre" type="text" class="form-control" id="nombre"
-      placeholder="Ingresa el nombre de tu encuesta" name="title" required></span>
+    <input  disabled="" [(ngModel)]="cuestionario.nombre" type="text" ngModel="cuestionario.nombre" class="form-control" id="nombre" required>
+
   </div>
   <div class="form-group preguntas">
     <label for="descripcion">Descripción cuestionario</label>
-    <span [(ngModel)]="cuestionario.descripcion" class="form-control" id="descripcion" rows="3"
-      name="descripcion"></span>
+    <input  disabled="" [(ngModel)]="cuestionario.descripcion" type="text" ngModel="cuestionario.descripcion" class="form-control" id="descripcion" required>
+
   </div>
 
   <h2>Preguntas</h2>
