@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/index';
 import { UsuarioService, ManagerService } from '../../services/index';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-register-form',
@@ -14,8 +15,9 @@ export class RegisterFormComponent implements OnInit {
   userExists: boolean;
   wrongP: boolean;
   wrongData: boolean;
+  showModal: boolean;
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private router: Router) {
     this.usuario = new Usuario();
   }
 
@@ -23,6 +25,7 @@ export class RegisterFormComponent implements OnInit {
     this.userExists = false;
     this.wrongP = false;
     this.wrongData = false;
+    this.showModal = false;
   }
 
   registrarUsuario() {
@@ -47,7 +50,11 @@ export class RegisterFormComponent implements OnInit {
           if (!res.saved) {
             this.userExists = true;
           } else {
+            console.log(this.showModal);
             this.userExists = false;
+            this.showModal = true;
+            console.log('si llega' + this.showModal);
+
           }
 
         });
@@ -56,4 +63,7 @@ export class RegisterFormComponent implements OnInit {
 
   }
 
+  logIn() {
+    this.router.navigate(['/index']);
+  }
 }

@@ -40,10 +40,29 @@
 
       <hr>
   
-      <button type="submit" class="registerbtn" (click)="registrarUsuario()">Registrar</button>
+      <button type="submit" class="registerbtn" (click)="registrarUsuario()"  data-toggle="modal" data-target="#myModal">Registrar</button>
     </div>
   
     <div class="signIn">
       <p>Ya tienes una cuenta? <a href="/index">Iniciar Sesión</a>.</p>
     </div>
   </div>
+
+  <!-- The Modal -->
+<div *ngIf="showModal" class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Usuario registrado correctamente!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" (click)="logIn()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
