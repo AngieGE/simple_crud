@@ -4,20 +4,30 @@
       <p>Llena el formulario para finalizar el registro.</p>
       <hr>
   
+      <div *ngIf="wrongData">
+        <p style="color:red">Favor de llenar los campos faltantes. </p>
+      </div>
       <label for="nombre"><b>Nombre</b></label>
       <input [(ngModel)]="usuario.nombre" id="nombre" type="text" placeholder="Ingresar nombre" required>
   
       <label for="lname"><b>Apellidos</b></label>
       <input [(ngModel)]="usuario.apellido" id="lname" type="text" placeholder="Ingresar apellidos" required>
   
+
       <label for="user"><b>Usuario</b></label>
       <input [(ngModel)]="usuario.usuario" id="user" type="text" placeholder="Ingresar usuario" required>
-
+      <div *ngIf="userExists">
+        <p style="color:red">El usuario ya existe. Ingresa uno diferente. </p>
+      </div>
       <label for="psw"><b>Contraseña</b></label>
-      <input type="password" id="psw" placeholder="Ingresar contraseña" required>
+      <input [(ngModel)]="usuario.contrasena" type="password" id="psw" placeholder="Ingresar contraseña" required>
   
+
       <label for="psw-repeat"><b>Contraseña</b></label>
-      <input [(ngModel)]="usuario.contrasena" id="psw-repeat" type="password" placeholder="Ingresar contraseña nuevamente" required>
+      <input [(ngModel)]="usuario.contrasena2" id="psw-repeat" type="password" placeholder="Ingresar contraseña nuevamente" required>
+      <div *ngIf="wrongP">
+        <p style="color:red">Las contraseñas no coinciden. </p>
+      </div>
 
       <label for="birthday">Fecha de nacimiento:</label>
       <input [(ngModel)]="usuario.fechaNacimiento" id="birthday" type="date" id="birthday">
@@ -34,6 +44,6 @@
     </div>
   
     <div class="signIn">
-      <p>Ya tienes una cuenta? <a href="#">Iniciar Sesión</a>.</p>
+      <p>Ya tienes una cuenta? <a href="/index">Iniciar Sesión</a>.</p>
     </div>
   </div>

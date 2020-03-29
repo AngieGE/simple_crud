@@ -17,6 +17,9 @@ export class Usuario {
     cuestionarios?: Cuestionario[];
 
     // Belongs to
+
+    // Local variables
+    contrasena2?: string;
     constructor(usuario?: Usuario) {
         if (usuario != null) {
             this.idUsuario  =  usuario.idUsuario;
