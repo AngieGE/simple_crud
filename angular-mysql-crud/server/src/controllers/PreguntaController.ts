@@ -68,6 +68,7 @@ export class PreguntaController {
 
         }else if (preguntasMismoCatalogo.length <= 1 && catalogos.length <= 0) { // La opcion anterior solo yo la uso, y la nueva no existe
             await CatalogoPreguntaService.actualizarCatalogoPregunta(preguntaAnterior.idCatalogoPregunta!, { pregunta: preguntaR.pregunta });
+            pregunta.idCatalogoPregunta = preguntaAnterior.idCatalogoPregunta;
             await PreguntaService.actualizarPregunta(parseInt(idPregunta), pregunta);
 
         } else if (preguntasMismoCatalogo.length > 1 && catalogos.length > 0) { //La opcion anterior mas personas la usan y la nueva ya existe

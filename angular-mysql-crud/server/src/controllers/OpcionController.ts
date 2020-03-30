@@ -44,8 +44,11 @@ export class OpcionController {
     }
 
     static async actualizarOpcion(req: Request, res: Response) {
+
         const { idOpcion } = req.params;
+
         let opcionR: OpcionRequest = req.body; 
+        console.log(opcionR);
         let opcion = new Opcion(opcionR);
         let opcionAnterior = await OpcionService.obtenerOpcion(parseInt(idOpcion));
         let opcionesMismoCatalogo = await OpcionService.listarOpciones(opcionAnterior.idCatalogoOpcion);
@@ -57,6 +60,7 @@ export class OpcionController {
 
         }else if (opcionesMismoCatalogo.length <= 1 && catalogos.length <= 0) { // La opcion anterior solo yo la uso, y la nueva no existe
             await CatalogoOpcionService.actualizarCatalogoOpcion(opcionAnterior.idCatalogoOpcion!, { opcion: opcionR.opcion });
+            opcion.idCatalogoOpcion = opcionAnterior.idCatalogoOpcion;
             await OpcionService.actualizarOpcion(parseInt(idOpcion), opcion);
 
         } else if (opcionesMismoCatalogo.length > 1 && catalogos.length > 0) { //La opcion anterior mas personas la usan y la nueva ya existe

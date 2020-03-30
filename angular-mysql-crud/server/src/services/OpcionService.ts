@@ -28,6 +28,9 @@ export class OpcionService {
     }
 
     static async actualizarOpcion(idOpcion: number,opcion: Opcion): Promise<boolean> {
+        console.log(opcion);
+
+
         let sql: string = "UPDATE Opcion SET " + 
                                 "idCatalogoOpcion = " +  opcion.idCatalogoOpcion + ", " +
                                 "idPregunta = " + opcion.idPregunta + " " +
