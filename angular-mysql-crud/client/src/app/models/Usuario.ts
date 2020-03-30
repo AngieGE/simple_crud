@@ -18,6 +18,10 @@ export class Usuario {
 
     // Belongs to
 
+    // Local variables
+    contrasena2?: string;
+    localFechaNacimiento?: string;
+
     constructor(usuario?: Usuario) {
         if (usuario != null) {
             this.idUsuario  =  usuario.idUsuario;
@@ -27,6 +31,7 @@ export class Usuario {
             this.usuario  =  usuario.usuario;
             this.fechaNacimiento  =  usuario.fechaNacimiento;
             this.genero  =  usuario.genero;
+            this.localFechaNacimiento = this.fechaNacimiento.toString();
         }
     }
 }

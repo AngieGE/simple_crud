@@ -1,17 +1,33 @@
+
 .opcion {
     background-color: white;
     padding: 5px;
+    padding-left: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 8x;
+    margin-bottom: 8px;
 }
 
 .opcion:hover {
     background-color: #5ccccc;
     padding: 5px;
+    padding-left: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 
 }
 
 .opcion-Selected {
     background-color: #5ccccc;
     padding: 5px;
+    padding-left: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .formulario {
@@ -20,8 +36,29 @@ margin: 100px;
 }
 
 
-.enviarEncuesta{
-    margin-left:1200px;
-}
 
+.preguntas{
+    padding: 5px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;    
+  }
+
+  .enviarEncuesta{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    text-align: center;
+    width: 100%;
+  
+  }
+  
+  .ancho{
+    width: 100%;
+    max-width: 800px;
+  }
 

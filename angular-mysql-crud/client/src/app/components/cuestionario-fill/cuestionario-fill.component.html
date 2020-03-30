@@ -1,19 +1,20 @@
-<div class="formulario">
+<div class="d-flex justify-content-center">
+<div class="ancho">
   <h2>Información general</h2>
-  <div class="form-group">
+  <div class="form-group preguntas">
     <label for="nombre">Nombre</label>
-    <input [(ngModel)]="cuestionario.nombre" type="text" class="form-control" id="nombre"
-      placeholder="Ingresa el nombre de tu encuesta" name="title" required>
+    <input  disabled="" [(ngModel)]="cuestionario.nombre" type="text" ngModel="cuestionario.nombre" class="form-control" id="nombre" required>
+
   </div>
-  <div class="form-group">
+  <div class="form-group preguntas">
     <label for="descripcion">Descripción cuestionario</label>
-    <textarea [(ngModel)]="cuestionario.descripcion" class="form-control" id="descripcion" rows="3"
-      name="descripcion"></textarea>
+    <input  disabled="" [(ngModel)]="cuestionario.descripcion" type="text" ngModel="cuestionario.descripcion" class="form-control" id="descripcion" required>
+
   </div>
 
   <h2>Preguntas</h2>
 
-  <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+  <div class="myCard card card-4 preguntas" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
 
     <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
     <div *ngIf="pregunta.opciones != null">
@@ -26,12 +27,51 @@
     </div>
 
     <div *ngIf="pregunta.opciones == null">
-      <input [(ngModel)]="pregunta.localRespuestaAbierta.respuesta" class="form-control" type="text"  placeholder="Escribe tu respuesta">
+      <input [(ngModel)]="pregunta.localRespuestaAbierta.respuesta" class="form-control" type="text">
     </div>
 
 
   </div>
 
-    <button (click)="guardarCuestionario()" type="button" class="enviarEncuesta btn btn-info mt-5">Enviar encuesta</button>
+    <button (click)="guardarCuestionario()" type="button" class="enviarEncuesta btn btn-info mt-5 " data-toggle="modal" data-target="#myModal">Enviar encuesta</button>
 
+</div>
+</div>
+
+<!-- The Modal -->
+<div *ngIf="!empty" class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Encuesta enviada correctamente!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" (click)="logIn()" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div *ngIf="empty" class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Falta llenar campos!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
 </div>
