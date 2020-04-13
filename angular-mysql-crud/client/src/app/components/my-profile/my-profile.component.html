@@ -1,76 +1,74 @@
 
 <div  *ngIf="editando; else noEditando">
-<form  name="myform">
+<div  name="myform">
 
   <div class="form-group">
-    <input  [(ngModel)]="usuario.nombre" value='valor' type="text" ngModel="nombre" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required>
-  </div>
-
-
-  <div class="form-group">
-    <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" id="apellido" placeholder="Apellido" name="apellido" required>
+    <input  [(ngModel)]="usuario.nombre" value='valor' type="text" ngModel="nombre" class="form-control" placeholder="Nombre" required>
   </div>
 
   <div class="form-group">
-    <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" id="usuario" placeholder="Usuario" name="usuario" required>
-  </div>
-
-  <!--
-  <div class="form-group">
-    <input  [(ngModel)]="us['contrasena']" type="password" class="form-control" id="usuario" placeholder="Nombre de usuario" name="usuario" required>
-  </div>
-  -->
-
-  <div class="form-group">
-    <input   type="date" [valueAsDate]="nacimiento" class="form-control" id="nacimiento" placeholder="Fecha de nacimiento" name="nacimiento" required>
+    <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" placeholder="Apellido" required>
   </div>
 
   <div class="form-group">
-    <select id="inputState" class="form-control">
-      <option value="" selected disabled> Género</option>
-      <option value="0">Hombre</option>
-      <option value="1">Mujer</option>
+    <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" placeholder="Usuario" required>
+  </div>
+
+  <div class="form-group">
+    <input   type="date" [(ngModel)]="usuario.localFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" required>
+  </div>
+
+  <div class="form-group">
+    <select id="inputState" class="form-control" [(ngModel)]="usuario.localGenero">
+      <option selected disabled> Género</option>
+      <option>Hombre</option>
+      <option>Mujer</option>
     </select>
+  </div>
+
+  <div class="form-group">
+    <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" placeholder="Nombre de usuario" required>
   </div>
 
   <div class="botones col-md-4">
     <button type="submit" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
   </div>
-</form>
+</div>
 </div>
 
 <ng-template  #noEditando>
-<form name="myform" class="edit">
+<div name="myform" class="edit">
 
   <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.nombre" type="text" ngModel="usuario.nombre" class="form-control" id="editandoNombre" placeholder="Nombre" name="nombre" required>
+    <input  disabled="" [(ngModel)]="usuario.nombre" type="text" class="form-control" placeholder="Nombre" required>
 
   </div>
 
 
   <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" id="editandoApellido" placeholder="Apellido" name="apellido" required>
-  </div>
-
-  <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.usuario" type="text" ngModel="usuario" class="form-control" id="editandoUsuario" placeholder="usuario" name="usuario" required>
+    <input  disabled="" [(ngModel)]="usuario.apellido" type="text" class="form-control" placeholder="Apellido" required>
   </div>
 
   <div class="form-group">
+    <input  disabled="" [(ngModel)]="usuario.usuario" type="text" class="form-control" placeholder="usuario" required>
+  </div>
 
-    <input  disabled="" [(ngModel)]="datestring" type="text" class="form-control" id="editandoNacimiento" placeholder="Fecha de nacimiento" name="nacimiento" required>
+  <div class="form-group">
+
+    <input  disabled="" [(ngModel)]="usuario.localFechaNacimiento" type="text" class="form-control" placeholder="Fecha de nacimiento" required>
 
 
   </div>
 
-
-  <div  >
-    <input  disabled=""  value="{{usuario.genero == 1? 'Mujer':  'Hombre'}}" type="text" class="form-control" id="Mujer" placeholder="Género" name="nacimiento" required>
+  <div>
+    <input  disabled=""  [(ngModel)]="usuario.localGenero" type="text" class="form-control" placeholder="Género" required>
   </div>
+
   <br><br>
+
   <div class="botones col-md-4" >
     <button type="submit" class="btn btn-primary" (click)="editar(true)">Editar</button>
   </div>
 
-</form>
+</div>
 </ng-template>

@@ -21,6 +21,7 @@ export class Usuario {
     // Local variables
     contrasena2?: string;
     localFechaNacimiento?: string;
+    localGenero?: string;
 
     constructor(usuario?: Usuario) {
         if (usuario != null) {
@@ -29,9 +30,9 @@ export class Usuario {
             this.apellido  =  usuario.apellido;
             this.contrasena  =  usuario.contrasena;
             this.usuario  =  usuario.usuario;
-            this.fechaNacimiento  =  usuario.fechaNacimiento;
+            this.fechaNacimiento  = new Date(usuario.fechaNacimiento);
             this.genero  =  usuario.genero;
-            this.localFechaNacimiento = this.fechaNacimiento.toString();
+            this.localGenero = this.genero === 1 ? 'Mujer' : 'Hombre';
         }
     }
 }

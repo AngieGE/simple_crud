@@ -50,7 +50,7 @@ export class UsuarioService {
                                 "contrasena = '" + usuario.contrasena + "', " +
                                 "usuario = '" + usuario.usuario + "', " +
                                 "fechaNacimiento = '" + usuario.fechaNacimiento + "', " +
-                                "genero = '" + usuario.genero + "' " +
+                                "genero = " + usuario.genero + " " +
                                 "WHERE idUsuario = " + idUsuario +" ;";
         await pool.query(sql);
         return true;

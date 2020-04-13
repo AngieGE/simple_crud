@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Usuario} from '../../models/index';
-import {ManagerService} from '../../services';
+import {ManagerService, UsuarioService} from '../../services';
 
 
 @Component({
@@ -11,26 +11,16 @@ import {ManagerService} from '../../services';
 })
 
 export class MyProfileComponent implements OnInit {
-  us: JSON;
   editando: boolean;
-  nacimiento: Date;
-  n: string;
   usuario: Usuario;
-  datestring: string;
-  constructor(public datepipe: DatePipe, private manager: ManagerService) {
+
+  constructor(public datepipe: DatePipe, private manager: ManagerService, private usuarioService: UsuarioService) {
     this.editando = false;
   }
 
   ngOnInit(): void {
-   // this.usuario = this.manager.usuario;
-   this.usuario = this.manager.usuario;
-
-   this.nacimiento = this.usuario.fechaNacimiento;
-
-   this.datestring = this.datepipe.transform(this.nacimiento, 'yyyy-MM-dd');
-
-
-   console.log(this.usuario);
+   this.usuario = new Usuario(this.manager.usuario);
+   this.usuario.localFechaNacimiento = this.datepipe.transform(this.usuario.fechaNacimiento, 'yyyy-MM-dd');
   }
 
   editar( editando: boolean) {
@@ -38,17 +28,15 @@ export class MyProfileComponent implements OnInit {
   }
 
   saveChanges() {
-    // Obtener los datos de los input de tu htm
+    this.usuario.genero = this.usuario.localGenero === 'Mujer' ? 1 : 0;
+    this.usuario.fechaNacimiento = new Date(this.usuario.localFechaNacimiento);
+    this.usuarioService.actualizarUsuario(this.usuario.idUsuario, this.usuario).subscribe(
+      res => {
 
-    // guardarlos
-
-    // guardarlo en la BD
-
-    // obteer una resp o err
-
+    });
+    this.manager.usuario = this.usuario;
 
     this.editar(false);
-
   }
 
 }
