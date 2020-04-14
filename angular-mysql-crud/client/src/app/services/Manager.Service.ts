@@ -5,7 +5,7 @@ import { Usuario } from  '../models/Usuario';
 
 @Injectable({ providedIn: 'root' })
 export class ManagerService {
-  API_URL = 'http://localhost:3000';
+  API_URL = 'http://localhost:3000'; //la url del servidor google  'http://35.235.89.179:3000';
   usuario: Usuario;
 
   constructor() {

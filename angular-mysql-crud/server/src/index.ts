@@ -15,7 +15,7 @@ export class Server{
 
     config(): void{
         this.app.use(morgan('dev'));
-        this.app.use(cors({origin: 'http://localhost:4200'})); //omaigoood, no quiten esa url
+        this.app.use(cors()); //omaigoood, no quiten esa url {origin: 'http://localhost:4200'}
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:false}));
     }
