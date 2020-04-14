@@ -227,3 +227,84 @@ create index fk_respuestaMultiple_pregunta1_idx
 
 INSERT INTO cuestionariosDB.dbo.RespuestaMultiple ( idAplicacion, idOpcion, idPregunta) VALUES ( 2, 1, 2);
 INSERT INTO cuestionariosDB.dbo.RespuestaMultiple ( idAplicacion, idOpcion, idPregunta) VALUES ( 1, 2, 2);
+
+-------------------------TRIGGERS---------------------------------
+
+
+--Borrar Cuestionario--
+Create TRIGGER borrarCuestionario ON Cuestionario instead of DELETE
+AS
+    DECLARE
+        @idCuestionario int;
+SELECT @idCuestionario= idCuestionario from deleted;
+DELETE R from RespuestaMultiple R where
+    R.idPregunta in (SELECT idPregunta from Pregunta where Pregunta.idCuestionario=  @idCuestionario)
+DELETE O from Opcion O where O.idPregunta in (SELECT idPregunta from Pregunta where Pregunta.idCuestionario=  @idCuestionario)
+
+DELETE RA from RespuestaAbierta RA where RA.idPregunta in
+                                         (SELECT idPregunta from Pregunta where Pregunta.idCuestionario=  @idCuestionario)
+
+DELETE P from Pregunta P where P.idCuestionario= (@idCuestionario)
+DELETE A from Aplicacion A where A.idCuestionario=(@idCuestionario)
+DELETE from Cuestionario where idCuestionario= @idCuestionario;
+GO
+
+
+--Borrar Pregunta--
+CREATE TRIGGER borrarPregunta ON Pregunta INSTEAD OF DELETE
+AS
+DECLARE
+@idPregunta int;
+SELECT @idPregunta = idPregunta FROM deleted;
+DELETE RA FROM RespuestaAbierta RA WHERE RA.idPregunta = (@idPregunta)
+DELETE RM FROM RespuestaMultiple RM WHERE RM.idPregunta = (@idPregunta)
+DELETE O FROM Opcion O WHERE O.idPregunta = (@idPregunta)
+DELETE FROM  Pregunta WHERE idPregunta = @idPregunta;
+GO
+
+
+--Borrar Opción--
+CREATE TRIGGER borrarOpcion ON Opcion INSTEAD OF DELETE
+AS
+DECLARE
+@idOpcion int;
+SELECT  @idOpcion = idOpcion FROM deleted;
+DELETE RM FROM RespuestaMultiple RM WHERE RM.idOpcion = (@idOpcion)
+DELETE FROM Opcion WHERE idOpcion = @idOpcion;
+GO
+
+ --Borrar Usuario--
+CREATE TRIGGER borrarUsuario ON Usuario INSTEAD OF DELETE
+AS DECLARE
+@idUsuario int;
+SELECT @idUsuario = idUsuario FROM deleted;
+DELETE O FROM Opcion O WHERE O.idPregunta in(
+    SELECT idPregunta FROM Pregunta P WHERE P.idCuestionario in (
+        SELECT idCuestionario FROM Cuestionario WHERE Cuestionario.idUsuario = @idUsuario
+        )  )
+DELETE P FROM Pregunta P WHERE P.idCuestionario in (
+    SELECT idCuestionario FROM Cuestionario WHERE Cuestionario.idUsuario = @idUsuario
+    )
+DELETE RM FROM RespuestaMultiple RM WHERE RM.idAplicacion in (
+    SELECT idAplicacion FROM Aplicacion WHERE Aplicacion.idUsuario = @idUsuario
+    )
+DELETE RA FROM RespuestaAbierta RA WHERE RA.idAplicacion in (
+    SELECT idAplicacion FROM Aplicacion WHERE Aplicacion.idUsuario = @idUsuario
+    )
+DELETE A FROM Aplicacion A WHERE A.idUsuario = @idUsuario
+DELETE C FROM Cuestionario C WHERE C.idUsuario = @idUsuario
+DELETE FROM Usuario WHERE idUsuario = @idUsuario
+GO
+
+ --Borrar Aplicación--
+CREATE TRIGGER borrarAplicacion ON Aplicacion INSTEAD OF DELETE
+AS
+DECLARE
+@idAplicacion int;
+SELECT @idAplicacion = idAplicacion FROM  deleted;
+DELETE RM FROM RespuestaMultiple RM WHERE RM.idAplicacion = (@idAplicacion)
+DELETE RA FROM RespuestaAbierta RA WHERE RA.idAplicacion = (@idAplicacion)
+DELETE FROM  Aplicacion WHERE idAplicacion = @idAplicacion;
+GO
+
+
