@@ -1,3 +1,66 @@
-.formulario {
-  margin: 100px;
+.container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.thePgraph{
+  display: block;
+  margin: 20px;
+}
+.pregunta{
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.text-muted{
+  text-align: center;
+  font-size: larger;
+}
+.flexrow{
+  display: flex;
+}
+.centerVertically{
+display: flex;
+align-items: center;
+}
+h2{
+  display: inline-block;
+  text-align: justify;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+
+.myCard{
+  background-color: white;
+  width: 80%;
+  border-radius: 15px;
+}
+
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card {
+  background: #fff;
+
+  display: inline-block;
+
+  margin: 1rem;
+  position: relative;
+}
+
+.card-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.abiertas{
+  margin:40px;
+  max-height: 200px;
+}
+
+.respuesta{
+  margin-left: 20px;
+}
+.centerHorizontally{
+  display: flex;
+  justify-content: center;
 }

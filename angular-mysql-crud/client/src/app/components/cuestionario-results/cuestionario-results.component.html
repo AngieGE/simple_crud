@@ -1,27 +1,52 @@
-<div class="formulario">
-  <h2>{{cuestionario.nombre}}</h2>
-  <h3>{{cuestionario.descripcion}}</h3>
+<div class="container">
+  <div class="flexrow">
+    <div class="centerVertically">
+      <h2 >{{cuestionario.nombre}} </h2> 
+    </div>
+    <div class="centerVertically">
+      <span class="badge badge-primary badge-pill">{{aplicaciones}}</span>
+    </div>
+  </div>
 
-  <h2>Preguntas</h2>
+  <p>{{cuestionario.descripcion}}</p>
 
-  <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+  <div *ngIf="cuestionario.preguntas.length == 0; else hayPreguntas">
+    <p class="text-muted"> <strong>¡Este cuestionario esta vacio, aun no tiene preguntas!</strong> </p>
+    <div class="centerHorizontally">
+      <button type="button" class="btn btn-primary"  (click)="editarCuestionario(cuestionario.idCuestionario)" >Editar cuestionario</button>
+    </div>
+  </div>
 
-    <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
-    <div *ngIf="pregunta.tipoPregunta.tipo != TipoPreguntaEnum.ABIERTA">
-      <div style="display: block;">
-        <canvas mdbChart height='100px'
-            [chartType]="pregunta.localChartType"
-            [datasets]="pregunta.localChartDatasets"
-            [labels]="pregunta.localChartLabels"
-            [colors]="chartColors"
-            [options]="chartOptions">
-        </canvas>
+  <ng-template  #hayPreguntas>
+
+    <div  *ngIf="aplicaciones > 0;  else noAplicaciones">
+      <div class="myCard card  card-1" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+    
+        <p class="pregunta"> <b>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</b> </p>
+        <div *ngIf="pregunta.tipoPregunta.tipo != TipoPreguntaEnum.ABIERTA">
+          <div class="thePgraph">
+            <canvas mdbChart height='100px'
+                [chartType]="pregunta.localChartType"
+                [datasets]="pregunta.localChartDatasets"
+                [labels]="pregunta.localChartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions">
+            </canvas>
+          </div>
+        </div>
+        <div *ngIf="pregunta.tipoPregunta.tipo == TipoPreguntaEnum.ABIERTA" class="abiertas overflow-auto">
+          <div *ngFor="let respuestaAbierta of pregunta.respuestasAbiertas">
+            <p class="respuesta">{{respuestaAbierta.respuesta}}  </p> <hr>
+          </div>
+        </div>
+    
       </div>
     </div>
-    <div *ngIf="pregunta.tipoPregunta.tipo == TipoPreguntaEnum.ABIERTA">
-      <p *ngFor="let respuestaAbierta of pregunta.respuestasAbiertas">{{respuestaAbierta.respuesta}}</p>
-    </div>
-
-  </div>
+    
+    
+      <ng-template  #noAplicaciones>
+        <p class="text-muted"> <strong>¡Este cuestionario aun no ha sido contestado!</strong> </p>
+      </ng-template>
+  </ng-template>
 
 </div>

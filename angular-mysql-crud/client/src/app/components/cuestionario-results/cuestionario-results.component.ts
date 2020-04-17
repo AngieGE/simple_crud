@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cuestionario, Pregunta, Opcion, _TipoPregunta, RespuestaMultiple, RespuestaAbierta } from 'src/app/models';
-import { CuestionarioService, PreguntaService, OpcionService, RespuestaAbiertaService, RespuestaMultipleService } from 'src/app/services';
+import { CuestionarioService, PreguntaService, OpcionService, RespuestaAbiertaService, RespuestaMultipleService, AplicacionService } from 'src/app/services';
 
 @Component({
   selector: 'app-cuestionario-results',
@@ -11,6 +11,7 @@ import { CuestionarioService, PreguntaService, OpcionService, RespuestaAbiertaSe
 export class CuestionarioResultsComponent implements OnInit {
   TipoPreguntaEnum = _TipoPregunta.TipoPreguntaEnum;
   cuestionario: Cuestionario;
+  aplicaciones: number;
 
   public chartColors: Array<any> = [{
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -22,10 +23,11 @@ export class CuestionarioResultsComponent implements OnInit {
   constructor(
     private cuestionariosServices: CuestionarioService, private preguntaService: PreguntaService,
     private opcionService: OpcionService, private respuestaAbiertaervice: RespuestaAbiertaService,
-    private respuestaMultipleService: RespuestaMultipleService,
+    private respuestaMultipleService: RespuestaMultipleService, private aplicacionesService: AplicacionService,
     private router: Router, private activatedRoute: ActivatedRoute
   ) {
     this.cuestionario = new Cuestionario();
+    this.aplicaciones = 0;
     this.cuestionario.idCuestionario = parseInt(this.activatedRoute.snapshot.paramMap.get('idCuestionario'), 10);
   }
 
@@ -55,7 +57,21 @@ export class CuestionarioResultsComponent implements OnInit {
         }
       });
 
+      console.log(this.cuestionario);
     });
+    
+    //Obtener la cantidad de aplicaciones 
+    this.aplicacionesService.listarAplicaciones(null, this.cuestionario.idCuestionario)
+      .subscribe(aplicaciones => {
+        console.log("aplicaciones: " + aplicaciones.length);
+        this.aplicaciones = aplicaciones.length;
+      }, err =>{
+        console.log(err);
+      });
+
+  }
+  editarCuestionario(idCuestionario: number) {
+    this.router.navigate(['/cuestionarios/editar/', idCuestionario]);
   }
 
 }

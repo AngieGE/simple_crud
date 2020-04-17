@@ -11,6 +11,9 @@
 .card-header:hover{
   background-color:#e0e0e0;
 }
+.card-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 .table-primary{
   text-align: center;
   margin-top: 15px;
@@ -26,7 +29,7 @@
   background-color: #33b5e5;
   text-align: center;
 }
-.card-4, .subtitle{
+.card-1, .subtitle{
   margin-bottom: 15px;
 }
 .card-header{
