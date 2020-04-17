@@ -1,0 +1,6 @@
+.myform{
+}
+.botones{
+    display: flex;
+    justify-content: flex-end;
+}

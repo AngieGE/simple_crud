@@ -1,74 +1,171 @@
 
-<div  *ngIf="editando; else noEditando">
-<div  name="myform">
+<!--
+  <div  *ngIf="editando; else noEditando">
+    <div  name="row">
 
   <div class="form-group">
     <input  [(ngModel)]="usuario.nombre" value='valor' type="text" ngModel="nombre" class="form-control" placeholder="Nombre" required>
+    </div>
+    
+    <div class="form-group">
+      <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" placeholder="Apellido" required>
+    </div>
+    
+    <div class="form-group">
+      <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" placeholder="Usuario" required>
+    </div>
+    
+    <div class="form-group">
+      <input   type="date" [(ngModel)]="usuario.localFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" required>
+    </div>
+    
+    <div class="form-group">
+      <select id="inputState" class="form-control" [(ngModel)]="usuario.localGenero">
+        <option selected disabled> Género</option>
+        <option>Hombre</option>
+        <option>Mujer</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" placeholder="Nombre de usuario" required>
+    </div>
+    
+    <div class="botones">
+      <button type="submit" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
+    </div>
+    
+      </div>
+    </div>
+  -->
+
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    
+    <div class="col-md-7" >
+      <ng-template name="myform" class="myform"  #noEditando>
+        
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Nombre:</label>
+          <div class="col-sm-10">
+            <input  disabled="" [(ngModel)]="usuario.nombre" type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+            
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Apellido:</label>
+          <div class="col-sm-10">
+            <input  disabled="" [(ngModel)]="usuario.apellido" type="text" class="form-control" placeholder="">
+          </div>
+        </div>
+      
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Usuario:</label>
+          <div class="col-sm-10">
+            <input  disabled="" [(ngModel)]="usuario.usuario" type="text" class="form-control" placeholder="" >
+          </div>
+        </div>
+      
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
+          <div class="col-sm-10">
+            <input  disabled="" [(ngModel)]="usuario.localFechaNacimiento" type="text" class="form-control" placeholder="" >
+          </div>
+        </div>
+      
+        <div  class="form-group row">
+          <label class="col-sm-2 col-form-label">Género:</label>
+          <div class="col-sm-10">
+            <input  disabled=""  [(ngModel)]="usuario.localGenero" type="text" class="form-control" placeholder="" >
+          </div>
+        </div>
+      
+
+      
+        <div class="botones" >
+          <button type="submit" class="btn btn-primary" (click)="editar(true)">Editar</button>
+        </div>
+      
+      </ng-template>
+      <div  *ngIf="editando; else noEditando" >
+        <div name="myform" class="myform">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre:</label>
+            <div class="col-sm-10">
+              <input  [(ngModel)]="usuario.nombre" value='valor' type="text" ngModel="nombre" class="form-control" placeholder="Ingrese su nombre" required>
+            </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Apellido:</label>
+              <div class="col-sm-10">
+                <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" placeholder="Ingrese su apellido" required>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Usuario:</label>
+              <div class="col-sm-10">
+                <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" placeholder="Ingrese su usuario" required>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Fecha de nacimiento::</label>
+              <div class="col-sm-10">
+                <input   type="date" [(ngModel)]="usuario.localFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" required>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Género:</label>
+              <div class="col-sm-10">
+                <select id="inputState" class="form-control" [(ngModel)]="usuario.localGenero">
+                  <option selected disabled> Género</option>
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Nueva contraseña:</label>
+              <div class="col-sm-10">
+                <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" placeholder="Ingrese una contraseña" required>
+              </div>
+            </div>
+            
+            <div class="botones">
+              <button type="submit" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action active">
+          Actividad
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Cuestionarios activos
+          <span class="badge badge-primary badge-pill">{{cuestionariosActivos}}</span>
+        </li>
+        <!--<li class="list-group-item d-flex justify-content-between align-items-center">
+          Cuestionarios eliminados
+          <span class="badge badge-primary badge-pill">{{cuestionariosEliminados}}</span>
+        </li>-->
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Respuestas recibidas
+          <span class="badge badge-primary badge-pill">{{respuestasRecibidas}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Respuestas enviadas
+          <span class="badge badge-primary badge-pill">{{respuestasEnviadas}}</span>
+        </li>
+      </ul>
+    
+    </div>
   </div>
 
-  <div class="form-group">
-    <input [(ngModel)]="usuario.apellido" type="text" ngModel="nombre" class="form-control" placeholder="Apellido" required>
-  </div>
-
-  <div class="form-group">
-    <input [(ngModel)]="usuario.usuario" type="text" ngModel="nombre" class="form-control" placeholder="Usuario" required>
-  </div>
-
-  <div class="form-group">
-    <input   type="date" [(ngModel)]="usuario.localFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" required>
-  </div>
-
-  <div class="form-group">
-    <select id="inputState" class="form-control" [(ngModel)]="usuario.localGenero">
-      <option selected disabled> Género</option>
-      <option>Hombre</option>
-      <option>Mujer</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <input  [(ngModel)]="usuario.contrasena" type="password" class="form-control" placeholder="Nombre de usuario" required>
-  </div>
-
-  <div class="botones col-md-4">
-    <button type="submit" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
-  </div>
-</div>
-</div>
-
-<ng-template  #noEditando>
-<div name="myform" class="edit">
-
-  <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.nombre" type="text" class="form-control" placeholder="Nombre" required>
-
-  </div>
-
-
-  <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.apellido" type="text" class="form-control" placeholder="Apellido" required>
-  </div>
-
-  <div class="form-group">
-    <input  disabled="" [(ngModel)]="usuario.usuario" type="text" class="form-control" placeholder="usuario" required>
-  </div>
-
-  <div class="form-group">
-
-    <input  disabled="" [(ngModel)]="usuario.localFechaNacimiento" type="text" class="form-control" placeholder="Fecha de nacimiento" required>
-
-
-  </div>
-
-  <div>
-    <input  disabled=""  [(ngModel)]="usuario.localGenero" type="text" class="form-control" placeholder="Género" required>
-  </div>
-
-  <br><br>
-
-  <div class="botones col-md-4" >
-    <button type="submit" class="btn btn-primary" (click)="editar(true)">Editar</button>
-  </div>
-
-</div>
-</ng-template>
