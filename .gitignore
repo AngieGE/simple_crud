@@ -206,6 +206,7 @@ jspm_packages/
 # Storybook build outputs
 .out
 .storybook-out
+./angular-mysql-crud/server/src/keys.ts
 
 # vuepress build output
 .vuepress/dist
@@ -224,3 +225,4 @@ temp/
 
 # End of https://www.gitignore.io/api/node,angular,intellij
 **/build/
+
