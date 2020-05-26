@@ -1,19 +1,8 @@
 <div class="formulario">
-  <h2>Información general</h2>
-  <div class="form-group">
-    <label for="nombre">Nombre</label>
-    <input [(ngModel)]="cuestionario.nombre" type="text" class="form-control" id="nombre"
-      placeholder="Ingresa el nombre de tu encuesta" name="title" required>
-  </div>
-  <div class="form-group">
-    <label for="descripcion">Descripción cuestionario</label>
-    <textarea [(ngModel)]="cuestionario.descripcion" class="form-control" id="descripcion" rows="3"
-      name="descripcion"></textarea>
-  </div>
+  <h2>{{cuestionario.nombre}}</h2>
+  <p class="" style="font-size: large;">{{cuestionario.descripcion}}</p>
 
-  <h2>Preguntas</h2>
-
-  <div class="myCard card card-4" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
+  <div class="myCard card card-4 mt-2" *ngFor="let pregunta of cuestionario.preguntas; let i = index">
 
     <p>{{i+1}}. {{pregunta.catalogoPregunta.pregunta}}</p>
     <div *ngIf="pregunta.opciones != null">
